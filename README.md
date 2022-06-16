@@ -21,23 +21,25 @@
 
 <!-- PROJECT LOGO -->
 <br />
+
 <div align="center">
   <a href="https://github.com/Gbustarr/ProyectoProgramacion2022">
     <img src="img/Logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Hiper Calculadora Mark II:
-Sopaipleto Edition</h3>
+<h3 align="center">Hiper Calculadora Mark III:
+G Edition</h3>
 
   <p align="center">
-    Repositorio del proyecto del graficador interactivo del grupo "Los Sopaipletos".
+    Repositorio del proyecto de programación "Hiper Calculadora Mark III: G Edition".
     <br />
     <br />
     
   </p>
 </div>
-
+<!--
 [![Watch the video](https://img.youtube.com/vi/0ohifiBu3Zs/maxresdefault.jpg)](https://youtu.be/0ohifiBu3Zs)
+-->
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -47,7 +49,7 @@ Sopaipleto Edition</h3>
       <a href="#about-the-project">Sobre el proyecto</a>
       <ul>
         <li><a href="#built-with">Tecnologias utilizadas</a></li>
-        <li><a href="#participants">Integrantes</a></li>
+        <li><a href="#participants">Desarrollador</a></li>
       </ul>
     </li>
     <li><a href="#usage">Uso</a></li>
@@ -83,6 +85,17 @@ Para la Unidad 2, se debe:
 
 - [x] Agregar los símbolos y lógica de los paréntesis. Cuando se usen en divisiones, los paréntesis deben “crecer” para cubrir la división y los otros números de la expresión.
 
+Para la Unidad 3, se debe:
+
+- [ ] La aplicación debe cumplir con los requisitos indispensables y deseables de las unidades anteriores.
+- [ ] Calcular el resultado de una operación ingresada por el usuario. Debe parsear el texto para obtener los números y operadores correspondientes, y considerar la precedencia de las operaciones aritméticas.
+
+- [ ] Agregar la funcionalidad de maximizar. Al maximizar la ventana, el panel de dibujo debe extenderse a toda la pantalla, sin que se pierda la fórmula. Al revertir la maximización debe volver a la “normalidad”.
+- [ ] Ingresar una cadena de operaciones aritméticas en el cuadro de texto correspondiente (o en otro lugar), y dibujar automáticamente la fórmula.
+
+- [ ] Mostrar el orden de la secuencia de símbolos ingresados en el panel de texto en el esquema de ordenamiento de árboles preorden.
+
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
@@ -96,11 +109,9 @@ Para la Unidad 2, se debe:
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-### Integrantes
+### Desarrollador
 
 - Guillermo Bustamante
-- Robinson Galvez
-- Juan Machuca
 
 
 <!-- GETTING STARTED -->
@@ -110,7 +121,10 @@ Para la Unidad 2, se debe:
 <!-- USAGE EXAMPLES -->
 ## Uso
 
-_En construcción_
+1. Descargar el archivo .zip desde el botón verde de GitHub o desde aqui.
+2. Descomprimir el zip en una carpeta.
+3. En NetBeans 8.2, click en abrir proyecto, buscar la carpeta en que se descomprimió el archivo zip y seleccionar el proyecto llamado 'calculadora'.
+4. Ejecutar el archivo Calculadora.java mediante el botón verde de Ejecutar de Netbeans.
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -120,10 +134,10 @@ _En construcción_
 ## Contacto
 
 - Guillermo Bustamante - [Gbustarr](https://github.com/Gbustarr)
-- Robinson Galvez - [Neuromender](https://github.com/Neuromender)
-- Juan Machuca - [Juan Machuca](https://github.com/JCCH1)
 
-Enlace del Proyecto: [Enlace](https://github.com/Gbustarr/ProyectoProgramacion2022)
+
+Enlace del Proyecto: [GitHub](https://github.com/Gbustarr/Unidad3ProyectoProgramacion)
+Enlace del Tablero Kanban: [Trello](https://trello.com/b/DfqikGYa/unidad-3)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
