@@ -27,11 +27,11 @@
     <img src="img/Logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Hiper Calculadora Mark III:
+<h3 align="center">Calculadora Mark III:
 G Edition</h3>
 
   <p align="center">
-    Repositorio del proyecto de programación "Hiper Calculadora Mark III: G Edition".
+    Repositorio del proyecto de programación "Calculadora Mark III: G Edition".
     <br />
     <br />
     
