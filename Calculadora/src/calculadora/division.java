@@ -6,7 +6,6 @@
 package calculadora;
 
 import java.util.ArrayList;
-import javafx.scene.paint.Color;
 
 /**
  *
@@ -157,7 +156,7 @@ public class division {
                 break;
             } else {
                 if (Numeradores.contains(l.context.lista_simbolos.get(i))) {
-                    l.context.lista_simbolos.get(i).color = Color.BLACK; // Para marcar los numeradores
+                    //l.context.lista_simbolos.get(i).color = Color.BLACK; // Para marcar los numeradores
                     Numeradores.remove(l.context.lista_simbolos.get(i));
 
                 }
@@ -184,7 +183,7 @@ public class division {
                 break;
             } else {
                 if (NumeradoresBin.contains(l.lista_simbolos.get(i))) {
-                    l.lista_simbolos.get(i).color = Color.BLACK; // Para marcar los numeradores
+                    //l.lista_simbolos.get(i).color = Color.BLACK; // Para marcar los numeradores
                     NumeradoresBin.remove(l.lista_simbolos.get(i));
 
                 }
@@ -213,14 +212,14 @@ public class division {
 
             if (contador == -1) {
                 if (parentesisDeDivisionActivo != null) {
-                    parentesisDeDivisionActivo.color = Color.GOLD;
+                    //parentesisDeDivisionActivo.color = Color.GOLD;
                 }
                 parentesisDeDivisionActivo = l.context.lista_simbolos.get(i);
-                parentesisDeDivisionActivo.color = Color.AQUA;
+                //parentesisDeDivisionActivo.color = Color.AQUA;
                 break;
             } else {
                 if (!Numeradores.contains(l.context.lista_simbolos.get(i))) {
-                    l.context.lista_simbolos.get(i).color = Color.rgb(128, 0, 128); // Para marcar los numeradores
+                    //l.context.lista_simbolos.get(i).color = Color.rgb(128, 0, 128); // Para marcar los numeradores
                     Numeradores.add(l.context.lista_simbolos.get(i));
                     movimientosDer++;
                 }
@@ -251,14 +250,14 @@ public class division {
 
             if (contador == -1) {
                 if (parentesisDeDivisionActivoBin != null) {
-                    parentesisDeDivisionActivoBin.color = Color.GOLD;
+                    //parentesisDeDivisionActivoBin.color = Color.GOLD;
                 }
                 parentesisDeDivisionActivoBin = l.lista_simbolos.get(i);
-                parentesisDeDivisionActivoBin.color = Color.AQUA;
+                //parentesisDeDivisionActivoBin.color = Color.AQUA;
                 break;
             } else {
                 if (!NumeradoresBin.contains(l.lista_simbolos.get(i))) {
-                    l.lista_simbolos.get(i).color = Color.rgb(128, 0, 128); // Para marcar los numeradores
+                    //l.lista_simbolos.get(i).color = Color.rgb(128, 0, 128); // Para marcar los numeradores
                     NumeradoresBin.add(l.lista_simbolos.get(i));
                     movimientosDer++;
                 }
