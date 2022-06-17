@@ -7,8 +7,11 @@ and open the template in the editor.
     Created on : 06-04-2022, 20:03:59
     Author     : Guillermo
 */
+.bodybg {
+  -fx-background: linear-gradient(90deg, #161122 21px, transparent 1%) center, linear-gradient(#161122 21px, transparent 1%) center, #a799cc;
+}
 
-.bodybg{
+.bodybgA{
     -fx-background-image: url("./img/Background_image_sopaipletos.png");
     -fx-background-color: rgba(0,0,0,0);
     -fx-background-size: 527 693;
@@ -40,3 +43,4 @@ and open the template in the editor.
 .morado{
     -fx-background-color: #540E64;
 }
+

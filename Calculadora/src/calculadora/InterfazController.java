@@ -18,7 +18,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
@@ -67,6 +66,9 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected Button Btn_0;
+    
+    @FXML
+    protected Button Btn_IngresarFormula;
 
     @FXML
     protected Button Btn_multiplicar;
@@ -97,6 +99,12 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected TextField textoSalida;
+    
+    @FXML
+    protected TextField Txt_Input;
+    
+    @FXML
+    protected Label Lbl_Error;
 
     @FXML
     protected Button Btn_Panel;
@@ -306,6 +314,11 @@ public class InterfazController implements Initializable {
         l.pivot_y = l.alturaAntesDeDivision.Ypos;
         l.pivot_x = l.simboloMasApartado.Xpos;
     }
+    
+    @FXML
+    protected void BotonIngresarFormula_presionado(){
+        Lbl_Error.setText("Presionado");
+    }
 
     @FXML
     protected void BotonParentesisAbierto_presionado() {
@@ -430,8 +443,8 @@ public class InterfazController implements Initializable {
             Btn_potencia.setVisible(false);
             Btn_Grado.setVisible(false);
             Btn_Cientifico.setText("Básico");
-            fondoInterfaz.getStyleClass().clear();
-            fondoInterfaz.getStyleClass().add("bodybg");
+            //fondoInterfaz.getStyleClass().clear();
+            //fondoInterfaz.getStyleClass().add("bodybg");
         } else {
             Btn_Sen.setVisible(true);
             Btn_Fact.setVisible(true);
@@ -440,8 +453,8 @@ public class InterfazController implements Initializable {
             Btn_Tan.setVisible(true);
             Btn_Grado.setVisible(true);
             Btn_Cientifico.setText("Científico");
-            fondoInterfaz.getStyleClass().clear();
-            fondoInterfaz.getStyleClass().add("bodybgC");
+            //fondoInterfaz.getStyleClass().clear();
+            //fondoInterfaz.getStyleClass().add("bodybgC");
         }
 
     }
