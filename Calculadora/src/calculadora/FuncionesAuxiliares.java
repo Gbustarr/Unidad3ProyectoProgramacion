@@ -197,4 +197,14 @@ public class FuncionesAuxiliares {
         
     }
     
+    protected void calcularResultado(Logica l){
+        ArrayList<Simbolo> lista_simbolosHomogenea = new ArrayList();
+        ArrayList<Simbolo> lista_simbolos = l.context.lista_simbolos;
+        
+        
+        
+        
+    
+    }
+    
 }
