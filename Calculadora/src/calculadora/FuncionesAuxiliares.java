@@ -203,4 +203,13 @@ public class FuncionesAuxiliares {
         
     }
     
+    
+    protected void printAllSymbols(ArrayList<Simbolo> lista){
+        for (int i = 0; i < lista.size(); i++) {
+            
+            System.out.print(lista.get(i).toString());
+            System.out.print("|");
+        }
+    }
+    
 }

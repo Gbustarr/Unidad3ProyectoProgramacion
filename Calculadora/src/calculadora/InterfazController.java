@@ -557,6 +557,8 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected void BotonIngresarFormula_presionado() {
+        
+        
         //Reset de la logica.
         l.resetEstado();
         lista_simbolos.clear();
@@ -574,7 +576,6 @@ public class InterfazController implements Initializable {
         //Iteración e ingreso de valores a la logica
         for (int i = 0; i < cadena.length(); i++) {
             valorChar = cadena.charAt(i);
-            System.out.print(valorChar);
             if (enPotencia) {
                 if (contadorPotencia == 0 & aux != 0) {
                     l.enPotencia = false;
@@ -642,6 +643,11 @@ public class InterfazController implements Initializable {
             }
 
         }
+    }
+    
+    @FXML
+    protected void BotonInfo_presionado(){
+        fa.printAllSymbols(this.lista_simbolos);
     }
 
     protected void setController(InterfazController ic) {

@@ -81,8 +81,7 @@ public class Logica {
             simboloMasApartado.Xpos = pivot_x;
         }
 
-        System.out.println("Simbolo mas apartado: " + simboloMasApartado.Xpos);
-
+        //System.out.println("Simbolo mas apartado: " + simboloMasApartado.Xpos);
         //System.out.println("En division:" + enDivision);
         //Iniciación y declaración de un simbolo general
         Simbolo s = new Simbolo();
@@ -339,7 +338,7 @@ public class Logica {
                 s.setTipo(2);
                 s.setColor(context.colorOp);
                 s.enlace = ParentesisAbiertos.get(ParentesisAbiertos.size() - 1);
-                fa.posicionarParentesisDeCierre(this,s);
+                fa.posicionarParentesisDeCierre(this, s);
                 if (enPotencia) {
                     forma = cs.pCerradoPot(pivot_x, pivot_y);
                 } else {
@@ -694,13 +693,19 @@ public class Logica {
         for (int i = 0; i < lista_simbolos.size(); i++) {
             lista_simbolos.get(i).switchPuntosControl();
         }
-        fg.limpiarCanvas(gc, Display);
-        fg.dibujarTodosLosSimbolos(gc, lista_simbolos);
+
+        for (int i = 0; i < logicBin.lista_simbolos.size(); i++) {
+            logicBin.lista_simbolos.get(i).switchPuntosControl();
+        }
+        dibujarSimbolos();
 
         if (puntosControlActivo == 0) {
             puntosControlActivo = 1;
+            logicBin.puntosControlActivo = 1;
+
         } else {
             puntosControlActivo = 0;
+            logicBin.puntosControlActivo = 0;
         }
 
     }
