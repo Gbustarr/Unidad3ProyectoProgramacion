@@ -564,19 +564,31 @@ public class InterfazController implements Initializable {
         //Cargando el string
         String cadena = Txt_Input.getText();
 
+        //Variables para las potencias
+        boolean enPotencia = false;
+        int contadorPotencia = 0;
+        int aux = 0;
+
         int valorChar;
 
         //Iteración e ingreso de valores a la logica
         for (int i = 0; i < cadena.length(); i++) {
             valorChar = cadena.charAt(i);
             System.out.print(valorChar);
+            if (enPotencia) {
+                if (contadorPotencia == 0 & aux != 0) {
+                    l.enPotencia = false;
+                }
+            }
             //Si el valor leido es igual o mayor a 0 y menor a 10; Esto es para los numeros desde el 0 al 9
             if (valorChar >= 48 && valorChar <= 67) {
-                l.agregarSimbolo(gc, valorChar-48, lista_simbolos, Display);
+                l.agregarSimbolo(gc, valorChar - 48, lista_simbolos, Display);
             } else {
                 switch (cadena.charAt(i)) {
                     case '^':
                         l.agregarSimbolo(gc, -1, lista_simbolos, Display);
+                        l.enPotencia = true;
+                        enPotencia = true;
                         break;
                     case '+':
                         l.agregarSimbolo(gc, 10, lista_simbolos, Display);
@@ -606,9 +618,18 @@ public class InterfazController implements Initializable {
                         i = i + 2;
                         break;
                     case '(':
+                        if (enPotencia) {
+                            contadorPotencia++;
+                            aux++;
+                        }
+                        ;
                         l.agregarSimbolo(gc, 17, lista_simbolos, Display);
                         break;
                     case ')':
+                        if (enPotencia) {
+                            contadorPotencia--;
+                        }
+                        ;
                         l.agregarSimbolo(gc, 18, lista_simbolos, Display);
                         break;
                     case '!':

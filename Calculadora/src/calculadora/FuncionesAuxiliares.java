@@ -201,10 +201,6 @@ public class FuncionesAuxiliares {
         ArrayList<Simbolo> lista_simbolosHomogenea = new ArrayList();
         ArrayList<Simbolo> lista_simbolos = l.context.lista_simbolos;
         
-        
-        
-        
-    
     }
     
 }
