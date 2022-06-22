@@ -294,6 +294,11 @@ public class InterfazController implements Initializable {
             }
         }
     }
+    
+    @FXML
+    protected void BotonResultado(){
+        fa.parsingLista(lista_simbolos);
+    }
 
     @FXML
     protected void BotonCambiarBase_presionado() {
