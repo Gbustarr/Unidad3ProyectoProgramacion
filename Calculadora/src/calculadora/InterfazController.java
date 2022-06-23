@@ -78,6 +78,9 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected Button Btn_potencia;
+    
+    @FXML
+    protected Button Btn_Maximizar;
 
     @FXML
     protected Canvas Display;
@@ -297,7 +300,7 @@ public class InterfazController implements Initializable {
     
     @FXML
     protected void BotonResultado(){
-        fa.parsingLista(lista_simbolos);
+        fa.getPrecedence(lista_simbolos);
     }
 
     @FXML
@@ -429,6 +432,17 @@ public class InterfazController implements Initializable {
                 l.cambiarTamano(1.75);
                 l.factor = 1.75;
                 break;
+        }
+    }
+    
+    @FXML
+    protected void BotonMaximizar_presionado(){
+        Stage stage = (Stage) Btn_Maximizar.getScene().getWindow();
+        if(stage.isMaximized()){
+            stage.setMaximized(false);
+           
+        }else{
+            stage.setMaximized(true);
         }
     }
 

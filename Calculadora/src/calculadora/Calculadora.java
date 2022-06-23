@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -25,7 +26,7 @@ public class Calculadora extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        AnchorPane root = FXMLLoader.load(getClass().getResource("Interfaz_basica.fxml"));
+        Pane root = FXMLLoader.load(getClass().getResource("Interfaz_basica.fxml"));
 
         Scene scene = new Scene(root);
         stage.initStyle(StageStyle.TRANSPARENT);

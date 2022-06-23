@@ -108,6 +108,7 @@ public class Logica {
                 s.setTipo(-1);
                 s.setValor(-1);
                 s.setColor(Color.rgb(0, 0, 0, 0));
+                s.valorPrecedencia = 9; //Mayor precedencia
                 forma = cs.ceroPot(pivot_x, pivot_y);
                 s.setForma(forma);
                 d.borrarSimbolosDeNumeradoresParaPotencia(this);
@@ -241,6 +242,7 @@ public class Logica {
                 } else {
                     forma = cs.mas(pivot_x, pivot_y);
                 }
+                s.valorPrecedencia = 1;
                 s.setValor(10);
                 s.setTipo(1);
                 s.setColor(context.colorOp);
@@ -253,6 +255,7 @@ public class Logica {
                 } else {
                     forma = cs.menos(pivot_x, pivot_y);
                 }
+                s.valorPrecedencia =1;
                 s.setValor(11);
                 s.setTipo(1);
                 s.setColor(context.colorOp);
@@ -265,6 +268,7 @@ public class Logica {
                 } else {
                     forma = cs.multiplicar(pivot_x, pivot_y);
                 }
+                s.valorPrecedencia = 2;
                 s.setValor(12);
                 s.setTipo(1);
                 s.setColor(context.colorOp);
@@ -276,6 +280,7 @@ public class Logica {
                 forma = cs.dividir(pivot_x, pivot_y);
                 s.setValor(13);
                 s.setTipo(1);
+                s.valorPrecedencia = 2;
                 s.setColor(context.colorOp);
                 s.setForma(forma);
                 d.nuevaDivision(this);
@@ -325,6 +330,7 @@ public class Logica {
                     forma = cs.pAbierto(pivot_x, pivot_y);
                 }
                 bloqueoDivision = false;
+                s.valorPrecedencia = 0;
                 s.setValor(17);
                 s.setTipo(2);
                 s.setColor(context.colorOp);
@@ -776,7 +782,7 @@ public class Logica {
                         logicBin.pivot_x = logicBin.pivot_x + 5;
                         break;
                     default:
-                        fa.agregarSimboloBin(this, gc, lista_simbolos, DisplayBin, lista_simbolos.get(i).valor);
+                        fa.agregarSimboloBin(this, gc, lista_simbolos, DisplayBin,lista_simbolos.get(i).valor);
                         break;
                 }
             }

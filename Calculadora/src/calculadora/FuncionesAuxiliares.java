@@ -6,6 +6,7 @@
 package calculadora;
 
 import java.util.ArrayList;
+import java.util.Stack;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -20,12 +21,12 @@ public class FuncionesAuxiliares {
         if (s.getValor() > 13 && s.getValor() < 17) { //seno coseno tangente
             l.pivot_x = l.pivot_x + (l.espacioEntreSimbolos * 3);
             l.d.listaMovimientosHaciaDerecha.set(l.d.listaMovimientosHaciaDerecha.size() - 1,
-                    l.d.listaMovimientosHaciaDerecha.get(l.d.listaMovimientosHaciaDerecha.size() - 1) + 3);
+                l.d.listaMovimientosHaciaDerecha.get(l.d.listaMovimientosHaciaDerecha.size() - 1) + 3);
             l.d.movimientosDerecha = l.d.movimientosDerecha + 3;
         } else {
             l.pivot_x = l.pivot_x + l.espacioEntreSimbolos;
             l.d.listaMovimientosHaciaDerecha.set(l.d.listaMovimientosHaciaDerecha.size() - 1,
-                    l.d.listaMovimientosHaciaDerecha.get(l.d.listaMovimientosHaciaDerecha.size() - 1) + 1);
+                l.d.listaMovimientosHaciaDerecha.get(l.d.listaMovimientosHaciaDerecha.size() - 1) + 1);
             l.d.movimientosDerecha = l.d.movimientosDerecha + 1;
         }
     }
@@ -35,12 +36,12 @@ public class FuncionesAuxiliares {
         if (s.getValor() > 13 && s.getValor() < 17) { //seno coseno tangente
             l.pivot_x = l.pivot_x + (l.espacioEntreSimbolos * 3);
             l.d.listaMovimientosHaciaDerechaBin.set(l.d.listaMovimientosHaciaDerechaBin.size() - 1,
-                    l.d.listaMovimientosHaciaDerechaBin.get(l.d.listaMovimientosHaciaDerechaBin.size() - 1) + 3);
+                l.d.listaMovimientosHaciaDerechaBin.get(l.d.listaMovimientosHaciaDerechaBin.size() - 1) + 3);
             l.d.movimientosDerechaBin = l.d.movimientosDerechaBin + 3;
         } else {
             l.pivot_x = l.pivot_x + l.espacioEntreSimbolos;
             l.d.listaMovimientosHaciaDerechaBin.set(l.d.listaMovimientosHaciaDerechaBin.size() - 1,
-                    l.d.listaMovimientosHaciaDerechaBin.get(l.d.listaMovimientosHaciaDerechaBin.size() - 1) + 1);
+                l.d.listaMovimientosHaciaDerechaBin.get(l.d.listaMovimientosHaciaDerechaBin.size() - 1) + 1);
             l.d.movimientosDerechaBin = l.d.movimientosDerechaBin + 1;
         }
     }
@@ -48,13 +49,13 @@ public class FuncionesAuxiliares {
     protected void moverPivotDerechaPotencia(Logica l) {
         l.pivot_x = l.pivot_x + (l.espacioEntreSimbolos / 2);
         l.d.listaMovimientosHaciaDerecha.set(l.d.listaMovimientosHaciaDerecha.size() - 1,
-                l.d.listaMovimientosHaciaDerecha.get(l.d.listaMovimientosHaciaDerecha.size() - 1) + 0.7);
+            l.d.listaMovimientosHaciaDerecha.get(l.d.listaMovimientosHaciaDerecha.size() - 1) + 0.7);
     }
 
     protected void moverPivotDerechaPotencia(LogicaBinaria l) {
         l.pivot_x = l.pivot_x + (l.espacioEntreSimbolos / 2);
         l.d.listaMovimientosHaciaDerechaBin.set(l.d.listaMovimientosHaciaDerechaBin.size() - 1,
-                l.d.listaMovimientosHaciaDerechaBin.get(l.d.listaMovimientosHaciaDerechaBin.size() - 1) + 0.7);
+            l.d.listaMovimientosHaciaDerechaBin.get(l.d.listaMovimientosHaciaDerechaBin.size() - 1) + 0.7);
     }
 
     protected void alturaEnPotencia(Logica l) {
@@ -228,13 +229,154 @@ public class FuncionesAuxiliares {
             }
 
         }
-
+       
         for (int k = 0; k < parseo.size(); k++) {
-            System.out.print(" | ");
-            System.out.print(parseo.get(k));
+            System.out.println(parseo.get(k));
         }
-
+    
+       
         return parseo;
+    }
+    
+    protected double calcular(ArrayList<Simbolo> cadena){
+        
+        Stack pila = new Stack();
+        
+        for(int i = 0; i< cadena.size();i++){
+            if(cadena.get(i).tipo == 0){
+                pila.add(cadena.get(i));
+            }else{
+                switch (cadena.get(i).valor) {
+                    case -1:
+                        {
+                            //elevado
+                            Simbolo anterior = (Simbolo)pila.peek();
+                            pila.pop();
+                            Simbolo AnteAnterior = (Simbolo)pila.peek();
+                            pila.pop();
+                            Simbolo res = new Simbolo();
+                            res.resultado = Math.pow(AnteAnterior.valor, anterior.valor);
+                            pila.push(res);
+                            break;
+                        }
+                    case 10:
+                        {
+                            //suma
+                            Simbolo anterior = (Simbolo)pila.peek();
+                            pila.pop();
+                            Simbolo AnteAnterior = (Simbolo)pila.peek();
+                            pila.pop();
+                            Simbolo res = new Simbolo();
+                            res.resultado = (AnteAnterior.valor + anterior.valor);
+                            pila.push(res);
+                            break;
+                        }
+                    case 11:
+                        {
+                            //resta
+                            Simbolo anterior = (Simbolo)pila.peek();
+                            pila.pop();
+                            Simbolo AnteAnterior = (Simbolo)pila.peek();
+                            pila.pop();
+                            Simbolo res = new Simbolo();
+                            res.resultado = (AnteAnterior.valor - anterior.valor);
+                            pila.push(res);
+                            break;
+                        }
+                    case 12:
+                        {
+                            //multiplicacion
+                            Simbolo anterior = (Simbolo)pila.peek();
+                            pila.pop();
+                            Simbolo AnteAnterior = (Simbolo)pila.peek();
+                            pila.pop();
+                            Simbolo res = new Simbolo();
+                            res.resultado = (AnteAnterior.valor * anterior.valor);
+                            pila.push(res);
+                            break;
+                        }
+                    case 13:
+                        {
+                            //division
+                            Simbolo anterior = (Simbolo)pila.peek();
+                            pila.pop();
+                            Simbolo AnteAnterior = (Simbolo)pila.peek();
+                            pila.pop();
+                            Simbolo res = new Simbolo();
+                            res.resultado = ((double)AnteAnterior.valor / (double)anterior.valor);
+                            pila.push(res);
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+        }
+        
+        Simbolo re = (Simbolo) pila.peek();
+        
+    
+    return re.resultado;
+    }
+
+    protected ArrayList<Simbolo> getPrecedence(ArrayList<Simbolo> lista_simbolos) {
+        ArrayList<Simbolo> c = parsingLista(lista_simbolos);
+
+        ArrayList<Simbolo> cola = new ArrayList();
+        ArrayList<Simbolo> pilaOperadores = new ArrayList();
+
+        for (int i = 0; i < c.size(); i++) {
+            if (c.get(i).tipo == 0) { //Si es un numero
+                System.out.println("Añadiendo:"+c.get(i));
+                cola.add(c.get(i));
+            } else { //Si es operador
+                System.out.println("Indice:"+i);
+                if (c.get(i).valor == 18) {
+                    System.out.println("Indice:"+i);//Si es parentesis de cierre
+                    System.out.println("Parentesis ) encontrado");
+                    for (int j = pilaOperadores.size() - 1; j >= 0; j--) {
+                        System.out.println("Evaluando:"+pilaOperadores.get(j));
+                        
+                        if (pilaOperadores.get(j).valor == 17) { // Si es parentesis de apertura
+                            System.out.println("Parentesis ( encontrado, eliminando");
+                            pilaOperadores.remove(j);
+                            j = -1;
+                        } else {
+                            System.out.println("Transfiriendo:"+pilaOperadores.get(j));
+                            cola.add(pilaOperadores.get(j));
+                            pilaOperadores.remove(j);
+                        }
+                    }
+
+                } else {
+                    System.out.println("Operador");
+                    if (!pilaOperadores.isEmpty()) {
+                        if (c.get(i).valorPrecedencia < pilaOperadores.get(pilaOperadores.size() - 1).valorPrecedencia && c.get(i).valor != 17) {
+                            cola.add(pilaOperadores.get(pilaOperadores.size() - 1));
+                            pilaOperadores.remove(pilaOperadores.size() - 1);
+                            pilaOperadores.add(c.get(i));
+                        } else {
+                            pilaOperadores.add(c.get(i));
+                        }
+                    } else {
+                        pilaOperadores.add(c.get(i));
+                    }
+                }
+            }
+        }
+        
+        if(!pilaOperadores.isEmpty()){
+            for (int i = pilaOperadores.size()-1; i >=0 ; i--) {
+            cola.add(pilaOperadores.get(i));
+        }
+            
+        }
+ //   (1-2)^4*(4*(5/((5-3)^2)))
+        
+    
+        System.out.println(calcular(cola));
+        
+        return cola;
     }
 
 }
