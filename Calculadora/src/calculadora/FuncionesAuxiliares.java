@@ -218,7 +218,7 @@ public class FuncionesAuxiliares {
 
         //Falta identificar los numeros negativos.
         for (int i = 0; i < lista_simbolos.size(); i++) {
-            if (lista_simbolos.get(i).tipo != 0) {
+            if (lista_simbolos.get(i).tipo != 0) { //Si hay un operador se agrega directo
 
                 parseo.add(lista_simbolos.get(i));
             } else {//Buscando mas numeros par agregar al numero total
@@ -226,6 +226,7 @@ public class FuncionesAuxiliares {
                 i = i + String.valueOf(numero).length() - 1;
                 Simbolo s = new Simbolo();
                 s.valor = numero;
+                s.resultado = numero;
                 parseo.add(s);
             }
 
@@ -236,135 +237,182 @@ public class FuncionesAuxiliares {
         }
         return parseo;
     }
+    
+    protected void imprimirLista(ArrayList<Simbolo> lista){
+        System.out.println("");
+        for (int i = 0; i < lista.size(); i++) {
+            Simbolo s = lista.get(i);
+            
+            if(s.tipo != 0){
+                if (s.valor == -1) {
+                System.out.print("^");
+                }
+                if (s.valor == 10) {
+                    System.out.print("+");
+                }
+                if (s.valor == 11) {
+                    System.out.print("-");
+                }
+                if (s.valor == 12) {
+                    System.out.print("*");
+                }
+                if (s.valor == 13) {
+                    System.out.print("/");
+                }
+                if (s.valor == 14) {
+                    System.out.print("Sin");
+                }
+                if (s.valor == 15) {
+                    System.out.print("Cos");
+                }
+                if (s.valor == 16) {
+                    System.out.print("Tan");
+                }
+                if (s.valor == 17) {
+                    System.out.print("(");
+                }
+                if (s.valor == 18) {
+                    System.out.print(")");
+                }
+                if (s.valor == 19) {
+                    System.out.print("!");
+                }
+                if (s.valor == 20) {
+                    System.out.print("°");
+                }
+            
+            }else{
+                System.out.print(" "+s.resultado);
+            }
+        }
+    }
+    
+    
+    protected void subCalcular(ArrayList<Simbolo> enEspera,int op){
+        Simbolo anterior = enEspera.get(enEspera.size()-1);
+        Simbolo anteAnterior = enEspera.get(enEspera.size()-2);
+        Simbolo res = new Simbolo();
+                if (op == -1) {
+                System.out.print("^");
+                res.resultado = Math.pow(anteAnterior.resultado, anterior.resultado);
+                enEspera.remove(enEspera.size()-1);
+                enEspera.remove(enEspera.size()-1);
+                enEspera.add(res);
+                }
+                if (op == 10) {
+                    System.out.print("+");
+                    res.resultado = anteAnterior.resultado + anterior.resultado;
+                enEspera.remove(enEspera.size()-1);
+                enEspera.remove(enEspera.size()-1);
+                enEspera.add(res);
+                }
+                if (op == 11) {
+                    System.out.print("-");
+                    res.resultado = anteAnterior.resultado - anterior.resultado;
+                enEspera.remove(enEspera.size()-1);
+                enEspera.remove(enEspera.size()-1);
+                enEspera.add(res);
+                }
+                if (op == 12) {
+                    System.out.print("*");
+                    res.resultado = anteAnterior.resultado * anterior.resultado;
+                enEspera.remove(enEspera.size()-1);
+                enEspera.remove(enEspera.size()-1);
+                enEspera.add(res);
+                }
+                if (op == 13) {
+                    System.out.print("/");
+                    res.resultado = anteAnterior.resultado / anterior.resultado;
+                enEspera.remove(enEspera.size()-1);
+                enEspera.remove(enEspera.size()-1);
+                enEspera.add(res);
+                }
+                if (op == 14) {
+                    System.out.print("Sin");
+                }
+                if (op == 15) {
+                    System.out.print("Cos");
+                }
+                if (op == 16) {
+                    System.out.print("Tan");
+                }
+                if (op == 17) {
+                    System.out.print("(");
+                }
+                if (op == 18) {
+                    System.out.print(")");
+                }
+                if (op == 19) {
+                    System.out.print("!");
+                }
+                /*
+                if (op == 20) {
+                    System.out.print("°");
+                }
+                */
+        
+    }
 
     protected void calcular(ArrayList<Simbolo> cadena) {
-
         
-        ArrayList<Double> doubles = new ArrayList();
+        //imprimirLista(cadena);
+        //La idea es leer de un arreglo
+        //Insertar a otro arreglo si es numero
+        //Si encuentra un operador, usar los ultimos 2 numeros almacenados, eliminarlos y dejar el resultado.
 
-        for (int i = 0; i < cadena.size(); i++) {
-            doubles.add((double) cadena.get(i).valor);
-        }
-
-        for (int i = 0; i < doubles.size(); i++) {
-            System.out.println(doubles.get(i));
-            if (doubles.get(i) == (double)10) { //Suma
-                System.out.println("Suma detectada");
-                double anterior = doubles.get(i-1);
-                double anteAnterior = doubles.get(i-2);
-                double res = anterior + anteAnterior;
-                
-                doubles.remove(i-1);
-                doubles.remove(i-1);
-                doubles.add(i-1, res);
-                i = i -2;
-                
-            }
-
-        }
+        ArrayList<Simbolo> enEspera = new ArrayList(); //El otro arreglo
         
-        System.out.println("Contenido de Double:");
-        for(int i = 0;i< doubles.size();i++){
-            System.out.println(doubles.get(i));
-        }
-
-        /*
-        for(int i = 0;i<cadena.size();i++){
-        
-        System.out.println(cadena.get(i).valor);
-        }
-        
-        for(int i = 0; i < cadena.size() ; i++){
-            if(cadena.get(i).tipo == 0){
-                pila.add(cadena.get(i));
+        for(int i = 0; i<cadena.size();i++){
+            if(cadena.get(i).tipo == 0){ //Si encuentra un numero
+                enEspera.add(cadena.get(i));
             }else{
-                switch (cadena.get(i).valor) {
-                    case -1:
-                        {
-                            //elevado
-                            Simbolo anterior = (Simbolo)pila.peek();
-                            pila.pop();
-                            Simbolo AnteAnterior = (Simbolo)pila.peek();
-                            pila.pop();
-                            Simbolo res = new Simbolo();
-                            System.out.println("Elevando "+AnteAnterior.valor
-                            +" a "+anterior.valor);
-                            res.resultado = Math.pow(AnteAnterior.valor, anterior.valor);
-                            pila.push(res);
-                            break;
-                        }
-                    case 10:
-                        {
-                            //suma
-                            Simbolo anterior = (Simbolo)pila.peek();
-                            pila.pop();
-                            Simbolo AnteAnterior = (Simbolo)pila.peek();
-                            pila.pop();
-                            Simbolo res = new Simbolo();
-                            System.out.println("Sumando "+AnteAnterior.valor
-                            +" + "+anterior.valor);
-                            res.resultado = (AnteAnterior.valor + anterior.valor);
-                            pila.push(res);
-                            break;
-                        }
-                    case 11:
-                        {
-                            //resta
-                            Simbolo anterior = (Simbolo)pila.peek();
-                            pila.pop();
-                            Simbolo AnteAnterior = (Simbolo)pila.peek();
-                            pila.pop();
-                            Simbolo res = new Simbolo();
-                            System.out.println("Restando "+AnteAnterior.valor
-                            +" - "+anterior.valor);
-                            res.resultado = (AnteAnterior.valor - anterior.valor);
-                            pila.push(res);
-                            break;
-                        }
-                    case 12:
-                        {
-                            //multiplicacion
-                            Simbolo anterior = (Simbolo)pila.peek();
-                            pila.pop();
-                            Simbolo AnteAnterior = (Simbolo)pila.peek();
-                            pila.pop();
-                            Simbolo res = new Simbolo();
-                            System.out.println("Multiplicando "+AnteAnterior.valor
-                            +" x "+anterior.valor);
-                            res.resultado = (AnteAnterior.valor * anterior.valor);
-                            pila.push(res);
-                            break;
-                        }
-                    case 13:
-                        {
-                            //division
-                            Simbolo anterior = (Simbolo)pila.peek();
-                            pila.pop();
-                            Simbolo AnteAnterior = (Simbolo)pila.peek();
-                            pila.pop();
-                            Simbolo res = new Simbolo();
-                            System.out.println("DIviendo "+AnteAnterior.valor
-                            +" /  "+anterior.valor);
-                            res.resultado = ((double)AnteAnterior.valor / (double)anterior.valor);
-                            pila.push(res);
-                            break;
-                        }
-                    default:
-                        break;
+                if (cadena.get(i).valor == -1) {
+                //System.out.print("^");
+                subCalcular(enEspera,-1);
+                
                 }
+                if (cadena.get(i).valor == 10) {
+                    //System.out.print("+");
+                    subCalcular(enEspera,10);
+                }
+                if (cadena.get(i).valor == 11) {
+                    //System.out.print("-");
+                    subCalcular(enEspera,11);
+                }
+                if (cadena.get(i).valor == 12) {
+                    //System.out.print("*");
+                    subCalcular(enEspera,12);
+                }
+                if (cadena.get(i).valor == 13) {
+                    //System.out.print("/");
+                    subCalcular(enEspera,13);
+                }
+                if (cadena.get(i).valor == 14) {
+                    //System.out.print("Sin");
+                }
+                if (cadena.get(i).valor == 15) {
+                    //System.out.print("Cos");
+                }
+                if (cadena.get(i).valor == 16) {
+                    //System.out.print("Tan");
+                }
+                if (cadena.get(i).valor == 17) {
+                    //System.out.print("(");
+                }
+                if (cadena.get(i).valor == 18) {
+                    //System.out.print(")");
+                }
+                if (cadena.get(i).valor == 19) {
+                    //System.out.print("!");
+                }
+                if (cadena.get(i).valor == 20) {
+                    //System.out.print("°");
+                }
+            
             }
+        
         }
-        
-        System.out.println("Almacenamiento en pila: ");
-        for(int i = 0;i<pila.size();i++){
-        
-        System.out.println(pila.get(i));
-        }
-        
-        System.out.println("Resultado: ");
-        
-        Simbolo re = (Simbolo) pila.peek();
-         */
+        System.out.println(enEspera.get(0).resultado);
     }
 
     protected ArrayList<Simbolo> getPrecedence(ArrayList<Simbolo> lista_simbolos) {
@@ -413,13 +461,14 @@ public class FuncionesAuxiliares {
             }
         }
 
-        /*
+       // /*
         if(!pilaOperadores.isEmpty()){
             for (int i = pilaOperadores.size()-1; i >=0 ; i--) {
             cola.add(pilaOperadores.get(i));
         }
+        }
            
-         */
+        // */
         //   (1-2)^4*(4*(5/((5-3)^2)))
         calcular(cola);
         //System.out.println(calcular(cola));
@@ -427,4 +476,5 @@ public class FuncionesAuxiliares {
         return cola;
     }
 
-}
+    }
+
