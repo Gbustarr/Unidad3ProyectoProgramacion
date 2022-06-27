@@ -94,6 +94,18 @@ public class Logica {
         double[] forma;
 
         switch (nSimbolo) {
+            case -3: //punto
+                if (enPotencia) {
+                    forma = cs.puntoPot(pivot_x, pivot_y);
+                } else {
+                    forma = cs.punto(pivot_x, pivot_y);
+                }
+                s.setForma(forma);
+                s.setValor(-3);
+                s.setColor(context.colorNum);
+                s.setTipo(-2);
+                lista_simbolos.add(s);
+                break;
             case -2: //Cerrado de potencias
                 s.setTipo(-1);
                 s.setValor(-2);
@@ -299,6 +311,7 @@ public class Logica {
             case 14: //Seno
                 s.setValor(14);
                 s.setTipo(2);
+                s.valorPrecedencia = 2;
                 s.setColor(context.colorOp);
                 formaOperadorCientifico(this, 14, pivot_x, pivot_y, s);
                 lista_simbolos.add(s);
@@ -308,6 +321,7 @@ public class Logica {
             case 15: //Coseno
                 s.setValor(15);
                 s.setTipo(2);
+                s.valorPrecedencia = 2;
                 s.setColor(context.colorOp);
                 formaOperadorCientifico(this, 15, pivot_x, pivot_y, s);
                 lista_simbolos.add(s);
@@ -317,6 +331,7 @@ public class Logica {
             case 16: //Tangente
                 s.setValor(16);
                 s.setTipo(2);
+                s.valorPrecedencia = 2;
                 s.setColor(context.colorOp);
                 formaOperadorCientifico(this, 16, pivot_x, pivot_y, s);
                 lista_simbolos.add(s);
@@ -375,6 +390,7 @@ public class Logica {
                     forma = cs.factorial(pivot_x, pivot_y);
                 }
                 s.setValor(19);
+                s.valorPrecedencia = 2;
                 s.setTipo(2);
                 s.setColor(context.colorOp);
                 s.setForma(forma);
@@ -386,6 +402,7 @@ public class Logica {
                 } else {
                     forma = cs.grado(pivot_x, pivot_y);
                 }
+                s.valorPrecedencia = 3;
                 s.setValor(20);
                 s.setTipo(2);
                 s.setColor(context.colorOp);

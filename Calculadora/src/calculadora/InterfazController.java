@@ -300,7 +300,7 @@ public class InterfazController implements Initializable {
     
     @FXML
     protected void BotonResultado(){
-        fa.getPrecedence(lista_simbolos);
+        fa.getPrecedence(lista_simbolos,l);
     }
 
     @FXML
