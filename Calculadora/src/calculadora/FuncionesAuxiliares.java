@@ -118,6 +118,11 @@ public class FuncionesAuxiliares {
 
     protected int buscarNumero(ArrayList<Simbolo> lista_simbolos, int index) {
         String numero = "";
+        if(index > 0){
+            if(lista_simbolos.get(index-1).valor == 11){
+            numero = numero + "-";
+        }
+        }
         for (int i = index; i < lista_simbolos.size(); i++) {
             if (lista_simbolos.get(i).tipo != 0) {
                 break;
@@ -195,11 +200,6 @@ public class FuncionesAuxiliares {
 
     }
 
-    protected void calcularResultado(Logica l) {
-        ArrayList<Simbolo> lista_simbolosHomogenea = new ArrayList();
-        ArrayList<Simbolo> lista_simbolos = l.context.lista_simbolos;
-
-    }
 
     protected void printAllSymbols(ArrayList<Simbolo> lista) {
         for (int i = 0; i < lista.size(); i++) {
@@ -217,7 +217,6 @@ public class FuncionesAuxiliares {
         //Falta identificar los numeros negativos.
         for (int i = 0; i < lista_simbolos.size(); i++) {
             if (lista_simbolos.get(i).tipo != 0) { //Si hay un operador se agrega directo
-
                 parseo.add(lista_simbolos.get(i));
             } else {//Buscando mas numeros par agregar al numero total
                 numero = buscarNumero(lista_simbolos, i);
@@ -522,7 +521,7 @@ public class FuncionesAuxiliares {
             }
         
         }
-        }else{
+        }else{ //Si encuentra que el resultado es infinito, devuelve un -1
             l.agregarSimbolo(l.context.gc, 11, l.context.lista_simbolos, l.context.Display);
             l.agregarSimbolo(l.context.gc, 1, l.context.lista_simbolos, l.context.Display);
         }
