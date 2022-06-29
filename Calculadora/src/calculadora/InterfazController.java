@@ -66,6 +66,9 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected Button Btn_0;
+    
+    @FXML
+    protected Button Btn_Raiz;
 
     @FXML
     protected Button Btn_IngresarFormula;
@@ -305,6 +308,7 @@ public class InterfazController implements Initializable {
     
     @FXML
     protected void BotonRaiz_presionado(){
+        l.agregarSimbolo(gc, 21, lista_simbolos, Display);
     
     }
 
@@ -462,6 +466,7 @@ public class InterfazController implements Initializable {
             Btn_potencia.setVisible(false);
             Btn_Grado.setVisible(false);
             Btn_Cientifico.setText("Básico");
+            Btn_Raiz.setVisible(false);
             //fondoInterfaz.getStyleClass().clear();
             //fondoInterfaz.getStyleClass().add("bodybg");
         } else {
@@ -472,6 +477,7 @@ public class InterfazController implements Initializable {
             Btn_Tan.setVisible(true);
             Btn_Grado.setVisible(true);
             Btn_Cientifico.setText("Científico");
+            Btn_Raiz.setVisible(true);
             //fondoInterfaz.getStyleClass().clear();
             //fondoInterfaz.getStyleClass().add("bodybgC");
         }
@@ -631,6 +637,11 @@ public class InterfazController implements Initializable {
                     case 'S':
                         l.agregarSimbolo(gc, 14, lista_simbolos, Display);
                         i = i + 2;
+                        break;
+                    case 'r':
+                    case 'R':
+                        l.agregarSimbolo(gc, 21, lista_simbolos, Display);
+                        i = i + 3;
                         break;
                     case 'c':
                     case 'C':

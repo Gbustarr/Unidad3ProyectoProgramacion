@@ -416,7 +416,7 @@ public class Logica {
                     forma = cs.raiz(pivot_x, pivot_y);
                 }
                 s.valorPrecedencia = 2;
-                s.setValor(20);
+                s.setValor(21);
                 s.setTipo(2);
                 s.setColor(context.colorOp);
                 s.setForma(forma);

@@ -428,7 +428,7 @@ public class FuncionesAuxiliares {
                     //System.out.print("°");
                     subCalcular(enEspera, 20);
                 }
-                 if (cadena.get(i).valor == 21) { //Grado
+                 if (cadena.get(i).valor == 21) { //Raiz
                     //System.out.print("°");
                     subCalcular(enEspera, 21);
                 }
@@ -497,6 +497,8 @@ public class FuncionesAuxiliares {
                 cola.add(pilaOperadores.get(i));
             }
         }
+        
+        System.out.println(cola);
 
         // */
         //   (1-2)^4*(4*(5/((5-3)^2)))

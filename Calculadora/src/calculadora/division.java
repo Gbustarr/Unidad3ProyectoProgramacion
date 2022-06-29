@@ -198,7 +198,6 @@ public class division {
         int contador = 0;
         int movimientosDer = 0;
 
-
         coordenadaUltimoSimboloNumerador = l.context.lista_simbolos.get(l.context.lista_simbolos.size() - 1).Xpos;
 
         //Recorre la lista de simbolos desde el final hacia el principio
@@ -296,26 +295,27 @@ public class division {
         //Agregue el + l.espacioEntreSimbolos ya que el pivot se mueve al final de ingresar un numero
         // por lo tanto para subsanar agregue un espacio adiciona a la coordenada que se está comparando 
         // para que al momento de hacer el corrimiento de los numeradores, estos quedaran justo en el medio
-        if (l.pivot_x > coordenadaUltimoSimboloNumeradorBin && l.lista_simbolos.get(l.lista_simbolos.size() - 1).valor != 18) {
-            if (l.enDivision) {
-                //System.out.println("Moviendo numeradores");
-                for (int i = 0; i < NumeradoresBin.size(); i++) {
-                    NumeradoresBin.get(i).moverDerecha(0.5);
-                }
-                if (modLineaDivisionBin) {
-                    if (!l.ParentesisAbiertos.isEmpty() && parentesisDeDivisionActivoBin != null) {
-                        lineaDivisionActivaBin.setDimensionLineaDivision(
-                            parentesisDeDivisionActivoBin.Xpos, l.pivot_x);
-                    } else {
-                        lineaDivisionActivaBin.setDimensionLineaDivision(
-                            l.lista_simbolos.get(0).Xpos - l.espacioEntreSimbolos, l.pivot_x);
+        if (!l.lista_simbolos.isEmpty()) {
+            if (l.pivot_x > coordenadaUltimoSimboloNumeradorBin && l.lista_simbolos.get(l.lista_simbolos.size() - 1).valor != 18) {
+                if (l.enDivision) {
+                    //System.out.println("Moviendo numeradores");
+                    for (int i = 0; i < NumeradoresBin.size(); i++) {
+                        NumeradoresBin.get(i).moverDerecha(0.5);
+                    }
+                    if (modLineaDivisionBin) {
+                        if (!l.ParentesisAbiertos.isEmpty() && parentesisDeDivisionActivoBin != null) {
+                            lineaDivisionActivaBin.setDimensionLineaDivision(
+                                parentesisDeDivisionActivoBin.Xpos, l.pivot_x);
+                        } else {
+                            lineaDivisionActivaBin.setDimensionLineaDivision(
+                                l.lista_simbolos.get(0).Xpos - l.espacioEntreSimbolos, l.pivot_x);
+                        }
                     }
                 }
             }
+
         }
 
     }
-
-    
 
 }

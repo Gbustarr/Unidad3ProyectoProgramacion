@@ -276,6 +276,8 @@ public class Simbolo {
                 return "!";
             case 20:
                 return "°";
+            case 21:
+                return "√";
             default:
                 return String.valueOf(this.valor);
         }
