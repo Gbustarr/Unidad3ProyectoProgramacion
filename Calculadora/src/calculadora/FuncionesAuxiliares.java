@@ -367,6 +367,12 @@ public class FuncionesAuxiliares {
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
         }
+        if (op == 21) { // Raiz
+            System.out.print("raiz");
+            res.resultado = Math.sqrt(anterior.resultado);
+            enEspera.remove(enEspera.size() - 1);
+            enEspera.add(res);
+        }
 
     }
 
@@ -422,6 +428,10 @@ public class FuncionesAuxiliares {
                     //System.out.print("°");
                     subCalcular(enEspera, 20);
                 }
+                 if (cadena.get(i).valor == 21) { //Grado
+                    //System.out.print("°");
+                    subCalcular(enEspera, 21);
+                }
 
             }
 
@@ -466,6 +476,7 @@ public class FuncionesAuxiliares {
                 } else {
                     System.out.println("Operador:" + c.get(i).valor);
                     if (!pilaOperadores.isEmpty()) {
+                        //Verifica si el el valor de precedencia del arreglo leido es menor al ultimo elemento almacenado en la pila
                         if (c.get(i).valorPrecedencia < pilaOperadores.get(pilaOperadores.size() - 1).valorPrecedencia && c.get(i).valor != 17) {
                             cola.add(pilaOperadores.get(pilaOperadores.size() - 1));
                             pilaOperadores.remove(pilaOperadores.size() - 1);

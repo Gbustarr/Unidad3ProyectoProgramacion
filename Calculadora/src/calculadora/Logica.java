@@ -66,8 +66,8 @@ public class Logica {
     }
 
     protected void agregarSimbolo(GraphicsContext gc, int nSimbolo,
-        ArrayList<Simbolo> lista_simbolos,
-        Canvas Display) {
+            ArrayList<Simbolo> lista_simbolos,
+            Canvas Display) {
         //updateTags();
         logicBin.context = context;
         logicBin.factor = factor;
@@ -236,7 +236,7 @@ public class Logica {
                 s.setForma(forma);
                 lista_simbolos.add(s);
                 break;
-            case 9:
+            case 9: // 9
                 if (enPotencia) {
                     forma = cs.nuevePot(pivot_x, pivot_y);
                 } else {
@@ -248,7 +248,7 @@ public class Logica {
                 s.setForma(forma);
                 lista_simbolos.add(s);
                 break;
-            case 10:
+            case 10: //Suma
                 if (enPotencia) {
                     forma = cs.masPot(pivot_x, pivot_y);
                 } else {
@@ -261,20 +261,20 @@ public class Logica {
                 s.setForma(forma);
                 lista_simbolos.add(s);
                 break;
-            case 11:
+            case 11: //Resta
                 if (enPotencia) {
                     forma = cs.menosPot(pivot_x, pivot_y);
                 } else {
                     forma = cs.menos(pivot_x, pivot_y);
                 }
-                s.valorPrecedencia =1;
+                s.valorPrecedencia = 1;
                 s.setValor(11);
                 s.setTipo(1);
                 s.setColor(context.colorOp);
                 s.setForma(forma);
                 lista_simbolos.add(s);
                 break;
-            case 12:
+            case 12: //Multiplicacion
                 if (enPotencia) {
                     forma = cs.multiplicarPot(pivot_x, pivot_y);
                 } else {
@@ -403,6 +403,19 @@ public class Logica {
                     forma = cs.grado(pivot_x, pivot_y);
                 }
                 s.valorPrecedencia = 3;
+                s.setValor(20);
+                s.setTipo(2);
+                s.setColor(context.colorOp);
+                s.setForma(forma);
+                lista_simbolos.add(s);
+                break;
+            case 21:
+                if (enPotencia) {
+                    forma = cs.raizPot(pivot_x, pivot_y);
+                } else {
+                    forma = cs.raiz(pivot_x, pivot_y);
+                }
+                s.valorPrecedencia = 2;
                 s.setValor(20);
                 s.setTipo(2);
                 s.setColor(context.colorOp);
@@ -698,9 +711,9 @@ public class Logica {
         } else {
             if (lista_simbolos.size() > 0) {
                 if (lista_simbolos.get(lista_simbolos.size() - 1).getTipo() == 0
-                    || lista_simbolos.get(lista_simbolos.size() - 1).getTipo() == 2
-                    || (lista_simbolos.get(lista_simbolos.size() - 1).getTipo() == 1
-                    && lista_simbolos.get(lista_simbolos.size() - 2).getTipo() == 0)) {
+                        || lista_simbolos.get(lista_simbolos.size() - 1).getTipo() == 2
+                        || (lista_simbolos.get(lista_simbolos.size() - 1).getTipo() == 1
+                        && lista_simbolos.get(lista_simbolos.size() - 2).getTipo() == 0)) {
                     return 1;
                 } else {
                     return 0;
@@ -799,7 +812,7 @@ public class Logica {
                         logicBin.pivot_x = logicBin.pivot_x + 5;
                         break;
                     default:
-                        fa.agregarSimboloBin(this, gc, lista_simbolos, DisplayBin,lista_simbolos.get(i).valor);
+                        fa.agregarSimboloBin(this, gc, lista_simbolos, DisplayBin, lista_simbolos.get(i).valor);
                         break;
                 }
             }
@@ -858,6 +871,10 @@ public class Logica {
                 if (s.valor == 20) {
                     System.out.print("°");
                     string = string + "°";
+                }
+                if (s.valor == 21) {
+                    System.out.print("Raiz");
+                    string = string + "Raiz";
                 }
 
             } else if (s.valor == -1) {

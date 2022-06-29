@@ -302,6 +302,11 @@ public class InterfazController implements Initializable {
     protected void BotonResultado(){
         fa.getPrecedence(lista_simbolos,l);
     }
+    
+    @FXML
+    protected void BotonRaiz_presionado(){
+    
+    }
 
     @FXML
     protected void BotonCambiarBase_presionado() {

@@ -230,8 +230,8 @@ public class CoordenadasSimbolos {
 
     double[] iPot(double x, double y) {
         double[] i_p
-            = {x - 7.5, y - 40, x - 7.5, y - 40,
-                x - 7.5, y - 36, x - 7.5, y - 25};
+                = {x - 7.5, y - 40, x - 7.5, y - 40,
+                    x - 7.5, y - 36, x - 7.5, y - 25};
         return i_p;
     }
 
@@ -396,6 +396,28 @@ public class CoordenadasSimbolos {
     double[] puntoPot(double x, double y) {
         double[] punto = {x - 7.5, y - 25, x - 7.5, y - 25};
         return punto;
+    }
+
+    double[] raiz(double x, double y) {
+        double[] raiz = {
+            x - 10, y - 25, x - 5, y - 10,
+            x - 5, y - 10, x - 3.5, y - 40,
+            x - 3.5, y - 40, x, y - 40
+        };
+
+        return raiz;
+    }
+
+    double[] raizPot(double x, double y) {
+        double[] raizPot = {
+            x-10,y-32.5,x-7.5,y-25,
+            x-7.5,y-25,x-6,y-40,
+            x-6,y-40,x-5,y-40
+        
+        };
+
+        return raizPot;
+
     }
 
 }
