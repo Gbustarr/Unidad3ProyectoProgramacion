@@ -440,11 +440,11 @@ public class Logica {
         if (!binarioActivo) {
             fg.limpiarCanvas(context.gc, context.Display);
             fg.dibujarTodosLosSimbolos(context.gc, context.lista_simbolos);
-            dibujarPuntero();
+            //dibujarPuntero();
         } else {
             fg.limpiarCanvas(context.gc, context.Display);
             fg.dibujarTodosLosSimbolos(context.gc, logicBin.lista_simbolos);
-            logicBin.dibujarPuntero(context.gc);
+            //logicBin.dibujarPuntero(context.gc);
         }
     }
 

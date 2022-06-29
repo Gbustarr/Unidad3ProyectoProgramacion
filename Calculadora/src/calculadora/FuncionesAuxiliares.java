@@ -435,6 +435,7 @@ public class FuncionesAuxiliares {
 
     protected void getPrecedence(ArrayList<Simbolo> lista_simbolos,Logica l) {
         ArrayList<Simbolo> c = parsingLista(lista_simbolos);
+        l.resetEstado();
 
         ArrayList<Simbolo> cola = new ArrayList();
         ArrayList<Simbolo> pilaOperadores = new ArrayList();

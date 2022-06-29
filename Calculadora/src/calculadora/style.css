@@ -44,3 +44,11 @@ and open the template in the editor.
     -fx-background-color: #540E64;
 }
 
+.button {
+    /*-fx-pref-width: 100px;*/
+    /*-fx-pref-height: 100px;*/
+    -fx-background-color:  linear-gradient(to bottom, #333333 ,#222222);
+    -fx-text-fill: white;
+    box-sizing: border-box;
+    font-size: 50px;
+}

@@ -438,11 +438,11 @@ public class InterfazController implements Initializable {
     @FXML
     protected void BotonMaximizar_presionado(){
         Stage stage = (Stage) Btn_Maximizar.getScene().getWindow();
-        if(stage.isMaximized()){
-            stage.setMaximized(false);
+        if(stage.isFullScreen()){
+            stage.setFullScreen(false);
            
         }else{
-            stage.setMaximized(true);
+            stage.setFullScreen(true);
         }
     }
 

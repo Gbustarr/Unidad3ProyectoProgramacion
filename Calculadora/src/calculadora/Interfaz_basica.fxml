@@ -1,398 +1,199 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Group?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.effect.Blend?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.Glow?>
-<?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.effect.Reflection?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" pickOnBounds="false" prefHeight="714.0" prefWidth="1176.0" style="-fx-background-color: rgba(0,0,0,0);" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculadora.InterfazController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="906.0" style="-fx-background-color: linear-gradient(to bottom, #121e31 ,#111111); -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 10; -fx-border-insets: 2;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculadora.InterfazController">
    <children>
-      <AnchorPane fx:id="fondoInterfaz" prefHeight="714.0" prefWidth="1182.0" style="-fx-background-color: linear-gradient(to bottom, #121e31 ,#111111); -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 10; -fx-border-insets: 2;" stylesheets="@style.css">
+      <VBox prefHeight="587.0" prefWidth="300.0" HBox.hgrow="SOMETIMES">
          <children>
-            <Group layoutX="501.0" layoutY="42.0">
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <AnchorPane layoutY="1.0" prefHeight="630.0" prefWidth="661.0" style="-fx-background-color: linear-gradient(to bottom, #cccccc ,#bbbbbb); -fx-background-radius: 10;">
-                     <effect>
-                        <InnerShadow choke="0.12" height="56.58" radius="21.86" width="32.86" />
-                     </effect>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </AnchorPane>
-                  <Group>
-                     <children>
-                        <Canvas fx:id="Display" height="503.0" layoutX="18.0" layoutY="49.0" width="627.0" />
-                        <Button fx:id="Btn_puntosControl" layoutX="24.0" layoutY="21.0" mnemonicParsing="false" onAction="#BotonPuntosControl_presionado" prefHeight="22.0" prefWidth="31.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="P" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="15.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="Btn_derecha" blendMode="SRC_ATOP" layoutX="93.0" layoutY="574.0" mnemonicParsing="false" onAction="#BotonDerecha_presionado" prefHeight="21.0" prefWidth="28.0" style="-fx-background-color: #999999;" text="&gt;">
-                           <font>
-                              <Font size="10.0" />
-                           </font>
-                           <effect>
-                              <Reflection />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_izq" blendMode="SRC_ATOP" layoutX="25.0" layoutY="573.0" mnemonicParsing="false" onAction="#BotonIzquierda_presionado" prefHeight="21.0" prefWidth="28.0" style="-fx-background-color: #999999;" text="&lt;">
-                           <font>
-                              <Font size="10.0" />
-                           </font>
-                           <effect>
-                              <Reflection />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_arriba" blendMode="SRC_ATOP" layoutX="57.0" layoutY="561.0" mnemonicParsing="false" onAction="#BotonArriba_presionado" prefHeight="23.0" prefWidth="33.0" style="-fx-background-color: #999999;" text="^">
-                           <font>
-                              <Font size="10.0" />
-                           </font>
-                           <effect>
-                              <Reflection />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_abajo" blendMode="SRC_ATOP" layoutX="57.0" layoutY="588.0" mnemonicParsing="false" onAction="#BotonAbajo_presionado" prefHeight="23.0" prefWidth="33.0" style="-fx-background-color: #999999;" text="v">
-                           <font>
-                              <Font size="10.0" />
-                           </font>
-                           <effect>
-                              <Reflection />
-                           </effect>
-                        </Button>
-                        <TextField fx:id="textoSalida" editable="false" focusTraversable="false" layoutX="156.0" layoutY="573.0" prefHeight="25.0" prefWidth="484.0" style="-fx-background-color: #999999;" />
-                     </children>
-                  </Group>
-               </children>
-            </Group>
-            <AnchorPane layoutX="28.0" layoutY="76.0" prefHeight="565.0" prefWidth="454.0" style="-fx-background-color: linear-gradient(to bottom, #555555 ,#333333); -fx-background-radius: 20;">
-               <children>
-                  <Group layoutX="33.0" layoutY="84.0">
-                     <children>
-                        <Button fx:id="Btn_suma" layoutX="251.0" layoutY="209.0" mnemonicParsing="false" onAction="#BotonMas_presionado" prefHeight="57.0" prefWidth="56.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="+" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_CambiarBase" layoutX="80.0" mnemonicParsing="false" onAction="#BotonCambiarBase_presionado" prefHeight="29.0" prefWidth="102.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="Decimal" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="11.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_Fact" layoutX="332.0" layoutY="118.0" mnemonicParsing="false" onAction="#BotonFact_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="x!" textFill="WHITE" visible="false">
-                           <font>
-                              <Font name="Consolas" size="18.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_multiplicar" layoutX="251.0" layoutY="38.0" mnemonicParsing="false" onAction="#BotonMultiplicar_presionado" prefHeight="57.0" prefWidth="56.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="*" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_9" layoutX="194.0" layoutY="95.0" mnemonicParsing="false" onAction="#Boton9_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #333333 ,#222222);" text="9" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_6" layoutX="194.0" layoutY="152.0" mnemonicParsing="false" onAction="#Boton6_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #333333 ,#222222);" text="6" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_3" layoutX="194.0" layoutY="209.0" mnemonicParsing="false" onAction="#Boton3_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #333333 ,#222222);" text="3" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_igual" layoutX="251.0" layoutY="267.0" mnemonicParsing="false" onAction="#BotonResultado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="=" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_0" layoutX="80.0" layoutY="267.0" mnemonicParsing="false" onAction="#Boton0_presionado" prefHeight="57.0" prefWidth="114.0" style="-fx-background-color: linear-gradient(to bottom, #333333 ,#222222);" text="0" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_2" layoutX="137.0" layoutY="209.0" mnemonicParsing="false" onAction="#Boton2_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #333333 ,#222222);" text="2" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_1" layoutX="80.0" layoutY="209.0" mnemonicParsing="false" onAction="#Boton1_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #333333 ,#222222);" text="1" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_5" layoutX="137.0" layoutY="152.0" mnemonicParsing="false" onAction="#Boton5_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #333333 ,#222222);" text="5" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_resta" layoutX="251.0" layoutY="152.0" mnemonicParsing="false" onAction="#BotonMenos_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="-" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_dividir" layoutX="251.0" layoutY="95.0" mnemonicParsing="false" onAction="#BotonDivision_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="/" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_pCerrado" layoutX="194.0" layoutY="38.0" mnemonicParsing="false" onAction="#BotonParentesisCerrado_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text=")" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_4" layoutX="80.0" layoutY="152.0" mnemonicParsing="false" onAction="#Boton4_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #333333 ,#222222);" text="4" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_7" layoutX="80.0" layoutY="95.0" mnemonicParsing="false" onAction="#Boton7_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #333333 ,#222222);" text="7" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_AC" layoutX="80.0" layoutY="38.0" mnemonicParsing="false" onAction="#BotonAC_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="CE" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_pAbierto" layoutX="137.0" layoutY="38.0" mnemonicParsing="false" onAction="#BotonParentesisAbierto_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="(" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_8" layoutX="137.0" layoutY="95.0" mnemonicParsing="false" onAction="#Boton8_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #333333 ,#222222);" text="8" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="20.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_Sen" layoutY="118.0" mnemonicParsing="false" onAction="#BotonSeno_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="Sen" textFill="WHITE" visible="false">
-                           <font>
-                              <Font name="Consolas" size="18.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_Cos" layoutY="175.0" mnemonicParsing="false" onAction="#BotonCos_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="Cos" textFill="WHITE" visible="false">
-                           <font>
-                              <Font name="Consolas" size="18.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_Tan" layoutY="232.0" mnemonicParsing="false" onAction="#BotonTan_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="Tan" textFill="WHITE" visible="false">
-                           <font>
-                              <Font name="Consolas" size="18.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_potencia" layoutX="332.0" layoutY="231.0" mnemonicParsing="false" onAction="#BotonPotencia_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="n^x" textFill="WHITE" visible="false">
-                           <font>
-                              <Font name="Consolas" size="18.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_Grado" layoutX="332.0" layoutY="174.0" mnemonicParsing="false" onAction="#BotonGrado_presionado" prefHeight="57.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="°" textFill="WHITE" visible="false">
-                           <font>
-                              <Font name="Consolas" size="18.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Btn_Cientifico" layoutX="205.0" layoutY="1.0" mnemonicParsing="false" onAction="#BotonCientifico_presionado" prefHeight="29.0" prefWidth="102.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="Baśico" textFill="WHITE">
-                           <font>
-                              <Font name="Consolas" size="11.0" />
-                           </font>
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </Button>
-                     </children>
-                  </Group>
-                  <TextField fx:id="Txt_Input" layoutX="33.0" layoutY="463.0" prefHeight="25.0" prefWidth="296.0" promptText="Ingresar fórmula" />
-                  <Button fx:id="Btn_IngresarFormula" layoutX="339.0" layoutY="461.0" mnemonicParsing="false" onAction="#BotonIngresarFormula_presionado" prefHeight="29.0" prefWidth="102.0" style="-fx-background-color: #333333;" text="Ingresar" textFill="WHITE">
-                     <font>
-                        <Font name="Consolas" size="11.0" />
-                     </font>
-                     <effect>
-                        <Glow />
-                     </effect>
-                  </Button>
-                  <Label fx:id="Lbl_Error" layoutX="44.0" layoutY="490.0" text="Error" textFill="#ffc800" visible="false">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <AnchorPane layoutX="65.0" prefHeight="45.0" prefWidth="325.0" style="-fx-background-color: linear-gradient(to bottom, #444444 ,#333333);">
-                     <effect>
-                        <DropShadow height="18.03" radius="12.2225" width="32.86" />
-                     </effect>
-                     <children>
-                        <Label layoutX="8.0" layoutY="11.0" text="Calculadora Mark III: G Edition" textFill="#cdcdcd">
-                           <font>
-                              <Font name="Bookman Old Style" size="20.0" />
-                           </font>
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-                  <Button layoutX="377.0" layoutY="59.0" mnemonicParsing="false" onAction="#BotonInfo_presionado" text="Button" visible="false" />
-               </children>
-               <effect>
-                  <DropShadow height="18.03" radius="12.2225" width="32.86" />
-               </effect>
-            </AnchorPane>
-            <Button fx:id="Btn_Panel" blendMode="OVERLAY" disable="true" layoutX="329.0" layoutY="377.0" mnemonicParsing="false" onAction="#BotonPanel_presionado" prefHeight="29.0" prefWidth="85.0" style="-fx-background-color: green;" text="Panel" visible="false">
-               <font>
-                  <Font name="Consolas" size="15.0" />
-               </font>
-            </Button>
-            <Label fx:id="divisionActiva" layoutX="118.0" layoutY="57.0" text="Label" visible="false" />
-            <Canvas fx:id="DisplayBin" height="250.0" layoutX="100.0" layoutY="69.0" visible="false" width="340.0" />
-            <Label fx:id="alturaDivision" layoutX="800.0" layoutY="80.0" prefHeight="30.0" prefWidth="31.0" text="P" visible="false">
-               <font>
-                  <Font name="Consolas" size="25.0" />
-               </font>
-            </Label>
-            <Button fx:id="Btn_91" layoutX="1131.0" layoutY="-2.0" mnemonicParsing="false" onAction="#Cerrar" prefHeight="33.0" prefWidth="31.0" style="-fx-background-color: linear-gradient(to bottom, #555555 ,#333333);" stylesheets="@style.css" text="X" textFill="WHITE">
-               <font>
-                  <Font name="Arial Narrow" size="11.0" />
-               </font>
-            </Button>
-            <Label layoutX="946.0" layoutY="683.0" text="Autor: Guillermo Bustamante Arriagada" textFill="#757575" />
-            <MenuButton layoutX="41.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: #333333;" text="Colores" textFill="WHITE">
-              <items>
-                  <Menu mnemonicParsing="false" text="Numeros">
-                    <items>
-                        <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorNum_Azul" styleClass="azul" text="Azul">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="CN" />
-                           </toggleGroup>
-                        </RadioMenuItem>
-                        <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorNum_Cafe" styleClass="cafe" text="Café" toggleGroup="$CN" />
-                        <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorNum_Morado" styleClass="morado" text="Morado" toggleGroup="$CN" />
-                        <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorNum_Naranjo" styleClass="naranjo" text="Naranjo" toggleGroup="$CN" />
-                        <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorNum_Rojo" styleClass="rojo" text="Rojo" toggleGroup="$CN" />
-                        <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorNum_Verde" styleClass="verde" text="Verde" toggleGroup="$CN" />
-                    </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Operadores">
+                  <MenuButton mnemonicParsing="false" style="-fx-background-color: #333333;" text="Tamaño" textFill="WHITE">
                      <items>
-                        <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorOp_Azul" styleClass="azul" text="Azul">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="CO" />
-                           </toggleGroup>
-                        </RadioMenuItem>
-                        <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorOp_Cafe" styleClass="cafe" text="Café" toggleGroup="$CO" />
-                        <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorOp_Morado" styleClass="morado" text="Morado" toggleGroup="$CO" />
-                        <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorOp_Naranjo" styleClass="naranjo" text="Naranjo" toggleGroup="$CO" />
-                        <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorOp_Rojo" styleClass="rojo" text="Rojo" toggleGroup="$CO" />
-                        <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorOp_Verde" styleClass="verde" text="Verde" toggleGroup="$CO" />
+                        <Menu mnemonicParsing="false">
+                           <graphic>
+                              <Slider fx:id="tamanoCaracteres" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" onMouseReleased="#Slider_presionado" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="3.0" />
+                           </graphic>
+                        </Menu>
                      </items>
-                  </Menu>
-              </items>
-            </MenuButton>
-            <MenuButton layoutX="121.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: #333333;" text="Tamaño" textFill="WHITE">
-               <items>
-                  <Menu mnemonicParsing="false">
-                     <graphic>
-                        <Slider fx:id="tamanoCaracteres" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" onMouseReleased="#Slider_presionado" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="3.0" />
-                     </graphic>
-                  </Menu>
-               </items>
-            </MenuButton>
-            <Button fx:id="Btn_Maximizar" layoutX="1100.0" layoutY="-2.0" mnemonicParsing="false" onAction="#BotonMaximizar_presionado" prefHeight="33.0" prefWidth="31.0" style="-fx-background-color: linear-gradient(to bottom, #555555 ,#333333);" stylesheets="@style.css" text="□" textFill="WHITE">
-               <font>
-                  <Font name="Arial Narrow" size="12.0" />
-               </font>
-            </Button>
+                  </MenuButton>
+                  <MenuButton mnemonicParsing="false" style="-fx-background-color: #333333;" text="Colores" textFill="WHITE">
+                     <items>
+                        <Menu mnemonicParsing="false" text="Numeros">
+                           <items>
+                              <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorNum_Azul" styleClass="azul" text="Azul">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="CN" />
+                                 </toggleGroup>
+                              </RadioMenuItem>
+                              <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorNum_Cafe" styleClass="cafe" text="Café" toggleGroup="$CN" />
+                              <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorNum_Morado" styleClass="morado" text="Morado" toggleGroup="$CN" />
+                              <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorNum_Naranjo" styleClass="naranjo" text="Naranjo" toggleGroup="$CN" />
+                              <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorNum_Rojo" styleClass="rojo" text="Rojo" toggleGroup="$CN" />
+                              <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorNum_Verde" styleClass="verde" text="Verde" toggleGroup="$CN" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Operadores">
+                           <items>
+                              <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorOp_Azul" styleClass="azul" text="Azul">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="CO" />
+                                 </toggleGroup>
+                              </RadioMenuItem>
+                              <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorOp_Cafe" styleClass="cafe" text="Café" toggleGroup="$CO" />
+                              <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorOp_Morado" styleClass="morado" text="Morado" toggleGroup="$CO" />
+                              <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorOp_Naranjo" styleClass="naranjo" text="Naranjo" toggleGroup="$CO" />
+                              <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorOp_Rojo" styleClass="rojo" text="Rojo" toggleGroup="$CO" />
+                              <RadioMenuItem mnemonicParsing="false" onAction="#BotonColorOp_Verde" styleClass="verde" text="Verde" toggleGroup="$CO" />
+                           </items>
+                        </Menu>
+                     </items>
+                  </MenuButton>
+               </children>
+               <opaqueInsets>
+                  <Insets top="20.0" />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="282.0" prefWidth="283.0" style="-fx-background-color: linear-gradient(to bottom, #555555 ,#333333); -fx-background-radius: 20;">
+               <children>
+                  <VBox HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Button fx:id="Btn_CambiarBase" mnemonicParsing="false" onAction="#BotonCambiarBase_presionado" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="Decimal" />
+                              <Button fx:id="Btn_Cientifico" mnemonicParsing="false" onAction="#BotonCientifico_presionado" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="Básico" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Button disable="true" mnemonicParsing="false" text="CE" visible="false" />
+                              <Button fx:id="Btn_AC" mnemonicParsing="false" onAction="#BotonAC_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="CE" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="Btn_pAbierto" mnemonicParsing="false" onAction="#BotonParentesisAbierto_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="(" />
+                              <Button fx:id="Btn_pCerrado" mnemonicParsing="false" onAction="#BotonParentesisCerrado_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text=")" />
+                              <Button fx:id="Btn_multiplicar" mnemonicParsing="false" onAction="#BotonMultiplicar_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="*" />
+                              <Button disable="true" mnemonicParsing="false" text="CE" visible="false" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="41.0" prefWidth="56.0">
+                                 <children>
+                                    <Button fx:id="Btn_Sen" mnemonicParsing="false" onAction="#BotonSeno_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="Sin(x)" />
+                                 </children>
+                              </HBox>
+                              <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="40.0" text="7" />
+                              <Button fx:id="Btn_8" mnemonicParsing="false" onAction="#Boton8_presionado" prefHeight="50.0" prefWidth="40.0" text="8" />
+                              <Button mnemonicParsing="false" onAction="#Boton9_presionado" prefHeight="50.0" prefWidth="40.0" text="9" />
+                              <Button fx:id="Btn_dividir" mnemonicParsing="false" onAction="#BotonDivision_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="/" />
+                              <HBox alignment="CENTER" prefHeight="41.0" prefWidth="56.0">
+                                 <children>
+                                    <Button fx:id="Btn_Fact" mnemonicParsing="false" onAction="#BotonFact_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="!" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="41.0" prefWidth="56.0">
+                                 <children>
+                                    <Button fx:id="Btn_Cos" mnemonicParsing="false" onAction="#BotonCos_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="Cos(x)" />
+                                 </children>
+                              </HBox>
+                              <Button fx:id="Btn_4" mnemonicParsing="false" onAction="#Boton4_presionado" prefHeight="50.0" prefWidth="40.0" text="4" />
+                              <Button fx:id="Btn_5" mnemonicParsing="false" onAction="#Boton5_presionado" prefHeight="50.0" prefWidth="40.0" text="5" />
+                              <Button fx:id="Btn_6" mnemonicParsing="false" onAction="#Boton6_presionado" prefHeight="50.0" prefWidth="40.0" text="6" />
+                              <Button fx:id="Btn_resta" mnemonicParsing="false" onAction="#BotonMenos_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="-" />
+                              <HBox alignment="CENTER" prefHeight="41.0" prefWidth="56.0">
+                                 <children>
+                                    <Button fx:id="Btn_potencia" mnemonicParsing="false" onAction="#BotonPotencia_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="n^x" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="41.0" prefWidth="56.0">
+                                 <children>
+                                    <Button fx:id="Btn_Tan" mnemonicParsing="false" onAction="#BotonTan_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="Tan(x)" />
+                                 </children>
+                              </HBox>
+                              <Button fx:id="Btn_1" mnemonicParsing="false" onAction="#Boton1_presionado" prefHeight="50.0" prefWidth="40.0" text="1" />
+                              <Button fx:id="Btn_2" mnemonicParsing="false" onAction="#Boton2_presionado" prefHeight="50.0" prefWidth="40.0" text="2" />
+                              <Button fx:id="Btn_3" mnemonicParsing="false" onAction="#Boton3_presionado" prefHeight="50.0" prefWidth="40.0" text="3" />
+                              <Button mnemonicParsing="false" onAction="#BotonMas_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="+" />
+                              <HBox alignment="CENTER" prefHeight="41.0" prefWidth="56.0">
+                                 <children>
+                                    <Button fx:id="Btn_Grado" mnemonicParsing="false" onAction="#BotonGrado_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="°" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#Boton0_presionado" prefHeight="50.0" prefWidth="80.0" text="0" />
+                              <Button fx:id="Btn_igual" mnemonicParsing="false" onAction="#BotonResultado" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="=" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <TextField fx:id="Txt_Input" prefHeight="25.0" prefWidth="211.0" HBox.hgrow="ALWAYS" />
+                  <Button maxHeight="25.0" mnemonicParsing="false" onAction="#BotonIngresarFormula_presionado" prefHeight="25.0" prefWidth="96.0" text="Ingresar" />
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </HBox>
          </children>
-      </AnchorPane>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <VBox prefHeight="501.0" prefWidth="502.0" HBox.hgrow="ALWAYS">
+         <children>
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="Btn_Maximizar" maxHeight="20.0" maxWidth="20.0" mnemonicParsing="false" onAction="#BotonMaximizar_presionado" text="□" />
+                  <Button maxHeight="20.0" maxWidth="20.0" mnemonicParsing="false" onAction="#Cerrar" text="x" />
+               </children>
+            </HBox>
+            <VBox prefHeight="250.0" prefWidth="357.0" style="-fx-background-color: linear-gradient(to bottom, #cccccc ,#bbbbbb); -fx-background-radius: 10;" VBox.vgrow="ALWAYS">
+               <children>
+                  <Button fx:id="Btn_puntosControl" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#BotonPuntosControl_presionado" prefHeight="28.0" prefWidth="37.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="P" textFill="WHITE">
+                     <font>
+                        <Font name="Consolas" size="15.0" />
+                     </font>
+                  </Button>
+                  <Canvas fx:id="Display" height="245.0" width="496.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="textoSalida" prefHeight="25.0" prefWidth="316.0" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </VBox>
    </children>
-</AnchorPane>
+</HBox>
