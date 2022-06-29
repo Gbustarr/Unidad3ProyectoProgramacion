@@ -118,11 +118,15 @@ public class FuncionesAuxiliares {
 
     protected int buscarNumero(ArrayList<Simbolo> lista_simbolos, int index) {
         String numero = "";
-        if(index > 0){
-            if(lista_simbolos.get(index-1).valor == 11){
-            numero = numero + "-";
-        }
-        }
+        if (index == 1) {
+            if (lista_simbolos.get(index - 1).valor == 11) {
+                numero = numero + "-";
+            } 
+        }else if (index > 1) {
+                if (lista_simbolos.get(index - 1).valor == 11 && lista_simbolos.get(index - 2).tipo != 0) {
+                    numero = numero + "-";
+                }
+            }
         for (int i = index; i < lista_simbolos.size(); i++) {
             if (lista_simbolos.get(i).tipo != 0) {
                 break;
@@ -200,7 +204,6 @@ public class FuncionesAuxiliares {
 
     }
 
-
     protected void printAllSymbols(ArrayList<Simbolo> lista) {
         for (int i = 0; i < lista.size(); i++) {
 
@@ -217,7 +220,12 @@ public class FuncionesAuxiliares {
         //Falta identificar los numeros negativos.
         for (int i = 0; i < lista_simbolos.size(); i++) {
             if (lista_simbolos.get(i).tipo != 0) { //Si hay un operador se agrega directo
-                parseo.add(lista_simbolos.get(i));
+                if(i != lista_simbolos.size()-1 &&lista_simbolos.get(i+1).valor == 11){
+                    parseo.add(lista_simbolos.get(i));
+                    i = i+1;
+                }else{
+                    parseo.add(lista_simbolos.get(i));
+                }
             } else {//Buscando mas numeros par agregar al numero total
                 numero = buscarNumero(lista_simbolos, i);
                 i = i + String.valueOf(numero).length() - 1;
@@ -428,7 +436,7 @@ public class FuncionesAuxiliares {
                     //System.out.print("°");
                     subCalcular(enEspera, 20);
                 }
-                 if (cadena.get(i).valor == 21) { //Raiz
+                if (cadena.get(i).valor == 21) { //Raiz
                     //System.out.print("°");
                     subCalcular(enEspera, 21);
                 }
@@ -436,14 +444,13 @@ public class FuncionesAuxiliares {
             }
 
         }
-        
+
         //System.out.println(enEspera.get(0).resultado);
-        
         return enEspera.get(0).resultado;
-        
+
     }
 
-    protected void getPrecedence(ArrayList<Simbolo> lista_simbolos,Logica l) {
+    protected void getPrecedence(ArrayList<Simbolo> lista_simbolos, Logica l) {
         ArrayList<Simbolo> c = parsingLista(lista_simbolos);
         l.resetEstado();
 
@@ -497,54 +504,49 @@ public class FuncionesAuxiliares {
                 cola.add(pilaOperadores.get(i));
             }
         }
-        
+
         System.out.println(cola);
 
         // */
         //   (1-2)^4*(4*(5/((5-3)^2)))
-        dibujarResultado(calcular(cola),l);
+        dibujarResultado(calcular(cola), l);
+        l.context.textoSalida.setText(cola.toString());
         //System.out.println(calcular(cola));
 
     }
-    
-    protected void dibujarResultado(double res,Logica l){
-        String resultado = Double.toString(Math.round(res*100000.0)/100000.0);
-        
-        System.out.println("Raw res:"+res);
+
+    protected void dibujarResultado(double res, Logica l) {
+        String resultado = Double.toString(Math.round(res * 100000.0) / 100000.0);
+
+        System.out.println("Raw res:" + res);
         l.context.lista_simbolos.clear(); //Borrando la lista principal
-        System.out.println("Rounded res:"+resultado);
-        
-        
-        if(res != Double.POSITIVE_INFINITY){
+        System.out.println("Rounded res:" + resultado);
+
+        if (res != Double.POSITIVE_INFINITY) {
             String iterado;
-        
-        //Del resultado, parsearlo, verificar el char y en base a eso "apretar botones" de la calculadora
-        
-        for(int i = 0;i<resultado.length();i++){
-            iterado = Character.toString(resultado.charAt(i));
-            if(".".equals(iterado)){
-                l.agregarSimbolo(l.context.gc, -3, l.context.lista_simbolos, l.context.Display);
-            }else if ("-".equals(iterado)){
-                l.agregarSimbolo(l.context.gc, 11, l.context.lista_simbolos, l.context.Display);
-            }else if ("E".equals(iterado)){
-                l.agregarSimbolo(l.context.gc, -1, l.context.lista_simbolos, l.context.Display);
+
+            //Del resultado, parsearlo, verificar el char y en base a eso "apretar botones" de la calculadora
+            for (int i = 0; i < resultado.length(); i++) {
+                iterado = Character.toString(resultado.charAt(i));
+                if (".".equals(iterado)) {
+                    l.agregarSimbolo(l.context.gc, -3, l.context.lista_simbolos, l.context.Display);
+                } else if ("-".equals(iterado)) {
+                    l.agregarSimbolo(l.context.gc, 11, l.context.lista_simbolos, l.context.Display);
+                } else if ("E".equals(iterado)) {
+                    l.agregarSimbolo(l.context.gc, -1, l.context.lista_simbolos, l.context.Display);
+                } else if (Integer.valueOf(iterado) >= 0 && Integer.valueOf(iterado) <= 9) {
+                    l.agregarSimbolo(l.context.gc, Integer.valueOf(iterado), l.context.lista_simbolos, l.context.Display);
+                }
+
             }
-            
-            else if (Integer.valueOf(iterado) >=0 && Integer.valueOf(iterado) <=9){
-                l.agregarSimbolo(l.context.gc, Integer.valueOf(iterado), l.context.lista_simbolos, l.context.Display);
-            }
-        
-        }
-        }else{ //Si encuentra que el resultado es infinito, devuelve un -1
+        } else { //Si encuentra que el resultado es infinito, devuelve un -1
             l.agregarSimbolo(l.context.gc, 11, l.context.lista_simbolos, l.context.Display);
             l.agregarSimbolo(l.context.gc, 1, l.context.lista_simbolos, l.context.Display);
         }
-        
+
         //l.canvasABinario();
         l.dibujarSimbolos();
-    
+
     }
-    
-    
 
 }

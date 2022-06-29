@@ -82,10 +82,22 @@
                                     <Button disable="true" mnemonicParsing="false" onAction="#BotonFact_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="!" visible="false" />
                                  </children>
                               </HBox>
-                              <Button fx:id="Btn_AC" mnemonicParsing="false" onAction="#BotonAC_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="CE" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="Btn_pAbierto" mnemonicParsing="false" onAction="#BotonParentesisAbierto_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="(" />
-                              <Button fx:id="Btn_pCerrado" mnemonicParsing="false" onAction="#BotonParentesisCerrado_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text=")" />
-                              <Button fx:id="Btn_multiplicar" mnemonicParsing="false" onAction="#BotonMultiplicar_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="*" />
+                              <Button fx:id="Btn_AC" mnemonicParsing="false" onAction="#BotonAC_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="CE" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
+                              <Button fx:id="Btn_pAbierto" mnemonicParsing="false" onAction="#BotonParentesisAbierto_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="(">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
+                              <Button fx:id="Btn_pCerrado" mnemonicParsing="false" onAction="#BotonParentesisCerrado_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text=")">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
+                              <Button fx:id="Btn_multiplicar" mnemonicParsing="false" onAction="#BotonMultiplicar_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="*">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
                               <HBox alignment="CENTER" prefHeight="41.0" prefWidth="56.0">
                                  <children>
                                     <Button fx:id="Btn_Raiz" mnemonicParsing="false" onAction="#BotonRaiz_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #006400 ,#2d2d30);" text="√" visible="false" />
@@ -100,10 +112,22 @@
                                     <Button fx:id="Btn_Sen" mnemonicParsing="false" onAction="#BotonSeno_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #006400 ,#2d2d30);" text="Sin(x)" visible="false" />
                                  </children>
                               </HBox>
-                              <Button mnemonicParsing="false" onAction="#Boton7_presionado" prefHeight="50.0" prefWidth="40.0" text="7" />
-                              <Button fx:id="Btn_8" mnemonicParsing="false" onAction="#Boton8_presionado" prefHeight="50.0" prefWidth="40.0" text="8" />
-                              <Button mnemonicParsing="false" onAction="#Boton9_presionado" prefHeight="50.0" prefWidth="40.0" text="9" />
-                              <Button fx:id="Btn_dividir" mnemonicParsing="false" onAction="#BotonDivision_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="/" />
+                              <Button mnemonicParsing="false" onAction="#Boton7_presionado" prefHeight="50.0" prefWidth="40.0" text="7">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
+                              <Button fx:id="Btn_8" mnemonicParsing="false" onAction="#Boton8_presionado" prefHeight="50.0" prefWidth="40.0" text="8">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
+                              <Button mnemonicParsing="false" onAction="#Boton9_presionado" prefHeight="50.0" prefWidth="40.0" text="9">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
+                              <Button fx:id="Btn_dividir" mnemonicParsing="false" onAction="#BotonDivision_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="/">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
                               <HBox alignment="CENTER" prefHeight="41.0" prefWidth="56.0">
                                  <children>
                                     <Button fx:id="Btn_Fact" mnemonicParsing="false" onAction="#BotonFact_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #006400 ,#2d2d30);" text="!" visible="false" />
@@ -118,10 +142,22 @@
                                     <Button fx:id="Btn_Cos" mnemonicParsing="false" onAction="#BotonCos_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #006400 ,#2d2d30);" text="Cos(x)" visible="false" />
                                  </children>
                               </HBox>
-                              <Button fx:id="Btn_4" mnemonicParsing="false" onAction="#Boton4_presionado" prefHeight="50.0" prefWidth="40.0" text="4" />
-                              <Button fx:id="Btn_5" mnemonicParsing="false" onAction="#Boton5_presionado" prefHeight="50.0" prefWidth="40.0" text="5" />
-                              <Button fx:id="Btn_6" mnemonicParsing="false" onAction="#Boton6_presionado" prefHeight="50.0" prefWidth="40.0" text="6" />
-                              <Button fx:id="Btn_resta" mnemonicParsing="false" onAction="#BotonMenos_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="-" />
+                              <Button fx:id="Btn_4" mnemonicParsing="false" onAction="#Boton4_presionado" prefHeight="50.0" prefWidth="40.0" text="4">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
+                              <Button fx:id="Btn_5" mnemonicParsing="false" onAction="#Boton5_presionado" prefHeight="50.0" prefWidth="40.0" text="5">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
+                              <Button fx:id="Btn_6" mnemonicParsing="false" onAction="#Boton6_presionado" prefHeight="50.0" prefWidth="40.0" text="6">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
+                              <Button fx:id="Btn_resta" mnemonicParsing="false" onAction="#BotonMenos_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="-">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
                               <HBox alignment="CENTER" prefHeight="41.0" prefWidth="56.0">
                                  <children>
                                     <Button fx:id="Btn_potencia" mnemonicParsing="false" onAction="#BotonPotencia_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #006400 ,#2d2d30);" text="n^x" visible="false" />
@@ -136,10 +172,22 @@
                                     <Button fx:id="Btn_Tan" mnemonicParsing="false" onAction="#BotonTan_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #006400 ,#2d2d30);" text="Tan(x)" visible="false" />
                                  </children>
                               </HBox>
-                              <Button fx:id="Btn_1" mnemonicParsing="false" onAction="#Boton1_presionado" prefHeight="50.0" prefWidth="40.0" text="1" />
-                              <Button fx:id="Btn_2" mnemonicParsing="false" onAction="#Boton2_presionado" prefHeight="50.0" prefWidth="40.0" text="2" />
-                              <Button fx:id="Btn_3" mnemonicParsing="false" onAction="#Boton3_presionado" prefHeight="50.0" prefWidth="40.0" text="3" />
-                              <Button mnemonicParsing="false" onAction="#BotonMas_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="+" />
+                              <Button fx:id="Btn_1" mnemonicParsing="false" onAction="#Boton1_presionado" prefHeight="50.0" prefWidth="40.0" text="1">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
+                              <Button fx:id="Btn_2" mnemonicParsing="false" onAction="#Boton2_presionado" prefHeight="50.0" prefWidth="40.0" text="2">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
+                              <Button fx:id="Btn_3" mnemonicParsing="false" onAction="#Boton3_presionado" prefHeight="50.0" prefWidth="40.0" text="3">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
+                              <Button mnemonicParsing="false" onAction="#BotonMas_presionado" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="+">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
                               <HBox alignment="CENTER" prefHeight="41.0" prefWidth="56.0">
                                  <children>
                                     <Button fx:id="Btn_Grado" mnemonicParsing="false" onAction="#BotonGrado_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #006400 ,#2d2d30);" text="°" visible="false" />
@@ -149,8 +197,14 @@
                         </HBox>
                         <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#Boton0_presionado" prefHeight="50.0" prefWidth="80.0" text="0" />
-                              <Button fx:id="Btn_igual" mnemonicParsing="false" onAction="#BotonResultado" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="=" />
+                              <Button mnemonicParsing="false" onAction="#Boton0_presionado" prefHeight="50.0" prefWidth="80.0" text="0">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
+                              <Button fx:id="Btn_igual" mnemonicParsing="false" onAction="#BotonResultado" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="=">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
                            </children>
                         </HBox>
                      </children>

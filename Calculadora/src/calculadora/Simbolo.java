@@ -248,40 +248,43 @@ public class Simbolo {
 
     @Override
     public String toString() {
+        if (this.tipo != 0) {
+            switch (this.valor) {
+                case -2:
+                    return "";
+                case -1:
+                    return "^";
+                case 10:
+                    return "+";
+                case 11:
+                    return "-";
+                case 12:
+                    return "*";
+                case 13:
+                    return "/";
+                case 14:
+                    return "Sin";
+                case 15:
+                    return "Cos";
+                case 16:
+                    return "Tan";
+                case 17:
+                    return "(";
+                case 18:
+                    return ")";
+                case 19:
+                    return "!";
+                case 20:
+                    return "°";
+                case 21:
+                    return "√";
+            }
 
-        switch (this.valor) {
-            case -2:
-                return "";
-            case -1:
-                return "^";
-            case 10:
-                return "+";
-            case 11:
-                return "-";
-            case 12:
-                return "*";
-            case 13:
-                return "/";
-            case 14:
-                return "Sin";
-            case 15:
-                return "Cos";
-            case 16:
-                return "Tan";
-            case 17:
-                return "(";
-            case 18:
-                return ")";
-            case 19:
-                return "!";
-            case 20:
-                return "°";
-            case 21:
-                return "√";
-            default:
-                return String.valueOf(this.valor);
+        } else {
+            return String.valueOf(this.valor);
         }
 
         //return Arrays.toString(this.forma);
+        return null;
     }
 }
