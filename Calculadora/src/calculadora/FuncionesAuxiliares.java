@@ -307,54 +307,60 @@ public class FuncionesAuxiliares {
             anteAnterior = enEspera.get(enEspera.size() - 2);
         }
         Simbolo res = new Simbolo();
-        if (op == -1) {
+        if (op == -4) { //Negación
+            //System.out.print("-");
+            res.resultado = anterior.resultado *-1;
+            enEspera.remove(enEspera.size() - 1);
+            enEspera.add(res);
+        }
+        else if (op == -1) {
             //System.out.print("^");
             res.resultado = Math.pow(anteAnterior.resultado, anterior.resultado);
             enEspera.remove(enEspera.size() - 1);
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
         }
-        if (op == 10) {
+        else if (op == 10) {
             //System.out.print("+");
             res.resultado = anteAnterior.resultado + anterior.resultado;
             enEspera.remove(enEspera.size() - 1);
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
         }
-        if (op == 11) {
+        else if (op == 11) {
             //System.out.print("-");
             res.resultado = anteAnterior.resultado - anterior.resultado;
             enEspera.remove(enEspera.size() - 1);
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
         }
-        if (op == 12) {
+        else if (op == 12) {
             //System.out.print("*");
             res.resultado = anteAnterior.resultado * anterior.resultado;
             enEspera.remove(enEspera.size() - 1);
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
         }
-        if (op == 13) {
+        else if (op == 13) {
             //System.out.print("/");
             res.resultado = anteAnterior.resultado / anterior.resultado;
             enEspera.remove(enEspera.size() - 1);
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
         }
-        if (op == 14) { //Seno
+        else if (op == 14) { //Seno
             //System.out.print("Sin");
             res.resultado = Math.sin(anterior.resultado);
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
         }
-        if (op == 15) { //Coseno
+        else if (op == 15) { //Coseno
             // System.out.print("Cos");
             res.resultado = Math.cos(anterior.resultado);
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
         }
-        if (op == 16) { //Tan
+        else if (op == 16) { //Tan
             //System.out.print("Tan");
             res.resultado = Math.tan(anterior.resultado);
             enEspera.remove(enEspera.size() - 1);
@@ -396,6 +402,10 @@ public class FuncionesAuxiliares {
             if (cadena.get(i).tipo == 0) { //Si encuentra un numero
                 enEspera.add(cadena.get(i));
             } else {
+                if (cadena.get(i).valor == -4) {
+                    //System.out.print("^");
+                    subCalcular(enEspera, -4);
+                }
                 if (cadena.get(i).valor == -1) {
                     //System.out.print("^");
                     subCalcular(enEspera, -1);
@@ -468,7 +478,6 @@ public class FuncionesAuxiliares {
                     System.out.println("Parentesis ) encontrado");
                     for (int j = pilaOperadores.size() - 1; j >= 0; j--) {
                         System.out.println("Evaluando:" + pilaOperadores.get(j));
-
                         if (pilaOperadores.get(j).valor == 17) { // Si es parentesis de apertura
                             System.out.println("Parentesis ( encontrado, eliminando");
                             pilaOperadores.remove(j);
@@ -483,17 +492,25 @@ public class FuncionesAuxiliares {
                 } else {
                     System.out.println("Operador:" + c.get(i).valor);
                     if (!pilaOperadores.isEmpty()) {
-                        //Verifica si el el valor de precedencia del arreglo leido es menor al ultimo elemento almacenado en la pila
+                        //Verifica si el valor de precedencia del arreglo leido es menor al ultimo elemento almacenado en la pila
                         if (c.get(i).valorPrecedencia < pilaOperadores.get(pilaOperadores.size() - 1).valorPrecedencia && c.get(i).valor != 17) {
                             cola.add(pilaOperadores.get(pilaOperadores.size() - 1));
-                            pilaOperadores.remove(pilaOperadores.size() - 1);
-                            pilaOperadores.add(c.get(i));
-                        } else {
-                            pilaOperadores.add(c.get(i));
+                            pilaOperadores.remove(pilaOperadores.size() - 1); 
                         }
-                    } else {
+                    } 
+                        if(c.get(i).valor == 11){ //Identificando los negadores 
+                            if(i == 0 && c.size()>1){
+                                if(c.get(i+1).valor == 17){ //Si el siguiente simbolo es un parentesis
+                                    c.get(i).valor = -4;
+                                }
+                            }else if (i >0 && c.size() >2){ //Si el simbolo anterior es un operador y el siguiente es un parentesis
+                                if(c.get(i-1).tipo != 0 && c.get(i+1).valor == 17){
+                                    c.get(i).valor = -4;
+                                }
+                            }
+                        }
                         pilaOperadores.add(c.get(i));
-                    }
+                    
                 }
             }
         }
@@ -505,7 +522,7 @@ public class FuncionesAuxiliares {
             }
         }
 
-        System.out.println(cola);
+        System.out.print(cola);
 
         // */
         //   (1-2)^4*(4*(5/((5-3)^2)))

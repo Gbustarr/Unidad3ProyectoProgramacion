@@ -1,0 +1,17 @@
+-4: negación
+-3: punto
+-2: cerrado de potencias
+-1: apertura de potencias
+0-9: valor de cada numero
+10: suma
+11: resta
+12: multiplicación
+13: división
+14: seno
+15: coseno
+16: tangente
+17: parentesis abierto
+18: parentesis cerrado
+19: factorial
+20: grado
+21: raiz
