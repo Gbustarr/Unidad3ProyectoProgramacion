@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
 public class Logica {
 
     double pivot_x = 50;
-    double pivot_y = 150;
+    double pivot_y = 250;
 
     boolean binarioActivo = false;
 

@@ -276,9 +276,9 @@ public class InterfazController implements Initializable {
     @FXML
     protected void BotonMenos_presionado() {
         if (l.bloqueadorSignoNegativo(lista_simbolos) == 1) {
-            l.agregarSimbolo(gc, 11, lista_simbolos, Display);
+            
         }
-
+        l.agregarSimbolo(gc, 11, lista_simbolos, Display);
     }
 
     @FXML
@@ -559,14 +559,11 @@ public class InterfazController implements Initializable {
                     l.enPotencia = true;
                     l.fa.alturaEnPotencia(l);
                     l.agregarSimbolo(gc, -1, lista_simbolos, Display);
-                    alturaDivision.setVisible(true);
-
                 } else {
                     if (l.enPotencia) {
                         l.enPotencia = false;
                         l.fa.alturaEnPotencia(l);
                         l.agregarSimbolo(gc, -2, lista_simbolos, Display);
-                        alturaDivision.setVisible(false);
                         l.pivot_x = l.pivot_x + 5;
                     }
 
@@ -576,7 +573,6 @@ public class InterfazController implements Initializable {
                     l.enPotencia = false;
                     l.agregarSimbolo(gc, -2, lista_simbolos, Display);
                     l.fa.alturaEnPotencia(l);
-                    alturaDivision.setVisible(false);
                     l.pivot_x = l.pivot_x + 5;
                 }
 
@@ -595,6 +591,8 @@ public class InterfazController implements Initializable {
 
         //Cargando el string
         String cadena = Txt_Input.getText();
+        
+        System.out.println(cadena);
 
         //Variables para las potencias
         boolean enPotencia = false;
