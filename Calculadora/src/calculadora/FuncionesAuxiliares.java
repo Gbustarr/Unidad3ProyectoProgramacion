@@ -6,6 +6,7 @@
 package calculadora;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -220,13 +221,13 @@ public class FuncionesAuxiliares {
         //Falta identificar los numeros negativos.
         for (int i = 0; i < lista_simbolos.size(); i++) {
             if (lista_simbolos.get(i).tipo != 0) { //Si hay un operador se agrega directo
-                 parseo.add(lista_simbolos.get(i));
+                parseo.add(lista_simbolos.get(i));
             } else {//Buscando mas numeros par agregar al numero total
                 numero = buscarNumero(lista_simbolos, i);
-                if(numero < 0){
-                    parseo.remove(parseo.size()-1);
+                if (numero < 0) {
+                    parseo.remove(parseo.size() - 1);
                     i = i + String.valueOf(numero).length() - 2;
-                }else{
+                } else {
                     i = i + String.valueOf(numero).length() - 1;
                 }
                 Simbolo s = new Simbolo();
@@ -307,57 +308,72 @@ public class FuncionesAuxiliares {
             anteAnterior = enEspera.get(enEspera.size() - 2);
         }
         Simbolo res = new Simbolo();
-        if (op == -4) { //Negación
-            //System.out.print("-");
-            res.resultado = anterior.resultado * -1;
-            enEspera.remove(enEspera.size() - 1);
-            enEspera.add(res);
-        } else if (op == -1) {
-            //System.out.print("^");
-            res.resultado = Math.pow(anteAnterior.resultado, anterior.resultado);
-            enEspera.remove(enEspera.size() - 1);
-            enEspera.remove(enEspera.size() - 1);
-            enEspera.add(res);
-        } else if (op == 10) {
-            //System.out.print("+");
-            res.resultado = anteAnterior.resultado + anterior.resultado;
-            enEspera.remove(enEspera.size() - 1);
-            enEspera.remove(enEspera.size() - 1);
-            enEspera.add(res);
-        } else if (op == 11) {
-            //System.out.print("-");
-            res.resultado = anteAnterior.resultado - anterior.resultado;
-            enEspera.remove(enEspera.size() - 1);
-            enEspera.remove(enEspera.size() - 1);
-            enEspera.add(res);
-        } else if (op == 12) {
-            //System.out.print("*");
-            res.resultado = anteAnterior.resultado * anterior.resultado;
-            enEspera.remove(enEspera.size() - 1);
-            enEspera.remove(enEspera.size() - 1);
-            enEspera.add(res);
-        } else if (op == 13) {
-            //System.out.print("/");
-            res.resultado = anteAnterior.resultado / anterior.resultado;
-            enEspera.remove(enEspera.size() - 1);
-            enEspera.remove(enEspera.size() - 1);
-            enEspera.add(res);
-        } else if (op == 14) { //Seno
-            //System.out.print("Sin");
-            res.resultado = Math.sin(anterior.resultado);
-            enEspera.remove(enEspera.size() - 1);
-            enEspera.add(res);
-        } else if (op == 15) { //Coseno
-            // System.out.print("Cos");
-            res.resultado = Math.cos(anterior.resultado);
-            enEspera.remove(enEspera.size() - 1);
-            enEspera.add(res);
-        } else if (op == 16) { //Tan
-            //System.out.print("Tan");
-            res.resultado = Math.tan(anterior.resultado);
-            enEspera.remove(enEspera.size() - 1);
-            enEspera.add(res);
-
+        switch (op) {
+            case -4:
+                //Negación
+                //System.out.print("-");
+                res.resultado = anterior.resultado * -1;
+                enEspera.remove(enEspera.size() - 1);
+                enEspera.add(res);
+                break;
+            case -1:
+                //System.out.print("^");
+                res.resultado = Math.pow(anteAnterior.resultado, anterior.resultado);
+                enEspera.remove(enEspera.size() - 1);
+                enEspera.remove(enEspera.size() - 1);
+                enEspera.add(res);
+                break;
+            case 10:
+                //System.out.print("+");
+                res.resultado = anteAnterior.resultado + anterior.resultado;
+                enEspera.remove(enEspera.size() - 1);
+                enEspera.remove(enEspera.size() - 1);
+                enEspera.add(res);
+                break;
+            case 11:
+                //System.out.print("-");
+                res.resultado = anteAnterior.resultado - anterior.resultado;
+                enEspera.remove(enEspera.size() - 1);
+                enEspera.remove(enEspera.size() - 1);
+                enEspera.add(res);
+                break;
+            case 12:
+                //System.out.print("*");
+                res.resultado = anteAnterior.resultado * anterior.resultado;
+                enEspera.remove(enEspera.size() - 1);
+                enEspera.remove(enEspera.size() - 1);
+                enEspera.add(res);
+                break;
+            case 13:
+                //System.out.print("/");
+                res.resultado = anteAnterior.resultado / anterior.resultado;
+                enEspera.remove(enEspera.size() - 1);
+                enEspera.remove(enEspera.size() - 1);
+                enEspera.add(res);
+                break;
+            case 14:
+                //Seno
+                //System.out.print("Sin");
+                res.resultado = Math.sin(anterior.resultado);
+                enEspera.remove(enEspera.size() - 1);
+                enEspera.add(res);
+                break;
+            case 15:
+                //Coseno
+                // System.out.print("Cos");
+                res.resultado = Math.cos(anterior.resultado);
+                enEspera.remove(enEspera.size() - 1);
+                enEspera.add(res);
+                break;
+            case 16:
+                //Tan
+                //System.out.print("Tan");
+                res.resultado = Math.tan(anterior.resultado);
+                enEspera.remove(enEspera.size() - 1);
+                enEspera.add(res);
+                break;
+            default:
+                break;
         }
 
         if (op == 19) { //Factorial
@@ -454,27 +470,28 @@ public class FuncionesAuxiliares {
 
     protected void getPrecedence(ArrayList<Simbolo> lista_simbolos, Logica l) {
         ArrayList<Simbolo> c = parsingLista(lista_simbolos);
-        System.out.println("Lista Parseada:"+c);
+        System.out.println("Lista Parseada:" + c);
         l.resetEstado();
 
         ArrayList<Simbolo> cola = new ArrayList();
         ArrayList<Simbolo> pilaOperadores = new ArrayList();
 
         for (int i = 0; i < c.size(); i++) {
+            System.out.println("INICIO FOR-------------------------------");
             if (c.get(i).tipo == 0) { //Si es un numero
                 System.out.println("Añadiendo:" + c.get(i));
                 cola.add(c.get(i));
             } else { //Si es operador
-                System.out.println("Indice:" + i);
+                System.out.println("Indice:" + i+" Simbolo: "+ c.get(i));
                 if (c.get(i).valor == 18) {
-                    System.out.println("Indice:" + i);//Si es parentesis de cierre
+                    //System.out.println("Indice:" + i);//Si es parentesis de cierre
                     System.out.println("Parentesis ) encontrado");
                     for (int j = pilaOperadores.size() - 1; j >= 0; j--) {
                         System.out.println("Evaluando:" + pilaOperadores.get(j));
                         if (pilaOperadores.get(j).valor == 17) { // Si es parentesis de apertura
                             System.out.println("Parentesis ( encontrado, eliminando");
                             pilaOperadores.remove(j);
-                            j = -1;
+                            j = -1; // Para romper ciclo
                         } else {
                             System.out.println("Transfiriendo:" + pilaOperadores.get(j));
                             cola.add(pilaOperadores.get(j));
@@ -483,29 +500,48 @@ public class FuncionesAuxiliares {
                     }
 
                 } else {
-                    System.out.println("Operador:" + c.get(i).valor);
-                    if (!pilaOperadores.isEmpty()) {
-                        //Verifica si el valor de precedencia del arreglo leido es menor al ultimo elemento almacenado en la pila
-                        if (c.get(i).valorPrecedencia < pilaOperadores.get(pilaOperadores.size() - 1).valorPrecedencia && c.get(i).valor != 17) {
-                            cola.add(pilaOperadores.get(pilaOperadores.size() - 1));
-                            pilaOperadores.remove(pilaOperadores.size() - 1);
+                    System.out.println("Indice:" + i+" Simbolo: "+ c.get(i));
+
+                    if (c.get(i).valor != 17) { // Si no es un parentesis de apertura
+                        if (!pilaOperadores.isEmpty()) { //Si la pila no está vacia
+                            int n = pilaOperadores.size() - 1;
+                            while ((c.get(i).valorPrecedencia < pilaOperadores.get(n).valorPrecedencia
+                                || (c.get(i).valorPrecedencia == pilaOperadores.get(n).valorPrecedencia
+                                && c.get(i).asociatividad == 0 && pilaOperadores.get(n).asociatividad == 0))) {
+                                cola.add(pilaOperadores.get(n));
+                                pilaOperadores.remove(n);
+                                n = n - 1;
+                                if (n == -1) {
+                                    break;
+                                }
+                            }
+
                         }
+
                     }
+
                     if (c.get(i).valor == 11) { //Identificando los negadores 
                         if (i == 0 && c.size() > 1) {
                             if (c.get(i + 1).valor == 17) { //Si el siguiente simbolo es un parentesis
                                 c.get(i).valor = -4;
+                                c.get(i).valorPrecedencia = 10;
+                                c.get(i).asociatividad = 1;
+
                             }
                         } else if (i > 0 && c.size() > 2) { //Si el simbolo anterior es un operador y el siguiente es un parentesis
                             if (c.get(i - 1).tipo != 0 && c.get(i + 1).valor == 17) {
                                 c.get(i).valor = -4;
+                                c.get(i).valorPrecedencia = 10;
+                                c.get(i).asociatividad = 1;
                             }
                         }
                     }
+
                     pilaOperadores.add(c.get(i));
 
                 }
             }
+            System.out.println("FIN FOR-------------------------------");
         }
 
         // /*

@@ -397,13 +397,14 @@ public class Logica {
                 s.setForma(forma);
                 lista_simbolos.add(s);
                 break;
-            case 20:
+            case 20: //grado
                 if (enPotencia) {
                     forma = cs.gradoPot(pivot_x, pivot_y);
                 } else {
                     forma = cs.grado(pivot_x, pivot_y);
                 }
                 s.valorPrecedencia = 3;
+                s.asociatividad =1;
                 s.setValor(20);
                 s.setTipo(2);
                 s.setColor(context.colorOp);
