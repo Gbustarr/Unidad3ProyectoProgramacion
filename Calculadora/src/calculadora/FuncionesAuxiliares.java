@@ -116,28 +116,6 @@ public class FuncionesAuxiliares {
         }
     }
 
-    protected int buscarNumero(ArrayList<Simbolo> lista_simbolos, int index) {
-        String numero = "";
-        if (index == 1) {
-            if (lista_simbolos.get(index - 1).valor == 11) {
-                numero = numero + "-";
-            } 
-        }else if (index > 1) {
-                if (lista_simbolos.get(index - 1).valor == 11 && lista_simbolos.get(index - 2).tipo != 0) {
-                    numero = numero + "-";
-                }
-            }
-        for (int i = index; i < lista_simbolos.size(); i++) {
-            if (lista_simbolos.get(i).tipo != 0) {
-                break;
-            } else {
-                numero = numero + lista_simbolos.get(i).getValorString();
-            }
-        }
-        return Integer.parseInt(numero);
-
-    }
-
     //Recorre el string del numero binario convertido y los imprime en el canvas secundario
     protected void numerosBinariosACanvas(Logica l, String nBinario, GraphicsContext gc, ArrayList<Simbolo> lista_simbolos, Canvas DisplayBin) {
 
@@ -212,6 +190,28 @@ public class FuncionesAuxiliares {
         }
     }
 
+    protected int buscarNumero(ArrayList<Simbolo> lista_simbolos, int index) {
+        String numero = "";
+        if (index == 1) {
+            if (lista_simbolos.get(index - 1).valor == 11) {
+                numero = numero + "-";
+            }
+        } else if (index > 1) {
+            if (lista_simbolos.get(index - 1).valor == 11 && lista_simbolos.get(index - 2).tipo != 0) {
+                numero = numero + "-";
+            }
+        }
+        for (int i = index; i < lista_simbolos.size(); i++) {
+            if (lista_simbolos.get(i).tipo != 0) {
+                break;
+            } else {
+                numero = numero + lista_simbolos.get(i).getValorString();
+            }
+        }
+        return Integer.parseInt(numero);
+
+    }
+
     protected ArrayList<Simbolo> parsingLista(ArrayList<Simbolo> lista_simbolos) {
         ArrayList<Simbolo> parseo = new ArrayList();
 
@@ -220,15 +220,15 @@ public class FuncionesAuxiliares {
         //Falta identificar los numeros negativos.
         for (int i = 0; i < lista_simbolos.size(); i++) {
             if (lista_simbolos.get(i).tipo != 0) { //Si hay un operador se agrega directo
-                if(i != lista_simbolos.size()-1 &&lista_simbolos.get(i+1).valor == 11){
-                    parseo.add(lista_simbolos.get(i));
-                    i = i+1;
-                }else{
-                    parseo.add(lista_simbolos.get(i));
-                }
+                 parseo.add(lista_simbolos.get(i));
             } else {//Buscando mas numeros par agregar al numero total
                 numero = buscarNumero(lista_simbolos, i);
-                i = i + String.valueOf(numero).length() - 1;
+                if(numero < 0){
+                    parseo.remove(parseo.size()-1);
+                    i = i + String.valueOf(numero).length() - 2;
+                }else{
+                    i = i + String.valueOf(numero).length() - 1;
+                }
                 Simbolo s = new Simbolo();
                 s.valor = numero;
                 s.resultado = numero;
@@ -309,58 +309,50 @@ public class FuncionesAuxiliares {
         Simbolo res = new Simbolo();
         if (op == -4) { //Negación
             //System.out.print("-");
-            res.resultado = anterior.resultado *-1;
+            res.resultado = anterior.resultado * -1;
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
-        }
-        else if (op == -1) {
+        } else if (op == -1) {
             //System.out.print("^");
             res.resultado = Math.pow(anteAnterior.resultado, anterior.resultado);
             enEspera.remove(enEspera.size() - 1);
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
-        }
-        else if (op == 10) {
+        } else if (op == 10) {
             //System.out.print("+");
             res.resultado = anteAnterior.resultado + anterior.resultado;
             enEspera.remove(enEspera.size() - 1);
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
-        }
-        else if (op == 11) {
+        } else if (op == 11) {
             //System.out.print("-");
             res.resultado = anteAnterior.resultado - anterior.resultado;
             enEspera.remove(enEspera.size() - 1);
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
-        }
-        else if (op == 12) {
+        } else if (op == 12) {
             //System.out.print("*");
             res.resultado = anteAnterior.resultado * anterior.resultado;
             enEspera.remove(enEspera.size() - 1);
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
-        }
-        else if (op == 13) {
+        } else if (op == 13) {
             //System.out.print("/");
             res.resultado = anteAnterior.resultado / anterior.resultado;
             enEspera.remove(enEspera.size() - 1);
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
-        }
-        else if (op == 14) { //Seno
+        } else if (op == 14) { //Seno
             //System.out.print("Sin");
             res.resultado = Math.sin(anterior.resultado);
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
-        }
-        else if (op == 15) { //Coseno
+        } else if (op == 15) { //Coseno
             // System.out.print("Cos");
             res.resultado = Math.cos(anterior.resultado);
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
-        }
-        else if (op == 16) { //Tan
+        } else if (op == 16) { //Tan
             //System.out.print("Tan");
             res.resultado = Math.tan(anterior.resultado);
             enEspera.remove(enEspera.size() - 1);
@@ -462,6 +454,7 @@ public class FuncionesAuxiliares {
 
     protected void getPrecedence(ArrayList<Simbolo> lista_simbolos, Logica l) {
         ArrayList<Simbolo> c = parsingLista(lista_simbolos);
+        System.out.println("Lista Parseada:"+c);
         l.resetEstado();
 
         ArrayList<Simbolo> cola = new ArrayList();
@@ -495,22 +488,22 @@ public class FuncionesAuxiliares {
                         //Verifica si el valor de precedencia del arreglo leido es menor al ultimo elemento almacenado en la pila
                         if (c.get(i).valorPrecedencia < pilaOperadores.get(pilaOperadores.size() - 1).valorPrecedencia && c.get(i).valor != 17) {
                             cola.add(pilaOperadores.get(pilaOperadores.size() - 1));
-                            pilaOperadores.remove(pilaOperadores.size() - 1); 
+                            pilaOperadores.remove(pilaOperadores.size() - 1);
                         }
-                    } 
-                        if(c.get(i).valor == 11){ //Identificando los negadores 
-                            if(i == 0 && c.size()>1){
-                                if(c.get(i+1).valor == 17){ //Si el siguiente simbolo es un parentesis
-                                    c.get(i).valor = -4;
-                                }
-                            }else if (i >0 && c.size() >2){ //Si el simbolo anterior es un operador y el siguiente es un parentesis
-                                if(c.get(i-1).tipo != 0 && c.get(i+1).valor == 17){
-                                    c.get(i).valor = -4;
-                                }
+                    }
+                    if (c.get(i).valor == 11) { //Identificando los negadores 
+                        if (i == 0 && c.size() > 1) {
+                            if (c.get(i + 1).valor == 17) { //Si el siguiente simbolo es un parentesis
+                                c.get(i).valor = -4;
+                            }
+                        } else if (i > 0 && c.size() > 2) { //Si el simbolo anterior es un operador y el siguiente es un parentesis
+                            if (c.get(i - 1).tipo != 0 && c.get(i + 1).valor == 17) {
+                                c.get(i).valor = -4;
                             }
                         }
-                        pilaOperadores.add(c.get(i));
-                    
+                    }
+                    pilaOperadores.add(c.get(i));
+
                 }
             }
         }

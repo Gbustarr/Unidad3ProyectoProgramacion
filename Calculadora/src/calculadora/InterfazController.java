@@ -23,6 +23,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -66,7 +67,7 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected Button Btn_0;
-    
+
     @FXML
     protected Button Btn_Raiz;
 
@@ -81,7 +82,7 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected Button Btn_potencia;
-    
+
     @FXML
     protected Button Btn_Maximizar;
 
@@ -167,9 +168,11 @@ public class InterfazController implements Initializable {
     protected Button Btn_Cos;
     @FXML
     protected Button Btn_Tan;
-
     @FXML
     protected Button Btn_Fact;
+
+    @FXML
+    protected VBox padreCanvas;
 
     double espacio_acumulado = 0;
     ArrayList<Simbolo> lista_simbolos = new ArrayList();
@@ -276,7 +279,7 @@ public class InterfazController implements Initializable {
     @FXML
     protected void BotonMenos_presionado() {
         if (l.bloqueadorSignoNegativo(lista_simbolos) == 1) {
-            
+
         }
         l.agregarSimbolo(gc, 11, lista_simbolos, Display);
     }
@@ -300,16 +303,16 @@ public class InterfazController implements Initializable {
             }
         }
     }
-    
+
     @FXML
-    protected void BotonResultado(){
-        fa.getPrecedence(lista_simbolos,l);
+    protected void BotonResultado() {
+        fa.getPrecedence(lista_simbolos, l);
     }
-    
+
     @FXML
-    protected void BotonRaiz_presionado(){
+    protected void BotonRaiz_presionado() {
         l.agregarSimbolo(gc, 21, lista_simbolos, Display);
-    
+
     }
 
     @FXML
@@ -443,15 +446,19 @@ public class InterfazController implements Initializable {
                 break;
         }
     }
-    
+
     @FXML
-    protected void BotonMaximizar_presionado(){
+    protected void BotonMaximizar_presionado() {
         Stage stage = (Stage) Btn_Maximizar.getScene().getWindow();
-        if(stage.isFullScreen()){
+        if (stage.isFullScreen()) {
             stage.setFullScreen(false);
-           
-        }else{
+            Display.setWidth(559);
+            Display.setHeight(359);
+
+        } else {
             stage.setFullScreen(true);
+            Display.setWidth(padreCanvas.getWidth());
+            Display.setHeight(padreCanvas.getHeight());
         }
     }
 
@@ -583,15 +590,14 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected void BotonIngresarFormula_presionado() {
-        
-        
+
         //Reset de la logica.
         l.resetEstado();
         lista_simbolos.clear();
 
         //Cargando el string
         String cadena = Txt_Input.getText();
-        
+
         System.out.println(cadena);
 
         //Variables para las potencias
@@ -677,9 +683,9 @@ public class InterfazController implements Initializable {
 
         }
     }
-    
+
     @FXML
-    protected void BotonInfo_presionado(){
+    protected void BotonInfo_presionado() {
         fa.printAllSymbols(this.lista_simbolos);
     }
 

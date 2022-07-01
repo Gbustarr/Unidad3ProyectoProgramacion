@@ -250,6 +250,8 @@ public class Simbolo {
     public String toString() {
         if (this.tipo != 0) {
             switch (this.valor) {
+                case -4:
+                    return "neg";
                 case -2:
                     return "";
                 case -1:

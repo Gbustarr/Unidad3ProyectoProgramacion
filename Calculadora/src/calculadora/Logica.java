@@ -701,7 +701,6 @@ public class Logica {
         } else {
             return 1;
         }
-
     }
 
     protected int bloqueadorSignoNegativo(ArrayList<Simbolo> lista_simbolos) {
