@@ -312,7 +312,7 @@ public class Logica {
             case 14: //Seno
                 s.setValor(14);
                 s.setTipo(2);
-                s.valorPrecedencia = 2;
+                s.valorPrecedencia = 11;
                 s.setColor(context.colorOp);
                 formaOperadorCientifico(this, 14, pivot_x, pivot_y, s);
                 lista_simbolos.add(s);
@@ -322,7 +322,7 @@ public class Logica {
             case 15: //Coseno
                 s.setValor(15);
                 s.setTipo(2);
-                s.valorPrecedencia = 2;
+                s.valorPrecedencia = 11;
                 s.setColor(context.colorOp);
                 formaOperadorCientifico(this, 15, pivot_x, pivot_y, s);
                 lista_simbolos.add(s);
@@ -332,7 +332,7 @@ public class Logica {
             case 16: //Tangente
                 s.setValor(16);
                 s.setTipo(2);
-                s.valorPrecedencia = 2;
+                s.valorPrecedencia = 11;
                 s.setColor(context.colorOp);
                 formaOperadorCientifico(this, 16, pivot_x, pivot_y, s);
                 lista_simbolos.add(s);
@@ -518,8 +518,8 @@ public class Logica {
         ParentesisAbiertos.clear();
         parentesisAgregadoANumerador = false;
         d.anchoAnterior = 0;
-        pivot_x = context.pivot_x;
-        pivot_y = context.pivot_y;
+        pivot_x = context.pix;
+        pivot_y = context.piy;
 
         movimientosDeLista = 0;
         subidasDivision = 0;

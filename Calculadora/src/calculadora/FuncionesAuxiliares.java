@@ -207,7 +207,7 @@ public class FuncionesAuxiliares {
                 numero = numero + "-";
             }
         } else if (index > 1) {
-            if (lista_simbolos.get(index - 1).valor == 11 && lista_simbolos.get(index - 2).tipo != 0) {
+            if (lista_simbolos.get(index - 1).valor == 11 && (lista_simbolos.get(index - 2).tipo != 0 && lista_simbolos.get(index - 2).valor != 18)) {
                 numero = numero + "-";
             }
         }

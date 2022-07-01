@@ -188,9 +188,12 @@ public class InterfazController implements Initializable {
     Color colorNum = Color.GREEN;
     Color colorOp = Color.RED;
 
-    //X e Y originales
+    //X e Y iniciales
     double pivot_x = 50;
     double pivot_y = 150;
+    
+    double pix =50;
+    double piy = 150;
 
     //Para el movimiento de la ventana panel
     private double x, y = 0;
