@@ -23,6 +23,7 @@ public class Simbolo {
     Color color = Color.GREEN;
     int tipo; //0 = numero, 1= operador, 2 = operador especial
     int valor;
+    int asociatividad = 0; // 0 left-right; 1 right-left
     double resultado;
     int valorPrecedencia = 0;
     int enDivision = 0;

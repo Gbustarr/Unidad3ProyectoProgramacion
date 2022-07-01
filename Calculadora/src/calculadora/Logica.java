@@ -121,6 +121,7 @@ public class Logica {
                 s.setValor(-1);
                 s.setColor(Color.rgb(0, 0, 0, 0));
                 s.valorPrecedencia = 9; //Mayor precedencia
+                s.asociatividad = 1;
                 forma = cs.ceroPot(pivot_x, pivot_y);
                 s.setForma(forma);
                 d.borrarSimbolosDeNumeradoresParaPotencia(this);
