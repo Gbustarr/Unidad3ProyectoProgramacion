@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
 public class Logica {
 
     double pivot_x = 50;
-    double pivot_y = 250;
+    double pivot_y = 300;
 
     boolean binarioActivo = false;
 
@@ -411,13 +411,13 @@ public class Logica {
                 s.setForma(forma);
                 lista_simbolos.add(s);
                 break;
-            case 21:
+            case 21: //raiz
                 if (enPotencia) {
                     forma = cs.raizPot(pivot_x, pivot_y);
                 } else {
                     forma = cs.raiz(pivot_x, pivot_y);
                 }
-                s.valorPrecedencia = 2;
+                s.valorPrecedencia = 3;
                 s.setValor(21);
                 s.setTipo(2);
                 s.setColor(context.colorOp);
@@ -446,7 +446,7 @@ public class Logica {
         if (panelAgregado == 1) {
             context.panelContext.setTextArea();
         }
-        canvasABinario();
+        //canvasABinario();
         dibujarSimbolos();
         //updateTags();
     }
@@ -518,8 +518,8 @@ public class Logica {
         ParentesisAbiertos.clear();
         parentesisAgregadoANumerador = false;
         d.anchoAnterior = 0;
-        pivot_x = 50;
-        pivot_y = 150;
+        pivot_x = context.pivot_x;
+        pivot_y = context.pivot_y;
 
         movimientosDeLista = 0;
         subidasDivision = 0;

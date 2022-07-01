@@ -66,6 +66,15 @@ public class FuncionesAuxiliares {
         }
 
     }
+    
+    protected double getAlturaSimbolo(Logica l){
+        
+     
+            return l.pivot_y = conseguirUltimoSimbolo(l.context.lista_simbolos).getAlturaSimbolo() + 40;
+      
+    
+       
+    }
 
     protected void alturaEnPotencia(LogicaBinaria l) {
         if (l.enPotencia) {
@@ -562,7 +571,7 @@ public class FuncionesAuxiliares {
     }
 
     protected void dibujarResultado(double res, Logica l) {
-        String resultado = Double.toString(Math.round(res * 100000.0) / 100000.0);
+        String resultado = Double.toString(Math.round(res * 1000000.0) / 1000000.0);
 
         System.out.println("Raw res:" + res);
         l.context.lista_simbolos.clear(); //Borrando la lista principal

@@ -145,6 +145,18 @@ public class Simbolo {
         this.forma[9] = altura[4];
         this.forma[11] = altura[5];
     }
+    
+    protected double getAlturaSimbolo(){
+        double altura = this.forma[1];
+        
+        for(int i = 1;i<this.forma.length;i = i+2){
+            if(this.forma[i]< altura){
+                altura = this.forma[i];
+            }
+        }
+        
+        return altura;
+    }
 
     public double getXFactor() {
         return Xfactor;

@@ -559,6 +559,26 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected void BotonPotencia_presionado() {
+        if (!lista_simbolos.isEmpty()) {
+            if (!l.enPotencia) {
+                l.enPotencia = true;
+                l.fa.getAlturaSimbolo(l);
+                l.agregarSimbolo(gc, -1, lista_simbolos, Display);
+            } else {
+                if (l.enPotencia) {
+                    l.enPotencia = false;
+                    l.fa.getAlturaSimbolo(l);
+                    l.agregarSimbolo(gc, -2, lista_simbolos, Display);
+                    l.pivot_x = l.pivot_x + 5;
+                }
+            }
+
+        }
+    }
+
+    /*
+    @FXML
+    protected void BotonPotencia_presionado() {
 
         if (!lista_simbolos.isEmpty()) {
             if (fa.conseguirUltimoSimbolo(lista_simbolos).valor == 18) {
@@ -587,7 +607,8 @@ public class InterfazController implements Initializable {
         }
 
     }
-
+    
+     */
     @FXML
     protected void BotonIngresarFormula_presionado() {
 
@@ -624,6 +645,7 @@ public class InterfazController implements Initializable {
                         l.agregarSimbolo(gc, -1, lista_simbolos, Display);
                         l.enPotencia = true;
                         enPotencia = true;
+                        fa.getAlturaSimbolo(l);
                         break;
                     case '+':
                         l.agregarSimbolo(gc, 10, lista_simbolos, Display);
@@ -668,6 +690,9 @@ public class InterfazController implements Initializable {
                     case ')':
                         if (enPotencia) {
                             contadorPotencia--;
+                            l.enPotencia = true;
+                            enPotencia = true;
+                            fa.getAlturaSimbolo(l);
                         }
                         ;
                         l.agregarSimbolo(gc, 18, lista_simbolos, Display);
