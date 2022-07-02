@@ -192,7 +192,7 @@ public class InterfazController implements Initializable {
     double pivot_x = 50;
     double pivot_y = 150;
     
-    double pix =50;
+    double pix = 50;
     double piy = 150;
 
     //Para el movimiento de la ventana panel

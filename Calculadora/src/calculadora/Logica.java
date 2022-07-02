@@ -518,8 +518,10 @@ public class Logica {
         ParentesisAbiertos.clear();
         parentesisAgregadoANumerador = false;
         d.anchoAnterior = 0;
-        pivot_x = context.pix;
-        pivot_y = context.piy;
+        context.pivot_x = context.pix;
+        context.pivot_y = context.piy;
+        pivot_x = 50;
+        pivot_y = 300;
 
         movimientosDeLista = 0;
         subidasDivision = 0;
@@ -830,32 +832,32 @@ public class Logica {
             Simbolo s = lista_simbolos.get(i);
             if (s.valor > 9 && s.valor != -1) {
                 if (s.valor == 10) {
-                    System.out.print(" + ");
-                    string = string + " + ";
+                    System.out.print("+");
+                    string = string + "+";
                 }
                 if (s.valor == 11) {
-                    System.out.print(" - ");
-                    string = string + " - ";
+                    System.out.print("-");
+                    string = string + "-";
                 }
                 if (s.valor == 12) {
-                    System.out.print(" * ");
-                    string = string + " * ";
+                    System.out.print("*");
+                    string = string + "*";
                 }
                 if (s.valor == 13) {
-                    System.out.print(" / ");
-                    string = string + " / ";
+                    System.out.print("/");
+                    string = string + "/";
                 }
                 if (s.valor == 14) {
-                    System.out.print(" Sin");
-                    string = string + " Sin";
+                    System.out.print("Sin");
+                    string = string + "Sin";
                 }
                 if (s.valor == 15) {
-                    System.out.print(" Cos");
-                    string = string + " Cos ";
+                    System.out.print("Cos");
+                    string = string + "Cos";
                 }
                 if (s.valor == 16) {
-                    System.out.print(" Tan");
-                    string = string + " Tan";
+                    System.out.print("Tan");
+                    string = string + "Tan";
                 }
                 if (s.valor == 17) {
                     System.out.print("(");

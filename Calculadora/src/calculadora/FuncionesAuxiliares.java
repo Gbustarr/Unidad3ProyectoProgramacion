@@ -571,18 +571,18 @@ public class FuncionesAuxiliares {
     }
 
     protected void dibujarResultado(double res, Logica l) {
-        String resultado = Double.toString(Math.round(res * 1000000.0) / 1000000.0);
+        String resultadoRed = Double.toString(Math.round(res * 1000000.0) / 1000000.0);
 
         System.out.println("Raw res:" + res);
         l.context.lista_simbolos.clear(); //Borrando la lista principal
-        System.out.println("Rounded res:" + resultado);
+        System.out.println("Rounded res:" + resultadoRed);
 
         if (res != Double.POSITIVE_INFINITY) {
             String iterado;
 
             //Del resultado, parsearlo, verificar el char y en base a eso "apretar botones" de la calculadora
-            for (int i = 0; i < resultado.length(); i++) {
-                iterado = Character.toString(resultado.charAt(i));
+            for (int i = 0; i < resultadoRed.length(); i++) {
+                iterado = Character.toString(resultadoRed.charAt(i));
                 if (".".equals(iterado)) {
                     l.agregarSimbolo(l.context.gc, -3, l.context.lista_simbolos, l.context.Display);
                 } else if ("-".equals(iterado)) {
@@ -594,6 +594,30 @@ public class FuncionesAuxiliares {
                 }
 
             }
+            
+            /* Version con display de elevados
+            String resString = Double.toString(res);
+
+            //Del resultado, parsearlo, verificar el char y en base a eso "apretar botones" de la calculadora
+            for (int i = 0; i < resString.length(); i++) {
+                iterado = Character.toString(resString.charAt(i));
+                if (".".equals(iterado)) {
+                    l.agregarSimbolo(l.context.gc, -3, l.context.lista_simbolos, l.context.Display);
+                } else if ("-".equals(iterado)) {
+                    l.agregarSimbolo(l.context.gc, 11, l.context.lista_simbolos, l.context.Display);
+                } else if ("E".equals(iterado)) {
+                    l.agregarSimbolo(l.context.gc, -1, l.context.lista_simbolos, l.context.Display);
+                    l.enPotencia = true;
+                    for(int j  =i+1;j<resString.length();j++){
+                        l.agregarSimbolo(l.context.gc, Integer.valueOf(Character.toString(resString.charAt(j))), l.context.lista_simbolos, l.context.Display);
+                    }
+                    break;
+                } else if (Integer.valueOf(iterado) >= 0 && Integer.valueOf(iterado) <= 9) {
+                    l.agregarSimbolo(l.context.gc, Integer.valueOf(iterado), l.context.lista_simbolos, l.context.Display);
+                }
+            */
+            
+            
         } else { //Si encuentra que el resultado es infinito, devuelve un -1
             l.agregarSimbolo(l.context.gc, 11, l.context.lista_simbolos, l.context.Display);
             l.agregarSimbolo(l.context.gc, 1, l.context.lista_simbolos, l.context.Display);
