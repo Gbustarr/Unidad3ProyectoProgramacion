@@ -54,6 +54,12 @@ public class Logica {
     boolean parentesisAgregadoANumerador = false;
     int alturaParentesis = 0;
     boolean bloqueoDivision = false;
+    
+    //Variables para potencias
+    boolean potenciaConParentesis = false;
+    
+    double pivot_yPrePotencia;
+    
 
     //Clases
     FuncionesGraficadoras fg = new FuncionesGraficadoras();
@@ -342,6 +348,7 @@ public class Logica {
             case 17: //Parentesis Abierto
                 if (enPotencia) {
                     forma = cs.pAbiertoPot(pivot_x, pivot_y);
+                    potenciaConParentesis = true;
                 } else {
                     forma = cs.pAbierto(pivot_x, pivot_y);
                 }
@@ -392,6 +399,7 @@ public class Logica {
                 }
                 s.setValor(19);
                 s.valorPrecedencia = 2;
+                s.asociatividad =1;
                 s.setTipo(2);
                 s.setColor(context.colorOp);
                 s.setForma(forma);
@@ -462,6 +470,14 @@ public class Logica {
             //logicBin.dibujarPuntero(context.gc);
         }
     }
+    
+    protected void switchPotencias(){
+        if(!enPotencia){
+            pivot_yPrePotencia = pivot_y;
+        }else{
+        pivot_y =pivot_yPrePotencia;
+        }
+    }
 
     protected void dibujarPuntero() {
         //context.gc.fillOval(pivot_x, pivot_y, 3, 3); //dibuja la posicion del puntero
@@ -522,7 +538,6 @@ public class Logica {
         context.pivot_y = context.piy;
         pivot_x = 50;
         pivot_y = 300;
-
         movimientosDeLista = 0;
         subidasDivision = 0;
         context.textoSalida.setText("");
@@ -538,11 +553,6 @@ public class Logica {
         context.alturaDivision.setText("enDivision: " + enDivision);
         context.divisionActiva.setText("Subidas Division: " + subidasDivision);
         context.indicesNumeradores.setText("Parentesis abiertos: " + ParentesisAbiertos.size());
-        //context.indicesDenominadores.setText("Indices Denominadores: " + indicesDenominadores.size());
-        //context.indicesDivisionCombinada.setText("Indices Division Combinada: " + indicesDivisionCombinada.size());
-        //context.anchoDivision.setText("Ancho Division: " + anchoDivision);
-        //context.anchoDivisionAnterior.setText("Ancho Division Anterior: " + anchoDivisionAnterior);
-        //context.divisionEliminada.setText("Division eliminada: "+divisionEliminada);
         context.movimientosDeLista.setText("Parentesis abiertos: " + ParentesisAbiertos.size());
     }
 
@@ -848,16 +858,16 @@ public class Logica {
                     string = string + "/";
                 }
                 if (s.valor == 14) {
-                    System.out.print("Sin");
-                    string = string + "Sin";
+                    System.out.print("sin");
+                    string = string + "sin";
                 }
                 if (s.valor == 15) {
-                    System.out.print("Cos");
-                    string = string + "Cos";
+                    System.out.print("cos");
+                    string = string + "cos";
                 }
                 if (s.valor == 16) {
-                    System.out.print("Tan");
-                    string = string + "Tan";
+                    System.out.print("tan");
+                    string = string + "tan";
                 }
                 if (s.valor == 17) {
                     System.out.print("(");

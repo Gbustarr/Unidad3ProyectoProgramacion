@@ -309,6 +309,9 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected void BotonResultado() {
+        System.out.println("Lista de simbolos: "+lista_simbolos);
+        fa.sanearLista(lista_simbolos);
+        System.out.println("Lista de simbolos: "+lista_simbolos);
         fa.getPrecedence(lista_simbolos, l);
     }
 
@@ -565,12 +568,13 @@ public class InterfazController implements Initializable {
         if (!lista_simbolos.isEmpty()) {
             if (!l.enPotencia) {
                 l.enPotencia = true;
+                l.switchPotencias();
                 l.fa.getAlturaSimbolo(l);
                 l.agregarSimbolo(gc, -1, lista_simbolos, Display);
             } else {
                 if (l.enPotencia) {
                     l.enPotencia = false;
-                    l.fa.getAlturaSimbolo(l);
+                    l.switchPotencias();
                     l.agregarSimbolo(gc, -2, lista_simbolos, Display);
                     l.pivot_x = l.pivot_x + 5;
                 }
@@ -648,6 +652,7 @@ public class InterfazController implements Initializable {
                         l.agregarSimbolo(gc, -1, lista_simbolos, Display);
                         l.enPotencia = true;
                         enPotencia = true;
+                        l.switchPotencias();
                         fa.getAlturaSimbolo(l);
                         break;
                     case '+':

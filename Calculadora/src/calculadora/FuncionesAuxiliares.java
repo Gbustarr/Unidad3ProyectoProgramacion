@@ -275,13 +275,13 @@ public class FuncionesAuxiliares {
                     System.out.print("/");
                 }
                 if (s.valor == 14) {
-                    System.out.print("Sin");
+                    System.out.print("sin");
                 }
                 if (s.valor == 15) {
-                    System.out.print("Cos");
+                    System.out.print("cos");
                 }
                 if (s.valor == 16) {
-                    System.out.print("Tan");
+                    System.out.print("tan");
                 }
                 if (s.valor == 17) {
                     System.out.print("(");
@@ -404,6 +404,8 @@ public class FuncionesAuxiliares {
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
         }
+        
+        System.out.println("Subresultado: "+enEspera.get(enEspera.size()-1).resultado);
 
     }
 
@@ -626,6 +628,10 @@ public class FuncionesAuxiliares {
         //l.canvasABinario();
         l.dibujarSimbolos();
 
+    }
+    
+    protected void sanearLista(ArrayList<Simbolo> lista_simbolos){
+        lista_simbolos.removeIf(s -> (s.tipo == -1 && s.valor <-1));
     }
 
 }

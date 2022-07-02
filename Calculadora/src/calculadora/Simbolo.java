@@ -266,7 +266,7 @@ public class Simbolo {
                 case -4:
                     return "neg";
                 case -2:
-                    return "";
+                    return "v";
                 case -1:
                     return "^";
                 case 10:
