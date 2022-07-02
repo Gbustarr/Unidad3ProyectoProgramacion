@@ -20,7 +20,7 @@ public class LogicaBinaria {
     double espacioEntreSimbolos = 15;
     Simbolo simboloMasApartado = new Simbolo();
     double pivot_x = 50;
-    double pivot_y = 150;
+    double pivot_y = 300;
     double factor = 1;
     boolean enDivision;
     boolean enPotencia;
@@ -45,6 +45,12 @@ public class LogicaBinaria {
 
     FuncionesAuxiliares fa = new FuncionesAuxiliares();
     Simbolo alturaAntesDeDivisionBin;
+    
+    //Variables para potencias
+    ArrayList<Simbolo> parentesisEnPotencia = new ArrayList();
+    boolean Check = false;
+
+    double pivot_yPrePotencia;
 
     public LogicaBinaria(InterfazController context) {
         this.context = context;
@@ -74,6 +80,10 @@ public class LogicaBinaria {
 
         //Iniciación de una forma general
         double[] forma;
+        
+        if (Check) {
+            checkPotencias(nSimbolo);
+        }
 
         switch (nSimbolo) {
             case -3: //punto
@@ -315,6 +325,7 @@ public class LogicaBinaria {
             case 17: //Parentesis Abierto
                 if (enPotencia) {
                     forma = cs.pAbiertoPot(pivot_x, pivot_y);
+                    parentesisEnPotencia.add(new Simbolo());
                 } else {
                     forma = cs.pAbierto(pivot_x, pivot_y);
                 }
@@ -340,6 +351,9 @@ public class LogicaBinaria {
                 }
                 if (enPotencia) {
                     forma = cs.pCerradoPot(pivot_x, pivot_y);
+                    if (!parentesisEnPotencia.isEmpty()) {
+                        parentesisEnPotencia.remove(parentesisEnPotencia.size() - 1);
+                    }
                 } else {
                     forma = cs.pCerrado(pivot_x, pivot_y);
                 }
@@ -476,7 +490,7 @@ public class LogicaBinaria {
         parentesisAgregadoANumerador = false;
         d.anchoAnterior = 0;
         pivot_x = 50;
-        pivot_y = 150;
+        pivot_y = 300;
 
         lista_simbolos.clear();
 
@@ -563,5 +577,14 @@ public class LogicaBinaria {
                 }
                 break;
         }
+    }
+    protected void checkPotencias(int n) {
+
+        if ((n < 0 || n > 9)&& n != 17 && parentesisEnPotencia.isEmpty()) {
+            enPotencia = false;
+            Check = false;
+            pivot_y = pivot_yPrePotencia;
+        }
+
     }
 }

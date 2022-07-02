@@ -109,6 +109,9 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected TextField Txt_Input;
+    
+    @FXML
+    protected TextField precedencia;
 
     @FXML
     protected Label Lbl_Error;
@@ -309,10 +312,20 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected void BotonResultado() {
-        System.out.println("Lista de simbolos: "+lista_simbolos);
+        System.out.println("Lista de simbolos pre saneo: "+lista_simbolos);
         fa.sanearLista(lista_simbolos);
-        System.out.println("Lista de simbolos: "+lista_simbolos);
+        System.out.println("Lista de simbolos post saneo: "+lista_simbolos);
+        System.out.println("Lista de simbolos pre parentesis: "+lista_simbolos);
+        if(l.agregarParentesis){
+            lista_simbolos = fa.agregarParentesis(lista_simbolos);
+        }
+        System.out.println("Lista de simbolos post parentesis: "+lista_simbolos);
         fa.getPrecedence(lista_simbolos, l);
+    }
+    
+    @FXML
+    protected void switchAgregarParentesis(){
+        
     }
 
     @FXML
@@ -457,15 +470,17 @@ public class InterfazController implements Initializable {
     @FXML
     protected void BotonMaximizar_presionado() {
         Stage stage = (Stage) Btn_Maximizar.getScene().getWindow();
-        if (stage.isFullScreen()) {
-            stage.setFullScreen(false);
+        if (stage.isMaximized()) {
+            stage.setMaximized(false);
             Display.setWidth(559);
             Display.setHeight(359);
+            l.dibujarSimbolos();
 
         } else {
-            stage.setFullScreen(true);
+            stage.setMaximized(true);
             Display.setWidth(padreCanvas.getWidth());
             Display.setHeight(padreCanvas.getHeight());
+            l.dibujarSimbolos();
         }
     }
 
@@ -569,7 +584,6 @@ public class InterfazController implements Initializable {
         if (!lista_simbolos.isEmpty()) {
             if (!l.enPotencia) {
                 l.enPotencia = true;
-               
                 l.fa.getAlturaSimbolo(l);
                 l.agregarSimbolo(gc, -1, lista_simbolos, Display);
             } 

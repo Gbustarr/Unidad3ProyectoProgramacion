@@ -66,14 +66,17 @@ public class FuncionesAuxiliares {
         }
 
     }
-    
-    protected double getAlturaSimbolo(Logica l){
-        
-     
-            return l.pivot_y = conseguirUltimoSimbolo(l.context.lista_simbolos).getAlturaSimbolo() + 40;
-      
-    
-       
+
+    protected double getAlturaSimbolo(Logica l) {
+
+        return l.pivot_y = conseguirUltimoSimbolo(l.context.lista_simbolos).getAlturaSimbolo() + 40;
+
+    }
+
+    protected double getAlturaSimbolo(LogicaBinaria l) {
+
+        return l.pivot_y = conseguirUltimoSimbolo(l.context.lista_simbolos).getAlturaSimbolo() + 40;
+
     }
 
     protected void alturaEnPotencia(LogicaBinaria l) {
@@ -404,8 +407,8 @@ public class FuncionesAuxiliares {
             enEspera.remove(enEspera.size() - 1);
             enEspera.add(res);
         }
-        
-        System.out.println("Subresultado: "+enEspera.get(enEspera.size()-1).resultado);
+
+        System.out.println("Subresultado: " + enEspera.get(enEspera.size() - 1).resultado);
 
     }
 
@@ -493,7 +496,7 @@ public class FuncionesAuxiliares {
                 System.out.println("Añadiendo:" + c.get(i));
                 cola.add(c.get(i));
             } else { //Si es operador
-                System.out.println("Indice:" + i+" Simbolo: "+ c.get(i));
+                System.out.println("Indice:" + i + " Simbolo: " + c.get(i));
                 if (c.get(i).valor == 18) {
                     //System.out.println("Indice:" + i);//Si es parentesis de cierre
                     System.out.println("Parentesis ) encontrado");
@@ -511,7 +514,7 @@ public class FuncionesAuxiliares {
                     }
 
                 } else {
-                    System.out.println("Indice:" + i+" Simbolo: "+ c.get(i));
+                    System.out.println("Indice:" + i + " Simbolo: " + c.get(i));
 
                     if (c.get(i).valor != 17) { // Si no es un parentesis de apertura
                         if (!pilaOperadores.isEmpty()) { //Si la pila no está vacia
@@ -567,7 +570,7 @@ public class FuncionesAuxiliares {
         // */
         //   (1-2)^4*(4*(5/((5-3)^2)))
         dibujarResultado(calcular(cola), l);
-        l.context.textoSalida.setText(cola.toString());
+        l.context.precedencia.setText(cola.toString());
         //System.out.println(calcular(cola));
 
     }
@@ -596,7 +599,7 @@ public class FuncionesAuxiliares {
                 }
 
             }
-            
+
             /* Version con display de elevados
             String resString = Double.toString(res);
 
@@ -617,9 +620,7 @@ public class FuncionesAuxiliares {
                 } else if (Integer.valueOf(iterado) >= 0 && Integer.valueOf(iterado) <= 9) {
                     l.agregarSimbolo(l.context.gc, Integer.valueOf(iterado), l.context.lista_simbolos, l.context.Display);
                 }
-            */
-            
-            
+             */
         } else { //Si encuentra que el resultado es infinito, devuelve un -1
             l.agregarSimbolo(l.context.gc, 11, l.context.lista_simbolos, l.context.Display);
             l.agregarSimbolo(l.context.gc, 1, l.context.lista_simbolos, l.context.Display);
@@ -629,9 +630,86 @@ public class FuncionesAuxiliares {
         l.dibujarSimbolos();
 
     }
-    
-    protected void sanearLista(ArrayList<Simbolo> lista_simbolos){
-        lista_simbolos.removeIf(s -> (s.tipo == -1 && s.valor <-1));
+
+    protected void sanearLista(ArrayList<Simbolo> lista_simbolos) {
+        lista_simbolos.removeIf(s -> (s.tipo == -1 && s.valor < -1));
+    }
+
+    protected ArrayList<Simbolo> agregarParentesis(ArrayList<Simbolo> lista_simbolos) {
+        Simbolo pAbierto = new Simbolo();
+        pAbierto.valor = 17;
+        pAbierto.tipo = 2;
+
+        Simbolo pCerrado = new Simbolo();
+        pCerrado.valor = 18;
+        pCerrado.tipo = 2;
+
+        ArrayList<Simbolo> lista = new ArrayList<>(lista_simbolos);
+
+        System.out.println("Lista:" + lista);
+
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println("Indice en "+i);
+            if (lista.get(i).valor == 13) { //Si en encuentra una division
+                lista.add(i, pCerrado); //Añade un parentesis de cierre a la izquierda del indice
+                System.out.println("Agregado parentesis cerrado en indice:" + i);
+                System.out.println(lista);
+                int contador = 0;
+                //Busqueda de la posicion para el parentesis de apertura
+                for (int j = i; j >= 0; j--) {
+                    if (lista.get(j).valor == 17) { //parentesis de apertura
+                        contador--;
+                        if (contador == 0) { //Si hay desbalanceo de parentesis
+                            lista.add(j, pAbierto);
+                            System.out.println("Agregado parentesis abierto en indice:" + j);
+                            System.out.println(lista);
+                            break;
+                        }
+                    } else if (lista.get(j).valor == 18) {
+                        contador++;
+                    }
+
+                    if (j == 0) { //Si se llega al principio de la lista sin encontrar parentesis de apertura
+                        lista.add(j, pAbierto);
+                        System.out.println("Agregado parentesis abierto en indice:" + j);
+                        System.out.println(lista);
+                    }
+                }
+                lista.add(i + 3, pAbierto);
+                System.out.println("Agregado parentesis abierto en indice:" + (i + 3));
+                System.out.println(lista);
+                contador = 0;
+                System.out.println("Evaluando para ingresar parentesis de cierre desde el indice:"+(i+3));
+                for (int k = i + 3; k < lista.size(); k++) {
+                    if (lista.get(k).valor == 17) { //Parentesis de apertura
+                        contador++;
+                    } else if (lista.get(k).valor == 18) { //Parentesis de cierre
+                        contador--;
+
+                    }
+                    if (contador == 1 && lista.get(k).valor == 13) { //Si hay desbalanceo de parentesis (Se llega al inicio de una division)
+                            lista.add(k, pCerrado);
+                            System.out.println("Agregado parentesis cerrado en indice:" + k);
+                            System.out.println(lista);
+                            break;
+                        }
+                    
+                    if (k == lista.size() - 1) {
+                        lista.add(pCerrado);
+                        System.out.println("Agregado parentesis cerrado en indice (fin lista):" + (k-1));
+                        System.out.println(lista);
+                        break;
+
+                    }
+
+                }
+                System.out.println("Indice avanza a:"+(i + 2));
+                System.out.println(lista);
+                i = i + 2;
+
+            }
+        }
+        return lista;
     }
 
 }

@@ -270,7 +270,12 @@
                         </BorderPane>
                      </children>
                   </VBox>
-                  <TextField fx:id="textoSalida" prefHeight="25.0" prefWidth="316.0" />
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="428.0" spacing="10.0">
+                     <children>
+                        <TextField fx:id="precedencia" />
+                        <TextField fx:id="textoSalida" prefHeight="25.0" prefWidth="316.0" />
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </children>

@@ -58,8 +58,8 @@ public class Logica {
     //Variables para potencias
     ArrayList<Simbolo> parentesisEnPotencia = new ArrayList();
     boolean Check = false;
-
     double pivot_yPrePotencia;
+    boolean agregarParentesis =false;
 
     //Clases
     FuncionesGraficadoras fg = new FuncionesGraficadoras();
@@ -127,14 +127,14 @@ public class Logica {
                 d.borrarSimbolosDeNumeradoresParaPotencia(this);
                 pivot_x = pivot_x - 10; //Para que el siguiente simbolo este mas cerca del ultimo agregado.
                 lista_simbolos.add(s);
-                
+
                 if (context.lista_simbolos.get(context.lista_simbolos.size() - 2).valor != 18) {
                     System.out.println("No hay parentesis antes de");
                     pivot_yPrePotencia = pivot_y;
                 } else {
                     System.out.println("Hay parentesis antes de");
                     for (int k = context.lista_simbolos.size() - 3; k >= 0; k--) {
-                        System.out.println("^Simbolo: "+context.lista_simbolos.get(k));
+                        System.out.println("^Simbolo: " + context.lista_simbolos.get(k));
                         if (context.lista_simbolos.get(k).tipo == 0) {
                             pivot_yPrePotencia = context.lista_simbolos.get(k).Ypos;
                             break;
@@ -462,12 +462,17 @@ public class Logica {
 
         // Funciones graficadoras
         //  Se borra el contenido del canvas para redibujar sobre ella.
-        context.textoSalida.setText(listaATexto(lista_simbolos));
+        ArrayList<Simbolo> se = lista_simbolos;
+        if(agregarParentesis){
+            context.textoSalida.setText(listaATexto(fa.agregarParentesis(se)));
+        }else{
+            context.textoSalida.setText(listaATexto(lista_simbolos));
+        }
 
         if (panelAgregado == 1) {
             context.panelContext.setTextArea();
         }
-        //canvasABinario();
+        canvasABinario();
         dibujarSimbolos();
         //updateTags();
     }
@@ -481,6 +486,14 @@ public class Logica {
             fg.limpiarCanvas(context.gc, context.Display);
             fg.dibujarTodosLosSimbolos(context.gc, logicBin.lista_simbolos);
             //logicBin.dibujarPuntero(context.gc);
+        }
+    }
+    
+    protected void switchAgregarParentesis(){
+        if(!agregarParentesis){
+            agregarParentesis = true;
+        }else{
+            agregarParentesis = false;
         }
     }
 
@@ -819,10 +832,10 @@ public class Logica {
                 //Si encuentra un numero, se itera hasta encontrar un tipo no numero (!= 0)
                 // y se retornan los digitos como el numero entero.
                 numeroAConvertir = fa.buscarNumero(lista_simbolos, i);
-                //System.out.println("Numero a convertir: "+numeroAConvertir);
+                //System.out.println("Numero a convertir: " + numeroAConvertir);
                 //Transformación de numero encontrado a binario.
                 numeroConvertido = Integer.toBinaryString(numeroAConvertir);
-                //System.out.println("Numero convertido: "+numeroConvertido);
+                //System.out.println("Numero convertido: " + numeroConvertido);
 
                 //Actualiza el indice del iterador según los digitos encontrados.
                 //System.out.println("indice antes de: "+i);
@@ -836,14 +849,15 @@ public class Logica {
 
                 switch (lista_simbolos.get(i).getValor()) {
                     case -1:
-                        logicBin.enPotencia = true;
-                        logicBin.fa.alturaEnPotencia(logicBin);
+                        if (!logicBin.lista_simbolos.isEmpty()) {
+                            if (!logicBin.enPotencia) {
+                                logicBin.enPotencia = true;
+                                logicBin.fa.getAlturaSimbolo(logicBin);
+                                fa.agregarSimboloBin(this, gc, lista_simbolos, DisplayBin,-1);
+                            }
+                        }
                         break;
-                    case -2:
-                        logicBin.enPotencia = false;
-                        logicBin.fa.alturaEnPotencia(logicBin);
-                        logicBin.pivot_x = logicBin.pivot_x + 5;
-                        break;
+
                     default:
                         fa.agregarSimboloBin(this, gc, lista_simbolos, DisplayBin, lista_simbolos.get(i).valor);
                         break;
@@ -928,7 +942,7 @@ public class Logica {
 
     protected void checkPotencias(int n) {
 
-        if ((n < 0 || n > 9)&& n != 17 && parentesisEnPotencia.isEmpty()) {
+        if ((n < 0 || n > 9) && n != 17 && parentesisEnPotencia.isEmpty()) {
             enPotencia = false;
             Check = false;
             pivot_y = pivot_yPrePotencia;
