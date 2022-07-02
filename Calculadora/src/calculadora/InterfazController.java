@@ -569,7 +569,7 @@ public class InterfazController implements Initializable {
         if (!lista_simbolos.isEmpty()) {
             if (!l.enPotencia) {
                 l.enPotencia = true;
-                l.switchPotencias();
+               
                 l.fa.getAlturaSimbolo(l);
                 l.agregarSimbolo(gc, -1, lista_simbolos, Display);
             } 

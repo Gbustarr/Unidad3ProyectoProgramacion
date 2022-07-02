@@ -54,13 +54,12 @@ public class Logica {
     boolean parentesisAgregadoANumerador = false;
     int alturaParentesis = 0;
     boolean bloqueoDivision = false;
-    
+
     //Variables para potencias
     ArrayList<Simbolo> parentesisEnPotencia = new ArrayList();
     boolean Check = false;
-    
+
     double pivot_yPrePotencia;
-    
 
     //Clases
     FuncionesGraficadoras fg = new FuncionesGraficadoras();
@@ -73,8 +72,8 @@ public class Logica {
     }
 
     protected void agregarSimbolo(GraphicsContext gc, int nSimbolo,
-            ArrayList<Simbolo> lista_simbolos,
-            Canvas Display) {
+        ArrayList<Simbolo> lista_simbolos,
+        Canvas Display) {
         //updateTags();
         logicBin.context = context;
         logicBin.factor = factor;
@@ -99,8 +98,8 @@ public class Logica {
 
         //Iniciación de una forma general
         double[] forma;
-        
-        if(Check){
+
+        if (Check) {
             checkPotencias(nSimbolo);
         }
 
@@ -128,7 +127,21 @@ public class Logica {
                 d.borrarSimbolosDeNumeradoresParaPotencia(this);
                 pivot_x = pivot_x - 10; //Para que el siguiente simbolo este mas cerca del ultimo agregado.
                 lista_simbolos.add(s);
-                pivot_yPrePotencia = pivot_y;
+                
+                if (context.lista_simbolos.get(context.lista_simbolos.size() - 2).valor != 18) {
+                    System.out.println("No hay parentesis antes de");
+                    pivot_yPrePotencia = pivot_y;
+                } else {
+                    System.out.println("Hay parentesis antes de");
+                    for (int k = context.lista_simbolos.size() - 3; k >= 0; k--) {
+                        System.out.println("^Simbolo: "+context.lista_simbolos.get(k));
+                        if (context.lista_simbolos.get(k).tipo == 0) {
+                            pivot_yPrePotencia = context.lista_simbolos.get(k).Ypos;
+                            break;
+                        }
+                    }
+
+                }
                 Check = true;
                 //fa.moverPivotIzquierda(this, espacioEntreSimbolos);
                 break;
@@ -367,8 +380,8 @@ public class Logica {
                 fa.posicionarParentesisDeCierre(this, s);
                 if (enPotencia) {
                     forma = cs.pCerradoPot(pivot_x, pivot_y);
-                    if(!parentesisEnPotencia.isEmpty()){
-                        parentesisEnPotencia.remove(parentesisEnPotencia.size()-1);
+                    if (!parentesisEnPotencia.isEmpty()) {
+                        parentesisEnPotencia.remove(parentesisEnPotencia.size() - 1);
                     }
                 } else {
                     forma = cs.pCerrado(pivot_x, pivot_y);
@@ -399,7 +412,7 @@ public class Logica {
                 }
                 s.setValor(19);
                 s.valorPrecedencia = 2;
-                s.asociatividad =1;
+                s.asociatividad = 1;
                 s.setTipo(2);
                 s.setColor(context.colorOp);
                 s.setForma(forma);
@@ -412,7 +425,7 @@ public class Logica {
                     forma = cs.grado(pivot_x, pivot_y);
                 }
                 s.valorPrecedencia = 3;
-                s.asociatividad =1;
+                s.asociatividad = 1;
                 s.setValor(20);
                 s.setTipo(2);
                 s.setColor(context.colorOp);
@@ -470,12 +483,18 @@ public class Logica {
             //logicBin.dibujarPuntero(context.gc);
         }
     }
-    
-    protected void switchPotencias(){
-        if(!enPotencia){
+
+    protected void switchPotencias() {
+        if (context.lista_simbolos.get(context.lista_simbolos.size() - 1).valor != 18) {
             pivot_yPrePotencia = pivot_y;
-        }else{
-        pivot_y =pivot_yPrePotencia;
+        } else {
+            for (int k = context.lista_simbolos.size() - 2; k >= 0; k--) {
+                if (context.lista_simbolos.get(k).tipo == 0) {
+                    pivot_yPrePotencia = context.lista_simbolos.get(k).Ypos;
+                    break;
+                }
+            }
+
         }
     }
 
@@ -725,9 +744,9 @@ public class Logica {
         } else {
             if (lista_simbolos.size() > 0) {
                 if (lista_simbolos.get(lista_simbolos.size() - 1).getTipo() == 0
-                        || lista_simbolos.get(lista_simbolos.size() - 1).getTipo() == 2
-                        || (lista_simbolos.get(lista_simbolos.size() - 1).getTipo() == 1
-                        && lista_simbolos.get(lista_simbolos.size() - 2).getTipo() == 0)) {
+                    || lista_simbolos.get(lista_simbolos.size() - 1).getTipo() == 2
+                    || (lista_simbolos.get(lista_simbolos.size() - 1).getTipo() == 1
+                    && lista_simbolos.get(lista_simbolos.size() - 2).getTipo() == 0)) {
                     return 1;
                 } else {
                     return 0;
@@ -906,15 +925,15 @@ public class Logica {
 
         return string;
     }
-    
-    protected void checkPotencias(int n){
-        
-        if((n<0 || n >9) && parentesisEnPotencia.isEmpty()){
+
+    protected void checkPotencias(int n) {
+
+        if ((n < 0 || n > 9)&& n != 17 && parentesisEnPotencia.isEmpty()) {
             enPotencia = false;
             Check = false;
             pivot_y = pivot_yPrePotencia;
         }
-    
+
     }
 
 }
