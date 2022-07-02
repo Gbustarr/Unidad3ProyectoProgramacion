@@ -56,7 +56,8 @@ public class Logica {
     boolean bloqueoDivision = false;
     
     //Variables para potencias
-    boolean potenciaConParentesis = false;
+    ArrayList<Simbolo> parentesisEnPotencia = new ArrayList();
+    boolean Check = false;
     
     double pivot_yPrePotencia;
     
@@ -98,6 +99,10 @@ public class Logica {
 
         //Iniciación de una forma general
         double[] forma;
+        
+        if(Check){
+            checkPotencias(nSimbolo);
+        }
 
         switch (nSimbolo) {
             case -3: //punto
@@ -112,16 +117,6 @@ public class Logica {
                 s.setTipo(-2);
                 lista_simbolos.add(s);
                 break;
-            case -2: //Cerrado de potencias
-                s.setTipo(-1);
-                s.setValor(-2);
-                s.setColor(Color.rgb(0, 0, 0, 0));
-                forma = cs.ceroPot(pivot_x, pivot_y);
-                s.setForma(forma);
-                pivot_x = pivot_x - 10;
-                lista_simbolos.add(s);
-                //fa.moverPivotIzquierda(this, espacioEntreSimbolos);
-                break;
             case -1: //Apertura de potencias
                 s.setTipo(-1);
                 s.setValor(-1);
@@ -133,6 +128,8 @@ public class Logica {
                 d.borrarSimbolosDeNumeradoresParaPotencia(this);
                 pivot_x = pivot_x - 10; //Para que el siguiente simbolo este mas cerca del ultimo agregado.
                 lista_simbolos.add(s);
+                pivot_yPrePotencia = pivot_y;
+                Check = true;
                 //fa.moverPivotIzquierda(this, espacioEntreSimbolos);
                 break;
             case 0:
@@ -348,7 +345,7 @@ public class Logica {
             case 17: //Parentesis Abierto
                 if (enPotencia) {
                     forma = cs.pAbiertoPot(pivot_x, pivot_y);
-                    potenciaConParentesis = true;
+                    parentesisEnPotencia.add(new Simbolo());
                 } else {
                     forma = cs.pAbierto(pivot_x, pivot_y);
                 }
@@ -370,6 +367,9 @@ public class Logica {
                 fa.posicionarParentesisDeCierre(this, s);
                 if (enPotencia) {
                     forma = cs.pCerradoPot(pivot_x, pivot_y);
+                    if(!parentesisEnPotencia.isEmpty()){
+                        parentesisEnPotencia.remove(parentesisEnPotencia.size()-1);
+                    }
                 } else {
                     forma = cs.pCerrado(pivot_x, pivot_y);
                 }
@@ -531,6 +531,7 @@ public class Logica {
     protected void resetEstado() {
         enDivision = false;
         enPotencia = false;
+        Check = false;
         ParentesisAbiertos.clear();
         parentesisAgregadoANumerador = false;
         d.anchoAnterior = 0;
@@ -904,6 +905,16 @@ public class Logica {
         System.out.println();
 
         return string;
+    }
+    
+    protected void checkPotencias(int n){
+        
+        if((n<0 || n >9) && parentesisEnPotencia.isEmpty()){
+            enPotencia = false;
+            Check = false;
+            pivot_y = pivot_yPrePotencia;
+        }
+    
     }
 
 }
