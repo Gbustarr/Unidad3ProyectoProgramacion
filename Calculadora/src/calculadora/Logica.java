@@ -60,6 +60,9 @@ public class Logica {
     boolean Check = false;
     double pivot_yPrePotencia;
     boolean agregarParentesis =false;
+    
+    //Variables para operadores
+    int contadorNegativos;
 
     //Clases
     FuncionesGraficadoras fg = new FuncionesGraficadoras();
@@ -77,6 +80,12 @@ public class Logica {
         //updateTags();
         logicBin.context = context;
         logicBin.factor = factor;
+        
+        if(nSimbolo == 11){
+            contadorNegativos++;
+        }else {
+            contadorNegativos = 0;
+        }
 
         if (context.lista_simbolos.isEmpty()) {
             simboloMasApartado.Ypos = context.pivot_y;

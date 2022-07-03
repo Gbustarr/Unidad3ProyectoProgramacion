@@ -109,7 +109,7 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected TextField Txt_Input;
-    
+
     @FXML
     protected TextField precedencia;
 
@@ -194,7 +194,7 @@ public class InterfazController implements Initializable {
     //X e Y iniciales
     double pivot_x = 50;
     double pivot_y = 150;
-    
+
     double pix = 50;
     double piy = 150;
 
@@ -284,10 +284,13 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected void BotonMenos_presionado() {
-        if (l.bloqueadorSignoNegativo(lista_simbolos) == 1) {
-
+        if (lista_simbolos.isEmpty()) {
+            l.agregarSimbolo(gc, 11, lista_simbolos, Display);
+        }else if (l.contadorNegativos <2){
+            l.agregarSimbolo(gc, 11, lista_simbolos, Display);
         }
-        l.agregarSimbolo(gc, 11, lista_simbolos, Display);
+            
+        
     }
 
     @FXML
@@ -312,20 +315,20 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected void BotonResultado() {
-        System.out.println("Lista de simbolos pre saneo: "+lista_simbolos);
+        System.out.println("Lista de simbolos pre saneo: " + lista_simbolos);
         fa.sanearLista(lista_simbolos);
-        System.out.println("Lista de simbolos post saneo: "+lista_simbolos);
-        System.out.println("Lista de simbolos pre parentesis: "+lista_simbolos);
-        if(l.agregarParentesis){
+        System.out.println("Lista de simbolos post saneo: " + lista_simbolos);
+        System.out.println("Lista de simbolos pre parentesis: " + lista_simbolos);
+        if (l.agregarParentesis) {
             lista_simbolos = fa.agregarParentesis(lista_simbolos);
         }
-        System.out.println("Lista de simbolos post parentesis: "+lista_simbolos);
+        System.out.println("Lista de simbolos post parentesis: " + lista_simbolos);
         fa.getPrecedence(lista_simbolos, l);
     }
-    
+
     @FXML
-    protected void switchAgregarParentesis(){
-        
+    protected void switchAgregarParentesis() {
+
     }
 
     @FXML
@@ -356,14 +359,19 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected void BotonParentesisAbierto_presionado() {
-        
+
         l.agregarSimbolo(gc, 17, lista_simbolos, Display);
     }
 
     @FXML
     protected void BotonParentesisCerrado_presionado() {
         if (!l.ParentesisAbiertos.isEmpty()) {
-            l.agregarSimbolo(gc, 18, lista_simbolos, Display);
+            if (!lista_simbolos.isEmpty()) {
+                Simbolo s = fa.conseguirUltimoSimbolo(lista_simbolos);
+                if (s.tipo == 0 || (s.tipo != 0 && (s.valor < 10 || s.valor > 13))) {
+                    l.agregarSimbolo(gc, 18, lista_simbolos, Display);
+                }
+            }
         }
     }
 
@@ -586,7 +594,7 @@ public class InterfazController implements Initializable {
                 l.enPotencia = true;
                 l.fa.getAlturaSimbolo(l);
                 l.agregarSimbolo(gc, -1, lista_simbolos, Display);
-            } 
+            }
         }
     }
 
