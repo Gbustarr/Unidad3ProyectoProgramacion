@@ -927,8 +927,9 @@ public class Logica {
             } else if (s.valor == -1) {
                 System.out.print("^");
                 string = string + "^";
-            } else if (s.valor == -2) {
-                //Hacer nada
+            } else if (s.valor == -3) {
+                System.out.print(".");
+                string = string + ".";
             } else {
                 System.out.print(s.valor);
                 string = string + s.valor;

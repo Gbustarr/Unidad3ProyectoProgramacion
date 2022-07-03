@@ -550,8 +550,9 @@ public class FuncionesAuxiliares {
                             }
                         }
                     }
-
+                    System.out.println("pilaOperadores antes de agregar"+pilaOperadores);
                     pilaOperadores.add(c.get(i));
+                    System.out.println("pilaOperadores despues de agregar"+pilaOperadores);
 
                 }
             }

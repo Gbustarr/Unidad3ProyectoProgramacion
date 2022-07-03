@@ -265,6 +265,8 @@ public class Simbolo {
             switch (this.valor) {
                 case -4:
                     return "neg";
+                case -3:
+                    return ".";
                 case -2:
                     return "v";
                 case -1:

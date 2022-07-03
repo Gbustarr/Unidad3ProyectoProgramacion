@@ -14,11 +14,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="906.0" style="-fx-background-color: linear-gradient(to bottom, #121e31 ,#111111); -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 10; -fx-border-insets: 2;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculadora.InterfazController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="996.0" style="-fx-background-color: linear-gradient(to bottom, #121e31 ,#111111); -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 10; -fx-border-insets: 2;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculadora.InterfazController">
    <children>
-      <VBox prefHeight="587.0" prefWidth="402.0" HBox.hgrow="SOMETIMES">
+      <VBox prefHeight="587.0" prefWidth="347.0" HBox.hgrow="SOMETIMES">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <HBox prefHeight="100.0" prefWidth="293.0" VBox.vgrow="ALWAYS">
                <children>
                   <MenuButton mnemonicParsing="false" style="-fx-background-color: #333333;" text="Tamaño" textFill="WHITE">
                      <items>
@@ -73,7 +73,7 @@
                         <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                            <children>
                               <Button fx:id="Btn_CambiarBase" mnemonicParsing="false" onAction="#BotonCambiarBase_presionado" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="Decimal" />
-                              <Button fx:id="Btn_Cientifico" mnemonicParsing="false" onAction="#BotonCientifico_presionado" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30);" text="Básico" />
+                              <Button fx:id="Btn_Cientifico" mnemonicParsing="false" onAction="#BotonCientifico_presionado" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: linear-gradient(to bottom, #003D66 ,#2d2d30); -fx-font-size: 13;" text="Básico" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
@@ -110,7 +110,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="41.0" prefWidth="56.0">
                                  <children>
-                                    <Button fx:id="Btn_Sen" mnemonicParsing="false" onAction="#BotonSeno_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #006400 ,#2d2d30);" text="Sin(x)" visible="false" />
+                                    <Button fx:id="Btn_Sen" mnemonicParsing="false" onAction="#BotonSeno_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #006400 ,#2d2d30); -fx-font-size: 13;" text="Sin(x)" visible="false" />
                                  </children>
                               </HBox>
                               <Button mnemonicParsing="false" onAction="#Boton7_presionado" prefHeight="50.0" prefWidth="40.0" text="7">
@@ -140,7 +140,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="41.0" prefWidth="56.0">
                                  <children>
-                                    <Button fx:id="Btn_Cos" mnemonicParsing="false" onAction="#BotonCos_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #006400 ,#2d2d30);" text="Cos(x)" visible="false" />
+                                    <Button fx:id="Btn_Cos" mnemonicParsing="false" onAction="#BotonCos_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #006400 ,#2d2d30); -fx-font-size: 13;" text="Cos(x)" visible="false" />
                                  </children>
                               </HBox>
                               <Button fx:id="Btn_4" mnemonicParsing="false" onAction="#Boton4_presionado" prefHeight="50.0" prefWidth="40.0" text="4">
@@ -170,7 +170,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="41.0" prefWidth="56.0">
                                  <children>
-                                    <Button fx:id="Btn_Tan" mnemonicParsing="false" onAction="#BotonTan_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #006400 ,#2d2d30);" text="Tan(x)" visible="false" />
+                                    <Button fx:id="Btn_Tan" mnemonicParsing="false" onAction="#BotonTan_presionado" prefHeight="50.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom, #006400 ,#2d2d30); -fx-font-size: 13;" text="Tan(x)" visible="false" />
                                  </children>
                               </HBox>
                               <Button fx:id="Btn_1" mnemonicParsing="false" onAction="#Boton1_presionado" prefHeight="50.0" prefWidth="40.0" text="1">
@@ -214,8 +214,8 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TextField fx:id="Txt_Input" prefHeight="25.0" prefWidth="211.0" HBox.hgrow="ALWAYS" />
-                  <Button maxHeight="25.0" mnemonicParsing="false" onAction="#BotonIngresarFormula_presionado" prefHeight="25.0" prefWidth="96.0" text="Ingresar" />
+                  <TextField fx:id="Txt_Input" prefHeight="25.0" prefWidth="211.0" promptText="Ingresar fórmula" HBox.hgrow="ALWAYS" />
+                  <Button maxHeight="25.0" mnemonicParsing="false" onAction="#BotonIngresarFormula_presionado" prefHeight="25.0" prefWidth="96.0" style="-fx-font-size: 11;" text="Ingresar" />
                </children>
                <padding>
                   <Insets left="20.0" />
@@ -229,7 +229,7 @@
             <Insets />
          </opaqueInsets>
       </VBox>
-      <VBox prefHeight="587.0" prefWidth="577.0" HBox.hgrow="ALWAYS">
+      <VBox prefHeight="587.0" prefWidth="310.0" HBox.hgrow="ALWAYS">
          <children>
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -253,16 +253,16 @@
                      <children>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <top>
-                              <Button mnemonicParsing="false" onAction="#BotonArriba_presionado" text="Subir" BorderPane.alignment="CENTER" />
+                              <Button mnemonicParsing="false" onAction="#BotonArriba_presionado" text="^" BorderPane.alignment="CENTER" />
                            </top>
                            <bottom>
-                              <Button mnemonicParsing="false" onAction="#BotonAbajo_presionado" text="Bajar" BorderPane.alignment="CENTER" />
+                              <Button mnemonicParsing="false" onAction="#BotonAbajo_presionado" text="v" BorderPane.alignment="CENTER" />
                            </bottom>
                            <left>
-                              <Button mnemonicParsing="false" onAction="#BotonIzquierda_presionado" text="Izq" BorderPane.alignment="CENTER" />
+                              <Button mnemonicParsing="false" onAction="#BotonIzquierda_presionado" text="&lt;" BorderPane.alignment="CENTER" />
                            </left>
                            <right>
-                              <Button mnemonicParsing="false" onAction="#BotonDerecha_presionado" text="Der" BorderPane.alignment="CENTER" />
+                              <Button mnemonicParsing="false" onAction="#BotonDerecha_presionado" text="&gt;" BorderPane.alignment="CENTER" />
                            </right>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -270,10 +270,10 @@
                         </BorderPane>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="428.0" spacing="10.0">
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="428.0" spacing="10.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <TextField fx:id="precedencia" />
-                        <TextField fx:id="textoSalida" prefHeight="25.0" prefWidth="316.0" />
+                        <TextField fx:id="precedencia" editable="false" prefHeight="25.0" prefWidth="411.0" promptText="Evaluación de simbolos" />
+                        <TextField fx:id="textoSalida" editable="false" prefHeight="25.0" prefWidth="316.0" promptText="Fórmula resultado" />
                      </children>
                   </VBox>
                </children>
