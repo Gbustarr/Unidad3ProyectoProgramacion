@@ -60,6 +60,8 @@ public class LogicaBinaria {
         ArrayList<Simbolo> lista_simbolos,
         Canvas Display) {
         //updateTags();
+        
+        
 
         if (this.lista_simbolos.isEmpty()) {
             simboloMasApartado.Ypos = pivot_y;
@@ -82,7 +84,9 @@ public class LogicaBinaria {
         double[] forma;
         
         if (Check) {
+            System.out.println("Verificando enPotencia:"+enPotencia);
             checkPotencias(nSimbolo);
+            System.out.println("Resultado enPotencia:"+enPotencia);
         }
 
         switch (nSimbolo) {
@@ -415,6 +419,9 @@ public class LogicaBinaria {
                 this.lista_simbolos.add(s);
                 break;
         }
+        
+        System.out.println("Simbolo: "+s+" con potencias"+enPotencia);
+        
         d.centrarNumeradores(this);
 
         //Luego de insertar un simbolo, mueve el pivot hacia la derecha
@@ -489,6 +496,7 @@ public class LogicaBinaria {
     protected void resetEstado() {
         enDivision = false;
         enPotencia = false;
+        Check = false;
         ParentesisAbiertos.clear();
         parentesisAgregadoANumerador = false;
         d.anchoAnterior = 0;

@@ -103,6 +103,9 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected Button Btn_Cientifico;
+    
+    @FXML
+    protected Button Btn_CambiarBase;
 
     @FXML
     protected TextField textoSalida;
@@ -342,9 +345,11 @@ public class InterfazController implements Initializable {
         if (l.binarioActivo) {
             l.binarioActivo = false;
             l.dibujarSimbolos();
+            Btn_CambiarBase.setText("Decimal");
         } else {
             l.binarioActivo = true;
             l.dibujarSimbolos();
+            Btn_CambiarBase.setText("Binario");
         }
     }
 

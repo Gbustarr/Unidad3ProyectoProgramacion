@@ -507,6 +507,7 @@ public class Logica {
         }
     }
 
+    
     protected void switchPotencias() {
         if (context.lista_simbolos.get(context.lista_simbolos.size() - 1).valor != 18) {
             pivot_yPrePotencia = pivot_y;
@@ -866,7 +867,7 @@ public class Logica {
                         if (!logicBin.lista_simbolos.isEmpty()) {
                             if (!logicBin.enPotencia) {
                                 logicBin.enPotencia = true;
-                                logicBin.fa.getAlturaSimbolo(logicBin);
+                                fa.getAlturaSimbolo(logicBin);
                                 fa.agregarSimboloBin(this, gc, lista_simbolos, DisplayBin,-1);
                             }
                         }
