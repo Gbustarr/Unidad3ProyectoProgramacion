@@ -23,6 +23,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -66,7 +67,7 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected Button Btn_0;
-    
+
     @FXML
     protected Button Btn_Raiz;
 
@@ -81,7 +82,7 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected Button Btn_potencia;
-    
+
     @FXML
     protected Button Btn_Maximizar;
 
@@ -102,12 +103,18 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected Button Btn_Cientifico;
+    
+    @FXML
+    protected Button Btn_CambiarBase;
 
     @FXML
     protected TextField textoSalida;
 
     @FXML
     protected TextField Txt_Input;
+
+    @FXML
+    protected TextField precedencia;
 
     @FXML
     protected Label Lbl_Error;
@@ -167,9 +174,11 @@ public class InterfazController implements Initializable {
     protected Button Btn_Cos;
     @FXML
     protected Button Btn_Tan;
-
     @FXML
     protected Button Btn_Fact;
+
+    @FXML
+    protected VBox padreCanvas;
 
     double espacio_acumulado = 0;
     ArrayList<Simbolo> lista_simbolos = new ArrayList();
@@ -185,9 +194,12 @@ public class InterfazController implements Initializable {
     Color colorNum = Color.GREEN;
     Color colorOp = Color.RED;
 
-    //X e Y originales
+    //X e Y iniciales
     double pivot_x = 50;
     double pivot_y = 150;
+
+    double pix = 50;
+    double piy = 150;
 
     //Para el movimiento de la ventana panel
     private double x, y = 0;
@@ -275,10 +287,13 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected void BotonMenos_presionado() {
-        if (l.bloqueadorSignoNegativo(lista_simbolos) == 1) {
+        if (lista_simbolos.isEmpty()) {
+            l.agregarSimbolo(gc, 11, lista_simbolos, Display);
+        }else if (l.contadorNegativos <2){
             l.agregarSimbolo(gc, 11, lista_simbolos, Display);
         }
-
+            
+        
     }
 
     @FXML
@@ -300,16 +315,29 @@ public class InterfazController implements Initializable {
             }
         }
     }
-    
+
     @FXML
-    protected void BotonResultado(){
-        fa.getPrecedence(lista_simbolos,l);
+    protected void BotonResultado() {
+        System.out.println("Lista de simbolos pre saneo: " + lista_simbolos);
+        fa.sanearLista(lista_simbolos);
+        System.out.println("Lista de simbolos post saneo: " + lista_simbolos);
+        System.out.println("Lista de simbolos pre parentesis: " + lista_simbolos);
+        if (l.agregarParentesis) {
+            lista_simbolos = fa.agregarParentesis(lista_simbolos);
+        }
+        System.out.println("Lista de simbolos post parentesis: " + lista_simbolos);
+        fa.getPrecedence(lista_simbolos, l);
     }
-    
+
     @FXML
-    protected void BotonRaiz_presionado(){
+    protected void switchAgregarParentesis() {
+
+    }
+
+    @FXML
+    protected void BotonRaiz_presionado() {
         l.agregarSimbolo(gc, 21, lista_simbolos, Display);
-    
+
     }
 
     @FXML
@@ -317,9 +345,11 @@ public class InterfazController implements Initializable {
         if (l.binarioActivo) {
             l.binarioActivo = false;
             l.dibujarSimbolos();
+            Btn_CambiarBase.setText("Decimal");
         } else {
             l.binarioActivo = true;
             l.dibujarSimbolos();
+            Btn_CambiarBase.setText("Binario");
         }
     }
 
@@ -334,13 +364,19 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected void BotonParentesisAbierto_presionado() {
+
         l.agregarSimbolo(gc, 17, lista_simbolos, Display);
     }
 
     @FXML
     protected void BotonParentesisCerrado_presionado() {
         if (!l.ParentesisAbiertos.isEmpty()) {
-            l.agregarSimbolo(gc, 18, lista_simbolos, Display);
+            if (!lista_simbolos.isEmpty()) {
+                Simbolo s = fa.conseguirUltimoSimbolo(lista_simbolos);
+                if (s.tipo == 0 || (s.tipo != 0 && (s.valor < 10 || s.valor > 13))) {
+                    l.agregarSimbolo(gc, 18, lista_simbolos, Display);
+                }
+            }
         }
     }
 
@@ -443,15 +479,21 @@ public class InterfazController implements Initializable {
                 break;
         }
     }
-    
+
     @FXML
-    protected void BotonMaximizar_presionado(){
+    protected void BotonMaximizar_presionado() {
         Stage stage = (Stage) Btn_Maximizar.getScene().getWindow();
-        if(stage.isFullScreen()){
-            stage.setFullScreen(false);
-           
-        }else{
-            stage.setFullScreen(true);
+        if (stage.isMaximized()) {
+            stage.setMaximized(false);
+            Display.setWidth(559);
+            Display.setHeight(359);
+            l.dibujarSimbolos();
+
+        } else {
+            stage.setMaximized(true);
+            Display.setWidth(padreCanvas.getWidth());
+            Display.setHeight(padreCanvas.getHeight());
+            l.dibujarSimbolos();
         }
     }
 
@@ -552,6 +594,18 @@ public class InterfazController implements Initializable {
 
     @FXML
     protected void BotonPotencia_presionado() {
+        if (!lista_simbolos.isEmpty()) {
+            if (!l.enPotencia) {
+                l.enPotencia = true;
+                l.fa.getAlturaSimbolo(l);
+                l.agregarSimbolo(gc, -1, lista_simbolos, Display);
+            }
+        }
+    }
+
+    /*
+    @FXML
+    protected void BotonPotencia_presionado() {
 
         if (!lista_simbolos.isEmpty()) {
             if (fa.conseguirUltimoSimbolo(lista_simbolos).valor == 18) {
@@ -559,14 +613,11 @@ public class InterfazController implements Initializable {
                     l.enPotencia = true;
                     l.fa.alturaEnPotencia(l);
                     l.agregarSimbolo(gc, -1, lista_simbolos, Display);
-                    alturaDivision.setVisible(true);
-
                 } else {
                     if (l.enPotencia) {
                         l.enPotencia = false;
                         l.fa.alturaEnPotencia(l);
                         l.agregarSimbolo(gc, -2, lista_simbolos, Display);
-                        alturaDivision.setVisible(false);
                         l.pivot_x = l.pivot_x + 5;
                     }
 
@@ -576,7 +627,6 @@ public class InterfazController implements Initializable {
                     l.enPotencia = false;
                     l.agregarSimbolo(gc, -2, lista_simbolos, Display);
                     l.fa.alturaEnPotencia(l);
-                    alturaDivision.setVisible(false);
                     l.pivot_x = l.pivot_x + 5;
                 }
 
@@ -584,17 +634,19 @@ public class InterfazController implements Initializable {
         }
 
     }
-
+    
+     */
     @FXML
     protected void BotonIngresarFormula_presionado() {
-        
-        
+
         //Reset de la logica.
         l.resetEstado();
         lista_simbolos.clear();
 
         //Cargando el string
         String cadena = Txt_Input.getText();
+
+        System.out.println(cadena);
 
         //Variables para las potencias
         boolean enPotencia = false;
@@ -617,40 +669,38 @@ public class InterfazController implements Initializable {
             } else {
                 switch (cadena.charAt(i)) {
                     case '^':
-                        l.agregarSimbolo(gc, -1, lista_simbolos, Display);
-                        l.enPotencia = true;
-                        enPotencia = true;
+                        BotonPotencia_presionado();
                         break;
                     case '+':
-                        l.agregarSimbolo(gc, 10, lista_simbolos, Display);
+                        BotonMas_presionado();
                         break;
                     case '-':
-                        l.agregarSimbolo(gc, 11, lista_simbolos, Display);
+                        BotonMenos_presionado();
                         break;
                     case '*':
-                        l.agregarSimbolo(gc, 12, lista_simbolos, Display);
+                        BotonMultiplicar_presionado();
                         break;
                     case '/':
-                        l.agregarSimbolo(gc, 13, lista_simbolos, Display);
+                        BotonDivision_presionado();
                         break;
                     case 's':
                     case 'S':
-                        l.agregarSimbolo(gc, 14, lista_simbolos, Display);
+                        BotonSeno_presionado();
                         i = i + 2;
                         break;
                     case 'r':
                     case 'R':
-                        l.agregarSimbolo(gc, 21, lista_simbolos, Display);
+                        BotonRaiz_presionado();
                         i = i + 3;
                         break;
                     case 'c':
                     case 'C':
-                        l.agregarSimbolo(gc, 15, lista_simbolos, Display);
+                        BotonCos_presionado();
                         i = i + 2;
                         break;
                     case 't':
                     case 'T':
-                        l.agregarSimbolo(gc, 16, lista_simbolos, Display);
+                        BotonTan_presionado();
                         i = i + 2;
                         break;
                     case '(':
@@ -664,24 +714,27 @@ public class InterfazController implements Initializable {
                     case ')':
                         if (enPotencia) {
                             contadorPotencia--;
+                            l.enPotencia = true;
+                            enPotencia = true;
+                            fa.getAlturaSimbolo(l);
                         }
                         ;
-                        l.agregarSimbolo(gc, 18, lista_simbolos, Display);
+                        BotonParentesisCerrado_presionado();
                         break;
                     case '!':
-                        l.agregarSimbolo(gc, 19, lista_simbolos, Display);
+                        BotonFact_presionado();
                         break;
                     case '°':
-                        l.agregarSimbolo(gc, 20, lista_simbolos, Display);
+                        BotonGrado_presionado();
                         break;
                 }
             }
 
         }
     }
-    
+
     @FXML
-    protected void BotonInfo_presionado(){
+    protected void BotonInfo_presionado() {
         fa.printAllSymbols(this.lista_simbolos);
     }
 
@@ -695,19 +748,19 @@ public class InterfazController implements Initializable {
     @FXML
     protected void BotonSeno_presionado() {
         l.agregarSimbolo(gc, 14, lista_simbolos, Display);
-        l.agregarSimbolo(gc, 17, lista_simbolos, Display);
+        //l.agregarSimbolo(gc, 17, lista_simbolos, Display);
     }
 
     @FXML
     protected void BotonCos_presionado() {
         l.agregarSimbolo(gc, 15, lista_simbolos, Display);
-        l.agregarSimbolo(gc, 17, lista_simbolos, Display);
+        //l.agregarSimbolo(gc, 17, lista_simbolos, Display);
     }
 
     @FXML
     protected void BotonTan_presionado() {
         l.agregarSimbolo(gc, 16, lista_simbolos, Display);
-        l.agregarSimbolo(gc, 17, lista_simbolos, Display);
+        //l.agregarSimbolo(gc, 17, lista_simbolos, Display);
     }
 
     @FXML

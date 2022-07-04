@@ -20,8 +20,8 @@ public class LogicaBinaria {
     double espacioEntreSimbolos = 15;
     Simbolo simboloMasApartado = new Simbolo();
     double pivot_x = 50;
-    double pivot_y = 150;
-    double factor = 1;
+    double pivot_y = 300;
+    double factor = 1;  
     boolean enDivision;
     boolean enPotencia;
     Simbolo divisor;
@@ -45,6 +45,12 @@ public class LogicaBinaria {
 
     FuncionesAuxiliares fa = new FuncionesAuxiliares();
     Simbolo alturaAntesDeDivisionBin;
+    
+    //Variables para potencias
+    ArrayList<Simbolo> parentesisEnPotencia = new ArrayList();
+    boolean Check = false;
+
+    double pivot_yPrePotencia;
 
     public LogicaBinaria(InterfazController context) {
         this.context = context;
@@ -54,6 +60,8 @@ public class LogicaBinaria {
         ArrayList<Simbolo> lista_simbolos,
         Canvas Display) {
         //updateTags();
+        
+        
 
         if (this.lista_simbolos.isEmpty()) {
             simboloMasApartado.Ypos = pivot_y;
@@ -74,6 +82,12 @@ public class LogicaBinaria {
 
         //Iniciación de una forma general
         double[] forma;
+        
+        if (Check) {
+            System.out.println("Verificando enPotencia:"+enPotencia);
+            checkPotencias(nSimbolo);
+            System.out.println("Resultado enPotencia:"+enPotencia);
+        }
 
         switch (nSimbolo) {
             case -3: //punto
@@ -88,25 +102,33 @@ public class LogicaBinaria {
                 s.setTipo(-2);
                 this.lista_simbolos.add(s);
                 break;
-            case -2:
-                s.setTipo(-1);
-                s.setValor(-2);
-                s.setColor(Color.rgb(0, 0, 0, 0));
-                forma = cs.ceroPot(pivot_x, pivot_y);
-                s.setForma(forma);
-                pivot_x = pivot_x - 10;
-                this.lista_simbolos.add(s);
-                //fa.moverPivotIzquierda(this, espacioEntreSimbolos);
-                break;
             case -1:
                 s.setTipo(-1);
                 s.setValor(-1);
                 s.setColor(Color.rgb(0, 0, 0, 0));
+                 s.valorPrecedencia = 9; //Mayor precedencia
+                s.asociatividad = 1;
                 forma = cs.ceroPot(pivot_x, pivot_y);
                 s.setForma(forma);
                 d.borrarSimbolosDeNumeradoresParaPotencia(this);
                 pivot_x = pivot_x - 10;
+                
                 this.lista_simbolos.add(s);
+                if (this.lista_simbolos.get(this.lista_simbolos.size() - 2).valor != 18) {
+                    System.out.println("No hay parentesis antes de");
+                    pivot_yPrePotencia = pivot_y;
+                } else {
+                    System.out.println("Hay parentesis antes de");
+                    for (int k = this.lista_simbolos.size() - 3; k >= 0; k--) {
+                        System.out.println("^Simbolo: " + this.lista_simbolos.get(k));
+                        if (this.lista_simbolos.get(k).tipo == 0) {
+                            pivot_yPrePotencia = this.lista_simbolos.get(k).Ypos;
+                            break;
+                        }
+                    }
+
+                }
+                Check = true;
                 //fa.moverPivotIzquierda(this, espacioEntreSimbolos);
                 break;
             case 0:
@@ -315,6 +337,7 @@ public class LogicaBinaria {
             case 17: //Parentesis Abierto
                 if (enPotencia) {
                     forma = cs.pAbiertoPot(pivot_x, pivot_y);
+                    parentesisEnPotencia.add(new Simbolo());
                 } else {
                     forma = cs.pAbierto(pivot_x, pivot_y);
                 }
@@ -332,17 +355,15 @@ public class LogicaBinaria {
                 s.setColor(context.colorOp);
                 s.enlace = ParentesisAbiertos.get(ParentesisAbiertos.size() - 1);
                 fa.posicionarParentesisDeCierre(this, s);
-                if (ultimoParentesisCerrado != null) {
-                    if (s.enlace.vecesParentesisDimensionado > ultimoParentesisCerrado.enlace.vecesParentesisDimensionado) {
-                        pivot_x = simboloMasApartado.Xpos;
-                        //divisionesAgregadas--;
-                    }
-                }
                 if (enPotencia) {
                     forma = cs.pCerradoPot(pivot_x, pivot_y);
+                    if (!parentesisEnPotencia.isEmpty()) {
+                        parentesisEnPotencia.remove(parentesisEnPotencia.size() - 1);
+                    }
                 } else {
                     forma = cs.pCerrado(pivot_x, pivot_y);
                 }
+                                
                 s.setForma(forma);
                 s.setAlturaParentesis(ParentesisAbiertos.get(ParentesisAbiertos.size() - 1).getAlturaParentesis());
 
@@ -398,6 +419,9 @@ public class LogicaBinaria {
                 this.lista_simbolos.add(s);
                 break;
         }
+        
+        System.out.println("Simbolo: "+s+" con potencias"+enPotencia);
+        
         d.centrarNumeradores(this);
 
         //Luego de insertar un simbolo, mueve el pivot hacia la derecha
@@ -472,11 +496,12 @@ public class LogicaBinaria {
     protected void resetEstado() {
         enDivision = false;
         enPotencia = false;
+        Check = false;
         ParentesisAbiertos.clear();
         parentesisAgregadoANumerador = false;
         d.anchoAnterior = 0;
         pivot_x = 50;
-        pivot_y = 150;
+        pivot_y = 300;
 
         lista_simbolos.clear();
 
@@ -563,5 +588,14 @@ public class LogicaBinaria {
                 }
                 break;
         }
+    }
+    protected void checkPotencias(int n) {
+
+        if ((n < 0 || n > 9)&& n != 17 && parentesisEnPotencia.isEmpty()) {
+            enPotencia = false;
+            Check = false;
+            pivot_y = pivot_yPrePotencia;
+        }
+
     }
 }

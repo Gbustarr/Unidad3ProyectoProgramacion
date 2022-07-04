@@ -50,5 +50,5 @@ and open the template in the editor.
     -fx-background-color:  linear-gradient(to bottom, #333333 ,#222222);
     -fx-text-fill: white;
     box-sizing: border-box;
-    font-size: 50px;
+    -fx-font-size: 12pt;
 }

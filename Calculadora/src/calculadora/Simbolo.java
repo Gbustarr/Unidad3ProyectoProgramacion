@@ -23,6 +23,7 @@ public class Simbolo {
     Color color = Color.GREEN;
     int tipo; //0 = numero, 1= operador, 2 = operador especial
     int valor;
+    int asociatividad = 0; // 0 left-right; 1 right-left
     double resultado;
     int valorPrecedencia = 0;
     int enDivision = 0;
@@ -144,6 +145,18 @@ public class Simbolo {
         this.forma[9] = altura[4];
         this.forma[11] = altura[5];
     }
+    
+    protected double getAlturaSimbolo(){
+        double altura = this.forma[1];
+        
+        for(int i = 1;i<this.forma.length;i = i+2){
+            if(this.forma[i]< altura){
+                altura = this.forma[i];
+            }
+        }
+        
+        return altura;
+    }
 
     public double getXFactor() {
         return Xfactor;
@@ -250,8 +263,12 @@ public class Simbolo {
     public String toString() {
         if (this.tipo != 0) {
             switch (this.valor) {
+                case -4:
+                    return "neg";
+                case -3:
+                    return ".";
                 case -2:
-                    return "";
+                    return "v";
                 case -1:
                     return "^";
                 case 10:
