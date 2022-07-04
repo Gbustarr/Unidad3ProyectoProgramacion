@@ -37,9 +37,10 @@ G Edition</h3>
     
   </p>
 </div>
-<!--
-[![Watch the video](https://img.youtube.com/vi/0ohifiBu3Zs/maxresdefault.jpg)](https://youtu.be/0ohifiBu3Zs)
--->
+<p>Video demostración de la calculadora:</p>
+
+[![Videodemostración](./img/thumbnail_video.PNG)](https://youtu.be/DL6KpRRNMFM)
+
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -87,13 +88,13 @@ Para la Unidad 2, se debe:
 
 Para la Unidad 3, se debe:
 
-- [ ] La aplicación debe cumplir con los requisitos indispensables y deseables de las unidades anteriores.
-- [ ] Calcular el resultado de una operación ingresada por el usuario. Debe parsear el texto para obtener los números y operadores correspondientes, y considerar la precedencia de las operaciones aritméticas.
+- [x] La aplicación debe cumplir con los requisitos indispensables y deseables de las unidades anteriores.
+- [x] Calcular el resultado de una operación ingresada por el usuario. Debe parsear el texto para obtener los números y operadores correspondientes, y considerar la precedencia de las operaciones aritméticas.
 
-- [ ] Agregar la funcionalidad de maximizar. Al maximizar la ventana, el panel de dibujo debe extenderse a toda la pantalla, sin que se pierda la fórmula. Al revertir la maximización debe volver a la “normalidad”.
-- [ ] Ingresar una cadena de operaciones aritméticas en el cuadro de texto correspondiente (o en otro lugar), y dibujar automáticamente la fórmula.
+- [x] Agregar la funcionalidad de maximizar. Al maximizar la ventana, el panel de dibujo debe extenderse a toda la pantalla, sin que se pierda la fórmula. Al revertir la maximización debe volver a la “normalidad”.
+- [x] Ingresar una cadena de operaciones aritméticas en el cuadro de texto correspondiente (o en otro lugar), y dibujar automáticamente la fórmula.
 
-- [ ] Mostrar el orden de la secuencia de símbolos ingresados en el panel de texto en el esquema de ordenamiento de árboles preorden.
+- [x] Mostrar el orden de la secuencia de símbolos ingresados en el panel de texto en el esquema de ordenamiento de árboles preorden.
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>

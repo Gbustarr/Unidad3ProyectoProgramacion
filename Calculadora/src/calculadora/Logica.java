@@ -387,6 +387,7 @@ public class Logica {
                 s.setColor(context.colorOp);
                 s.enlace = ParentesisAbiertos.get(ParentesisAbiertos.size() - 1);
                 fa.posicionarParentesisDeCierre(this, s);
+                
                 if (enPotencia) {
                     forma = cs.pCerradoPot(pivot_x, pivot_y);
                     if (!parentesisEnPotencia.isEmpty()) {
@@ -848,7 +849,11 @@ public class Logica {
 
                 //Actualiza el indice del iterador según los digitos encontrados.
                 //System.out.println("indice antes de: "+i);
-                i = i + String.valueOf(numeroAConvertir).length() - 1;
+                if(numeroAConvertir >=0){
+                    i = i + String.valueOf(numeroAConvertir).length() - 1;
+                }else{
+                    i = i + String.valueOf(numeroAConvertir).length()-2;
+                }
                 //System.out.println("indice despues de: "+i);
                 //Simulacion de entrada por click de botones 0 y 1 para agregar
                 // numeros al canvas.
@@ -857,7 +862,7 @@ public class Logica {
             } else {
 
                 switch (lista_simbolos.get(i).getValor()) {
-                    case -1:
+                    case -1: //Apertura de potencias
                         if (!logicBin.lista_simbolos.isEmpty()) {
                             if (!logicBin.enPotencia) {
                                 logicBin.enPotencia = true;

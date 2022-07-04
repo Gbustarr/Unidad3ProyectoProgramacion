@@ -6,7 +6,6 @@
 package calculadora;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -75,7 +74,7 @@ public class FuncionesAuxiliares {
 
     protected double getAlturaSimbolo(LogicaBinaria l) {
 
-        return l.pivot_y = conseguirUltimoSimbolo(l.context.lista_simbolos).getAlturaSimbolo() + 40;
+        return l.pivot_y = conseguirUltimoSimbolo(l.lista_simbolos).getAlturaSimbolo() + 40;
 
     }
 
